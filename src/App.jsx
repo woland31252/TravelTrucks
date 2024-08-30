@@ -1,7 +1,7 @@
-import HomePage from "./pages/home/homePage.jsx";
+// import HomePage from "./pages/home/homePage.jsx";
 import { Routes, Route } from "react-router-dom";
-// import { lazy } from "react";
-// const HomePage = lazy(() => import('./pages/home/homePage.jsx'));
+import { lazy } from "react";
+const HomePage = lazy(() => import('./pages/home/homePage.jsx'));
 // const Catalog = lazy (()=>import('./pages/catalog/catalogPage.jsx'));
 // const Camper = lazy(() => import('./pages/camper/camperDetailsPage.jsx'));
 // const NotFoundPage = lazy(()=>import('./pages/notFoundPage/notFoundPage.jsx'));
