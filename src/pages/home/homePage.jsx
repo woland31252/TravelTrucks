@@ -1,5 +1,5 @@
-import css from "../home/homePage.module.css";
-import Button from "../../components/button/button.jsx";
+import css from "./HomePage.module.css";
+import Button from "../../components/button/Button.jsx";
 
 function HomePage() {
   return (

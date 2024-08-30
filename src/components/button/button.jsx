@@ -1,4 +1,4 @@
-import css from '../button/button.module.css';
+import css from './Button.module.css';
 
 function Button ({children}) {
     return (

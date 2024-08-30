@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
-import Navigation from '../navigation/navigation.jsx';
-import css from '../layout/layout.module.css';
+import Navigation from '../navigation/Navigation.jsx';
+import css from './Layout.module.css';
 
 export default function Layout({children}) {
     return (
