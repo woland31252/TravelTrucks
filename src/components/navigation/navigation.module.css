@@ -13,6 +13,7 @@
 .navLink {
     text-decoration: none;
     display: flex;
+    align-items: center;
     gap:32px;
 }
 
@@ -21,6 +22,8 @@
     color: mediumvioletred;
 }
 
-.logo {
-    margin: auto 0;
+.svgIcon {
+    width: 136px;
+    height: 16px;
 }
+
