@@ -1,9 +1,9 @@
 import Location from '../../components/location/Location.jsx';
 import Filters from '../../components/filters/Filters.jsx';
 import Collection from '../../components/collection/Collection.jsx';
-import css from '../catalog/Catalog.module.css';
+import css from '../catalog/CatalogPage.module.css';
 
-function Catalog () {
+function CatalogPage () {
     return (
         <div className={css.catalog}>
             <div className={css.catalogSearch}>
@@ -17,4 +17,4 @@ function Catalog () {
     )
 }
 
-export default Catalog
+export default CatalogPage

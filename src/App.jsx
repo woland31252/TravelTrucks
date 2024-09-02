@@ -2,9 +2,9 @@
 import { Routes, Route } from "react-router-dom";
 import { lazy } from "react";
 const HomePage = lazy(() => import('./pages/home/HomePage.jsx'));
-// const Catalog = lazy (()=>import('./pages/catalog/catalogPage.jsx'));
-// const Camper = lazy(() => import('./pages/camper/camperDetailsPage.jsx'));
-// const NotFoundPage = lazy(()=>import('./pages/notFoundPage/notFoundPage.jsx'));
+const CatalogPage = lazy (()=>import('./pages/catalog/CatalogPage.jsx'));
+// const CamperDetailsPage = lazy(() => import('./pages/camper/CamperDetailsPage.jsx'));
+// const NotFoundPage = lazy(()=>import('./pages/NotFoundPage/NotFoundPage.jsx'));
 // const MovieCast = lazy(()=>import('./components/MovieCast/MovieCast.jsx')) ;
 // const MovieReviews = lazy(()=>import('./components/MovieReviews/MovieReviews.jsx')) ;
 
@@ -17,12 +17,12 @@ const App = () => {
     <Layout>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/catalog" element={<catalogPage />} />
-        <Route path="/catalog/catalog:Id" element={<camperDetailsPage />}>
-          {/* <Route path="cast" element={<MovieCast />} />
-          <Route path="reviews" element={<MovieReviews />} /> */}
-        </Route >
-        <Route path="*" element={<notFoundPage />} />
+        <Route path="/catalog" element={<CatalogPage />} />
+        {/* <Route path="/catalog/catalog:Id" element={<CamperDetailsPage />}>
+          <Route path="cast" element={<MovieCast />} />
+          <Route path="reviews" element={<MovieReviews />} />
+        </Route > */}
+        {/* <Route path="*" element={<NotFoundPage />} /> */}
       </Routes>
     </Layout>
  )
