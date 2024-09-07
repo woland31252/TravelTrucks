@@ -1,11 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchAllCampers, fetchCamperId } from "../operations";
-import { handlePending, handleError } from "../utils.js";
 
 const camperInitlState = {
   items: [],
   isLoading: false,
   error: null,
+};
+
+const handlePending = (state) => {
+  state.isLoading = true;
+};
+
+const handleError = (state, action) => {
+  state.isLoading = false;
+  state.error = action.payload;
 };
 
 const sliceCamper = createSlice({

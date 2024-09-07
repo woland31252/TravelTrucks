@@ -6,6 +6,6 @@ import camperReducer from "../redux/camper/sliceCamper";
 
 export const store = configureStore({
   reducer: {
-    contacts: camperReducer,
+    camper: camperReducer,
   },
 });
