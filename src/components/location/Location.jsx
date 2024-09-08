@@ -1,6 +1,6 @@
 import icon from "../../images/icons.svg";
 import { useId } from "react";
-import css from "../location/Location.module.css";
+import css from "./Location.module.css";
 
 function Location() {
   const id = useId();

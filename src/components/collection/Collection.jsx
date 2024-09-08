@@ -1,19 +1,19 @@
 import { useSelector } from "react-redux";
 import { selectorsCampers } from "../../redux/camper/selectorsCamper.js";
-import CamperCard from "../camperCard/CamperCard.jsx";
-import css from "../collection/Collection.module.css";
+import CamperCard from "../CamperCard/CamperCard.jsx";
 
-function Collection() {
+const Collection = () => {
   const campers = useSelector(selectorsCampers);
+
   return (
     <ul>
-      {campers.map((camper) => (
-        <li key={camper.id} className={css.camperItem}>
-          <CamperCard camperItem={camper}/>
+      {campers.map(item => (
+        <li key={item.id}>
+          <CamperCard item={item} />
         </li>
       ))}
     </ul>
-  )
-}
+  );
+};
 
 export default Collection;

@@ -1,5 +1,5 @@
 import Error404 from "../Error404/Error404.jsx";
-import css from "../fetchError/FetchError.module.css";
+import css from "./FetchError.module.css";
 
 function FetchError() {
   return (

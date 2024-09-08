@@ -1,5 +1,5 @@
 // import clsx from "clsx";
-import css from "../notFoundPage/NotFoundPage.module.css";
+import css from "./NotFoundPage.module.css";
 import Error404 from "../../components/Error404/Error404.jsx";
 
 function NotFoundPage() {

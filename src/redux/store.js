@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import camperReducer from "../redux/camper/sliceCamper";
+import camperReducer from "../redux/camper/sliceCamper.js";
 
 
 
