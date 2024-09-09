@@ -1,4 +1,13 @@
-.catalog {
+.catalogPageContainer {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding:48px 64px;
+    position: relative;
+}
+
+.catalogPageCampers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
 }

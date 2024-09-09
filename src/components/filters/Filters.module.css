@@ -1,0 +1,30 @@
+.titleList {
+    margin-bottom: 24px;
+}
+
+.listContainer {
+    width: 360px;
+    border-top: 1px solid;
+}
+
+.listFilters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.itemFilter {
+  width: 112px;
+  height: 96px;
+  padding: 16px 18px 16px 18px;
+  border-radius: 12px;
+  border: 1px solid #dadde1;
+  letter-spacing: -0.005em;
+  text-align: center;
+}
+
+.iconProperties {
+  width: 32px;
+  height: 32px;
+}

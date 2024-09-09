@@ -7,8 +7,6 @@
 
 .locationLabel {
   font-weight: 400;
-  font-size: 16px;
-  line-height: 0.7;
   color: #6c717b;
 }
 
@@ -16,7 +14,7 @@
   width: 20px;
   height: 20px;
   position: absolute;
-  top: 37px;
+  top: 50px;
   left: 20px
 }
 
@@ -25,7 +23,7 @@
   height: 56px;
   padding: 18px 190px 18px 48px;
   border-radius: 12px;
-  opacity: 0px;
   background: #f7f7f7;
   border: none;
+  line-height: 1.5;
 }

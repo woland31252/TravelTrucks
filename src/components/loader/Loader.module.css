@@ -1,7 +1,8 @@
 .loader {
-  height: 96px;
+  /* height: 96px;
   width: 96px;
   color: grey;
   stroke-width: 5;
-  animation-duration: 0.75;  
+  animation-duration: 0.75; */
+  position:absolute;
 }
