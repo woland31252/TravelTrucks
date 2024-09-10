@@ -1,30 +1,55 @@
 .titleList {
-    margin-bottom: 24px;
+  margin-bottom: 24px;
 }
 
-.listContainer {
-    width: 360px;
-    border-top: 1px solid;
+.listCheckBtnContainer,
+.typeListContainer {
+  width: 360px;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 8px;
+  column-gap: 12px;
+}
+
+.itemFilters {
+  color: #475467;
+  margin-bottom: 32px;
 }
 
 .listFilters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 24px;
-}
-
-.itemFilter {
-  width: 112px;
-  height: 96px;
-  padding: 16px 18px 16px 18px;
-  border-radius: 12px;
-  border: 1px solid #dadde1;
-  letter-spacing: -0.005em;
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
 }
 
 .iconProperties {
   width: 32px;
   height: 32px;
+}
+
+.buttonContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.lineBetween {
+  width: 360px;
+  border: 0.5px solid #dadde1;
+  margin-bottom: 24px;
+}
+
+.btnName {
+  text-align: center;
+}
+
+.btnName::first-letter {
+  text-transform: uppercase;
+}
+
+.titleTypeList {
+  margin: 32px 0 24px;
 }

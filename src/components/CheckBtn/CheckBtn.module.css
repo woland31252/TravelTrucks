@@ -1,0 +1,36 @@
+.checkbox {
+  position: relative;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkboxInput {
+  appearance: none;
+  position: relative;
+  width: 112px;
+  height: 96px;
+  border-radius: 12px;
+  border: 1px solid #dadde1;
+}
+
+.checkboxNew {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  width: 112px;
+  height: 96px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  user-select: none;
+}
+
+.checkboxInput:checked {
+  border: 2px solid #e44848;
+  background-color: #f4f4f5;
+}

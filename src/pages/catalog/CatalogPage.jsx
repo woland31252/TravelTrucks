@@ -24,15 +24,17 @@ function CatalogPage() {
 
   return (
     <>
+    {isLoading && <Loader />}
       {isError ? (
         <FetchError />
       ) : (
         <div className={css.catalogPageContainer}>
-          {isLoading && <Loader />}
-          <div className={css.catalogSearch}>
+          
+          <form className={css.catalogSearch}>
             <Location />
             <Filters />
-          </div>
+            <Button variant="search">Search</Button>
+          </form>
           <div className={css.catalogPageCampers}>
             {isError ? <FetchError /> : <Collection />}
             <Button variant="loadMore">Load more</Button>
