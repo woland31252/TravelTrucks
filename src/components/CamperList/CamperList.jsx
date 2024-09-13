@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 import icon from "../../images/icons.svg";
-import css from "./CamperCard.module.css";
+import css from "./CamperList.module.css";
 import Button from "../Button/Button.jsx";
 
 function CamperCard({
@@ -108,7 +109,9 @@ function CamperCard({
               </div>
             ) : null}
           </div>
+          <Link to ="/catalog/:id">
           <Button variant="showMore">Show more</Button>
+          </Link>
         </div>
       </div>
   );

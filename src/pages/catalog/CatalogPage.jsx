@@ -6,13 +6,11 @@ import Location from "../../components/Location/Location.jsx";
 import Filters from "../../components/Filters/Filters.jsx";
 import Collection from "../../components/Collection/Collection.jsx";
 import FetchError from "../../components/fetchError/FetchError.jsx";
-// import Loader from "../../components/loader/Loader.jsx";
 import Button from "../../components/Button/Button.jsx";
 import css from "./CatalogPage.module.css";
 
 function CatalogPage() {
   const dispatch = useDispatch();
-  // const isLoading = useSelector(selectorsIsLoading);
   const isError = useSelector(selectorsError);
 
   useEffect(() => {
@@ -21,7 +19,6 @@ function CatalogPage() {
 
   return (
     <>
-      {/* {isLoading && <Loader />} */}
       {isError ? (
         <FetchError />
       ) : (

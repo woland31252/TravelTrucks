@@ -5,5 +5,4 @@ import css from '../CamperCard/CamperCard.module.css';
 
 function CamperCard () {
 const camperId = useSelector(selectorsCamperById);
-const 
 }
