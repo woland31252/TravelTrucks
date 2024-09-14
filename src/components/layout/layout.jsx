@@ -8,7 +8,7 @@ export default function Layout({children}) {
     return (
         <div className={css.container}>
             <AppBar />
-            <Suspense fallback={<Loader/>}>{children}</Suspense> 
+            <Suspense fallback={<Loader/>}>{children}</Suspense>
         </div>
     )
 }

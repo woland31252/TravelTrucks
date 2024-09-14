@@ -1,7 +1,9 @@
-export const Reviews = () => {
+function Reviews () {
     return (
         <div>
-            <h2>RevievwsCamper</h2>
+            <h2>revievws</h2>
         </div>
     )
 }
+
+export default Reviews

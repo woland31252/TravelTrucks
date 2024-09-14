@@ -5,6 +5,7 @@ import Button from "../Button/Button.jsx";
 
 function CamperCard({
   item: {
+    id,
     name,
     price,
     rating,
@@ -109,7 +110,7 @@ function CamperCard({
               </div>
             ) : null}
           </div>
-          <Link to ="/catalog/:id">
+          <Link to ={`/catalog/${id}`}>
           <Button variant="showMore">Show more</Button>
           </Link>
         </div>
