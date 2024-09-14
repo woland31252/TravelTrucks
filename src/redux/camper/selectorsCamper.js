@@ -10,7 +10,7 @@ import { selectorsTV } from "../filterCamper/selectorsFilterCamper.js";
 export const selectorsIsLoading = (state) => state.camper.isLoading;
 export const selectorsError = (state) => state.camper.error;
 export const selectorsCampers = (state) => state.camper.items;
-export const selectorsCamperById = (state) => state.camper.items.id;
+export const selectorsCamperById = (state) => state.camper.itemId;
 
 export const selectorsFilterCampers = createSelector(
   [

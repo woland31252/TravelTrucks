@@ -1,0 +1,60 @@
+.camperCardContainer {
+  padding: 48px 64px 80px;
+}
+
+.titleCamperCard {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.33;
+  margin-bottom: 8px;
+}
+
+.ratingCamperCard,
+.locationCamperCard {
+  font-weight: 400;
+}
+
+.ratingLocationContainer {
+  display: flex;
+  justify-content: flex-start;
+  column-gap: 16px;
+}
+.ratingContainer,
+.locationContainer {
+  display: flex;
+  column-gap: 4px;
+  align-items: center;
+}
+
+.priceCamperCard {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.33;
+  margin-top: 16px;
+}
+
+.imgCamperCardContainer {
+  display: flex;
+  column-gap: 48px;
+  margin: 28px 0;
+}
+
+.imgCamperCard {
+  width: 350px;
+  height: 350px;
+  border-radius: 10px;
+  object-fit: cover;
+  background-color: #a9a9a9;
+}
+
+.descriptionCamper {
+  font-weight: 400;
+  color: #475467;
+  margin-bottom: 60px;
+}
+
+.iconStar,
+.iconMap {
+  width: 16px;
+  height: 16px;
+}

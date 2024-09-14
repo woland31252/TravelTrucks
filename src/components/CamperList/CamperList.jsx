@@ -1,9 +1,11 @@
+
 import { Link } from "react-router-dom";
 import icon from "../../images/icons.svg";
 import css from "./CamperList.module.css";
 import Button from "../Button/Button.jsx";
 
-function CamperCard({
+
+function CamperList({
   item: {
     id,
     name,
@@ -22,6 +24,7 @@ function CamperCard({
     radio,
   },
 }) {
+  
   return (
       <div className={css.camperCardContainer}>
         <div className={css.imgCamperContainer}>
@@ -118,4 +121,4 @@ function CamperCard({
   );
 }
 
-export default CamperCard;
+export default CamperList;

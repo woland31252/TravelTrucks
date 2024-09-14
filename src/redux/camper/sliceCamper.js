@@ -4,6 +4,7 @@ import { fetchAllCampers, fetchCamperId } from "../operations";
 
 const camperInitlState = {
   items: [],
+  itemId: {},
   isLoading: false,
   error: null,
 };
@@ -31,7 +32,7 @@ const sliceCamper = createSlice({
       .addCase(fetchCamperId.pending, handlePending)
       .addCase(fetchCamperId.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items.id = action.payload.id;
+        state.itemId = action.payload;
       })
       .addCase(fetchCamperId.rejected, handleError),
 });
