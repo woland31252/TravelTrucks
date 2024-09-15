@@ -45,12 +45,28 @@
   border-radius: 10px;
   object-fit: cover;
   background-color: #a9a9a9;
+  border:1px solid #a9a9a9;
 }
 
 .descriptionCamper {
   font-weight: 400;
   color: #475467;
   margin-bottom: 60px;
+}
+
+.linkListCamperCard {
+  display: flex;
+  column-gap: 40px;
+  margin-bottom: 24px;
+}
+
+.linkFeatures {
+  text-decoration: none;
+}
+
+.lineBeforeLink {
+  margin-bottom: 44px;
+  border: 1px solid #DADDE1
 }
 
 .iconStar,

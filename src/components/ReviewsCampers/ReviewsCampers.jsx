@@ -1,4 +1,4 @@
-function Reviews () {
+function ReviewsCamper () {
     return (
         <div>
             <h2>revievws</h2>
@@ -6,4 +6,4 @@ function Reviews () {
     )
 }
 
-export default Reviews
+export default ReviewsCamper

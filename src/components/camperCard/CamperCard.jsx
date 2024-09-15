@@ -1,7 +1,5 @@
 import { useSelector } from "react-redux";
-import { Link, Outlet } from "react-router-dom";
-import Reviews from "../../components/ReviewsCampers/ReviewsCampers.jsx";
-import Features from "../../components/FeaturesCamper/FeaturesCamper.jsx";
+import { NavLink, Outlet } from "react-router-dom";
 import BookingForm from "../BookingForm/BookingForm.jsx";
 import { selectorsCamperById } from "../../redux/camper/selectorsCamper.js";
 import icon from "../../images/icons.svg";
@@ -31,37 +29,34 @@ function CamperCard() {
       </div>
       <p className={css.priceCamperCard}>€{camper.price.toFixed(2)}</p>
       <div className={css.imgCamperCardContainer}>
-          <img
-            className={css.imgCamperCard}
-            src={camper.gallery[0].thumb}
-            alt="The camper, image 1"
-          />
-          <img
-            className={css.imgCamperCard}
-            src={camper.gallery[1].thumb}
-            alt="The camper, image 2"
-          />
-          <img
-            className={css.imgCamperCard}
-            src={camper.gallery[2].thumb}
-            alt="The camper, image 3"
-          />
+        <img
+          className={css.imgCamperCard}
+          src={camper.gallery[0].thumb}
+          alt="The camper, image 1"
+        />
+        <img
+          className={css.imgCamperCard}
+          src={camper.gallery[1].thumb}
+          alt="The camper, image 2"
+        />
+        <img
+          className={css.imgCamperCard}
+          src={camper.gallery[2].thumb}
+          alt="The camper, image 3"
+        />
       </div>
       <p className={css.descriptionCamper}>{camper.description}</p>
       <div>
-        <ul>
-          <li>
-            <Link to="features">
-              <Features />
-            </Link>
-          </li>
-          <li>
-            <Link to="reviews">
-              <Reviews />
-            </Link>
-          </li>
-          <Outlet />
-        </ul>
+        <div className={css.linkListCamperCard}>
+          <NavLink to="features" className={css.linkFeatures}>
+            <h3>Reviews</h3>
+          </NavLink>
+          <NavLink to="reviews" className={css.linkFeatures}> 
+            <h3>Features</h3>
+          </NavLink>
+        </div>
+        <hr className={css.lineBeforeLink}></hr>
+        <Outlet />
       </div>
       <div>
         <BookingForm />
