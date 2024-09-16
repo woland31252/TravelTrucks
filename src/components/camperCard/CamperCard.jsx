@@ -1,14 +1,16 @@
 import { useSelector } from "react-redux";
 import { NavLink, Outlet } from "react-router-dom";
 import BookingForm from "../BookingForm/BookingForm.jsx";
+import { Suspense } from "react";
+import Loader from "../Loader/Loader.jsx";
+import ImageTumbGallery from "../ImageTumbGallery/ImageTumbGallery.jsx";
 import { selectorsCamperById } from "../../redux/camper/selectorsCamper.js";
 import icon from "../../images/icons.svg";
 import css from "../CamperCard/CamperCard.module.css";
 
 function CamperCard() {
   const camper = useSelector(selectorsCamperById);
-
-  return (
+    return (
     <div className={css.camperCardContainer}>
       <h2 className={css.titleCamperCard}>{camper.name}</h2>
       <div className={css.ratingLocationContainer}>
@@ -29,21 +31,7 @@ function CamperCard() {
       </div>
       <p className={css.priceCamperCard}>€{camper.price.toFixed(2)}</p>
       <div className={css.imgCamperCardContainer}>
-        <img
-          className={css.imgCamperCard}
-          src={camper.gallery[0].thumb}
-          alt="The camper, image 1"
-        />
-        <img
-          className={css.imgCamperCard}
-          src={camper.gallery[1].thumb}
-          alt="The camper, image 2"
-        />
-        <img
-          className={css.imgCamperCard}
-          src={camper.gallery[2].thumb}
-          alt="The camper, image 3"
-        />
+        <ImageTumbGallery/>
       </div>
       <p className={css.descriptionCamper}>{camper.description}</p>
       <div className={css.linkListCamperCard}>
@@ -57,8 +45,10 @@ function CamperCard() {
       <hr className={css.lineBeforeLink}></hr>
 
       <div className={css.bookingForm}>
-        <Outlet />
-        <BookingForm />
+        <Suspense fallback={<Loader/>}>
+          <Outlet />
+          <BookingForm />
+        </Suspense>
       </div>
     </div>
   );

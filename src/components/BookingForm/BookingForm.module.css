@@ -49,3 +49,8 @@
 .comment {
   height: 118px;
 }
+
+.errorMessage {
+    color:crimson;
+    font-weight: 400;
+}
