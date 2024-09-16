@@ -1,0 +1,28 @@
+.reviewsListTitle {
+    display: flex;
+}
+
+.reviewsAvatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+    background: #F2F4F7;
+}
+
+.reviewsAvatarContent {
+   
+font-size: 24px;
+font-weight: 600;
+line-height: 1.33;
+color: #E44848;
+position: absolute;
+}
+
+.reviewsListName {
+    font-weight: 500;
+}
+
+.iconStar {
+    width: 16px;
+    height: 16px;
+  }

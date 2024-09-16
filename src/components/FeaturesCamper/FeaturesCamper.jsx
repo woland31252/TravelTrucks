@@ -63,7 +63,15 @@ function FeaturesCamper() {
           ) : null}
         </div>
         <h3 className={css.titleFeatures}>Vehicle details</h3>
-        <hr className={css.lineBeforeTitle} />
+        <hr className={css.lineAfterTitle} />
+        <div className={css.vehicleList}>
+          <p className={css.vehicleItem}>Form<span>{camper.form}</span></p>
+          <p className={css.vehicleItem}> Length<span>{camper.length}</span></p>
+          <p className={css.vehicleItem}>Width<span>{camper.width}</span></p>
+          <p className={css.vehicleItem}>Height<span>{camper.height}</span></p>
+          <p className={css.vehicleItem}>Tank<span>{camper.tank}</span></p>
+          <p className={css.vehicleItem}>Consumption<span>{camper.consumption}</span></p>
+        </div>
       </div>
     </>
   );

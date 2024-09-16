@@ -36,8 +36,20 @@ margin-bottom: 24px;
 
 }
 
-.lineBeforeTitle {
-  border: 1px solid #DADDE1
+.lineAfterTitle {
+  border: 1px solid #DADDE1;
+  margin-bottom: 24px;
+}
+
+.vehicleList {
+  display:flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.vehicleItem {
+  display:flex;
+  justify-content: space-between;
 }
 
 .iconProperties {
