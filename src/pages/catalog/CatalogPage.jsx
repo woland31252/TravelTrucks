@@ -29,7 +29,7 @@ function CatalogPage() {
           </div>
           <div className={css.catalogPageCampers}>
             <Collection />
-            <Button variant="loadMore">Load more</Button>
+            <Button type="button" variant="loadMore">Load more</Button>
           </div>
         </div>
       )}

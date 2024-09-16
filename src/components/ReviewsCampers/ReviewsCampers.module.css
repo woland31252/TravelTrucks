@@ -1,5 +1,6 @@
-.reviewsContainer {
-    width: 631px;
-
-
+.reviewsList {
+  display: flex;
+  flex-direction: column;
+  row-gap: 44px;
+  width: 631px;
 }

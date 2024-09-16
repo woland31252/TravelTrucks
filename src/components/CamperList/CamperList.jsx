@@ -114,7 +114,7 @@ function CamperList({
             ) : null}
           </div>
           <Link to ={`/catalog/${id}`}>
-          <Button variant="showMore">Show more</Button>
+          <Button type="button" variant="showMore">Show more</Button>
           </Link>
         </div>
       </div>

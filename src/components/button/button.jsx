@@ -2,11 +2,11 @@ import clsx from 'clsx';
 import css from './Button.module.css';
 
 
-function Button ({variant, children}) {
+function Button ({variant, type, children}) {
     const styleVariant = clsx(css.button, css[variant])
     return (
         <>
-        <button type="button" className={styleVariant}>{children}</button>
+        <button type={type} className={styleVariant}>{children}</button>
         </>
     )
 }

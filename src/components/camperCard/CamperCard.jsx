@@ -46,17 +46,18 @@ function CamperCard() {
         />
       </div>
       <p className={css.descriptionCamper}>{camper.description}</p>
-        <div className={css.linkListCamperCard}>
-          <NavLink to="features" className={css.linkFeatures}>
-            <h3>Features</h3>
-          </NavLink>
-          <NavLink to="reviews" className={css.linkFeatures}> 
-            <h3>Reviews</h3>
-          </NavLink>
-        </div>
-        <hr className={css.lineBeforeLink}></hr>
+      <div className={css.linkListCamperCard}>
+        <NavLink to="features" className={css.linkFeatures}>
+          <h3>Features</h3>
+        </NavLink>
+        <NavLink to="reviews" className={css.linkFeatures}>
+          <h3>Reviews</h3>
+        </NavLink>
+      </div>
+      <hr className={css.lineBeforeLink}></hr>
+
+      <div className={css.bookingForm}>
         <Outlet />
-      <div>
         <BookingForm />
       </div>
     </div>

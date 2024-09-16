@@ -25,7 +25,7 @@ function Filters() {
       <form className={css.catalogSearch}>
         <p className={css.itemFilters}>Filters</p>
         <h2 className={css.titleList}>Vehicle equipment</h2>
-        <div className={css.lineBetween}></div>
+        <hr className={css.lineBetween}/>
         <div className={css.listCheckBtnContainer}>
           <ChekBtn name="automatic" id={automatId} type="checkbox">
             {
@@ -119,7 +119,7 @@ function Filters() {
           </ChekBtn>
         </div>
         <h2 className={css.titleTypeList}>Vehicle type</h2>
-        <div className={css.lineBetween}></div>
+        <hr className={css.lineBetween}/>
         <div className={css.typeListContainer}>
           <ChekBtn name="type" id={vanId} type="radio">
             {
@@ -152,7 +152,7 @@ function Filters() {
             }
           </ChekBtn>
         </div>
-        <Button variant="search">Search</Button>
+        <Button type="button" variant="search">Search</Button>
       </form>
     </>
   );
