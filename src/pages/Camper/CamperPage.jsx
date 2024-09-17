@@ -18,8 +18,6 @@ function CamperPage() {
   if (!camper || !camper.name) {
     return <Loader />;
   }
-
-  console.log(id);
   return (
     <>
       <CamperCard />

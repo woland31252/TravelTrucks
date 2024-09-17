@@ -1,37 +1,29 @@
-
-
 .reviewsListTitle {
-    display: flex;
-    column-gap: 16px;
-    margin-bottom: 16px;
+  display: flex;
+  column-gap: 16px;
+  margin-bottom: 16px;
 }
 
 .reviewsAvatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 60px;
-    background: #F2F4F7;
-    position:relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+  background: #f2f4f7;
+  position: relative;
 }
 
 .reviewsAvatarContent {
-   
-font-size: 24px;
-font-weight: 600;
-line-height: 1.33;
-color: #E44848;
-position: absolute;
-top:50%;
-left: 50%;
-transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.33;
+  color: #e44848;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .reviewsListName {
-    font-weight: 500;
-    margin-bottom: 4px;
+  font-weight: 500;
+  margin-bottom: 4px;
 }
-
-.iconStar {
-    width: 16px;
-    height: 16px;
-  }

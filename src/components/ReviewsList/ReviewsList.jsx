@@ -1,4 +1,5 @@
-import icon from '../../images/icons.svg';
+import StarRating from '../StarRating/StarRating.jsx';
+// import icon from '../../images/icons.svg';
 import css from '../ReviewsList/ReviewsList.module.css';
 
 function ReviewsList ({item}) {
@@ -10,9 +11,9 @@ function ReviewsList ({item}) {
             </div>
             <div className={css.reviewsListNameContainer}>
                 <p className={css.reviewsListName}>{item.reviewer_name}</p>
-                <svg className={css.iconStar}>
-                <use href={`${icon}#icon-star`} />
-              </svg>
+                <p>
+                    <StarRating rating={item.reviewer_rating}/>
+                </p>
             </div>
         </div>
         <p className={css.reviewsListComment}>{item.comment}</p>

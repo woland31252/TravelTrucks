@@ -7,9 +7,14 @@ import ImageTumbGallery from "../ImageTumbGallery/ImageTumbGallery.jsx";
 import { selectorsCamperById } from "../../redux/camper/selectorsCamper.js";
 import icon from "../../images/icons.svg";
 import css from "../CamperCard/CamperCard.module.css";
+import clsx from "clsx";
 
 function CamperCard() {
   const camper = useSelector(selectorsCamperById);
+
+  const buildCamperLinkClass = ({isActive}) => {
+    return clsx(css.camperLink, isActive && css.camperLinkActive)
+  };
     return (
     <div className={css.camperCardContainer}>
       <h2 className={css.titleCamperCard}>{camper.name}</h2>
@@ -35,10 +40,10 @@ function CamperCard() {
       </div>
       <p className={css.descriptionCamper}>{camper.description}</p>
       <div className={css.linkListCamperCard}>
-        <NavLink to="features" className={css.linkFeatures}>
+        <NavLink to="features" className={buildCamperLinkClass}>
           <h3>Features</h3>
         </NavLink>
-        <NavLink to="reviews" className={css.linkFeatures}>
+        <NavLink to="reviews" className={buildCamperLinkClass}>
           <h3>Reviews</h3>
         </NavLink>
       </div>
