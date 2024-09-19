@@ -17,7 +17,7 @@ import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 import "modern-normalize";
 import { persistor, store } from "./redux/store.js";
-import App from "./App.jsx";
+import App from "./components/App.jsx";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
