@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { fetchCamperId } from "../../redux/operations.js";
 import { selectorsCamperById } from "../../redux/camper/selectorsCamper.js";
 import CamperCard from "../../components/CamperCard/CamperCard.jsx";
-import Loader from "../../components/temp/Loader.jsx";
+import Loader from "../../components/Loader/Loader.js";
 
 function CamperPage() {
   const { id } = useParams();
