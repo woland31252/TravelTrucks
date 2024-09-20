@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import Loader from '../loader/Loader.jsx';
+import Loader from '../temp/Loader.jsx';
 import { AppBar } from '../AppBar/AppBar.jsx';
 import css from './Layout.module.css';
 

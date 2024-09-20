@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { NavLink, Outlet } from "react-router-dom";
 import BookingForm from "../BookingForm/BookingForm.jsx";
 import { Suspense } from "react";
-import Loader from "../Loader/Loader.jsx";
+import Loader from "../temp/Loader.jsx";
 import ImageTumbGallery from "../ImageTumbGallery/ImageTumbGallery.jsx";
 import { selectorsCamperById } from "../../redux/camper/selectorsCamper.js";
 import icon from "../../images/icons.svg";
