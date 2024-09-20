@@ -3,7 +3,7 @@ import { useId } from "react";
 
 import ChekBtn from "../CheckBtn/CheckBtn.jsx";
 import icon from "../../images/icons.svg";
-import css from "../Filters/Filters.module.css";
+import css from "./Filters.module.css";
 import Button from "../Button/Button.jsx";
 
 function Filters() {
