@@ -5,7 +5,7 @@ import { selectorsError } from "../../redux/camper/selectorsCamper.js";
 import Location from "../../components/Location/Location.jsx";
 import Filters from "../../components/Filters/Filters.jsx";
 import Collection from "../../components/Collection/Collection.jsx";
-import FetchError from "../../components/fetchError/FetchError.jsx";
+import FetchError from "../../components/FetchError/FetchError.jsx";
 import Button from "../../components/Button/Button.jsx";
 import css from "./CatalogPage.module.css";
 
