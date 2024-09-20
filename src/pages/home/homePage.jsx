@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import css from "./HomePage.module.css";
-import Button from "../../components/Button/Button.jsx";
+import Button from "../../components/temp/temp.jsx";
 
 function HomePage() {
   return (
