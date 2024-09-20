@@ -1,5 +1,4 @@
 import StarRating from '../StarRating/StarRating.jsx';
-// import icon from '../../images/icons.svg';
 import css from '../ReviewsList/ReviewsList.module.css';
 
 function ReviewsList ({item}) {
