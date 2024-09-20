@@ -1,4 +1,4 @@
-import Navigation from '../temp/temp.jsx';
+import Navigation from '../Navigation/Navigation.jsx';
 import css from '../AppBar/AppBar.module.css';
 
 export function AppBar() {
