@@ -1,5 +1,7 @@
 import { useId } from "react";
-// import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selecttorFilter } from "../../redux/filterCamper/selectorsFilterCamper.js";
+import { togleFilter, resetFilter} from "../../redux/filterCamper/sliceFilterCamper.js";
 
 import ChekBtn from "../CheckBtn/CheckBtn.jsx";
 import icon from "../../images/icons.svg";
@@ -20,14 +22,24 @@ function Filters() {
   const fullyId = useId();
   const alcoveId = useId();
 
+  const dispatch = useDispatch();
+  const filter = useSelector(selecttorFilter);
+  const onFilter = (filter) => dispatch(togleFilter(filter))
+// const resetFilters = dispatch(resetFilter())
+
   return (
     <>
-      <form className={css.catalogSearch}>
+      <form className={css.catalogSearch} onSubmit={() => console.log(ChekBtn.value)}>
         <p className={css.itemFilters}>Filters</p>
         <h2 className={css.titleList}>Vehicle equipment</h2>
-        <hr className={css.lineBetween}/>
+        <hr className={css.lineBetween} />
         <div className={css.listCheckBtnContainer}>
-          <ChekBtn name="automatic" id={automatId} type="checkbox">
+          <ChekBtn
+            checked={filter === "automatic"}
+            id={automatId}
+            type="checkbox"
+            onCheck={() => onFilter("automatik")}
+          >
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>
@@ -37,7 +49,12 @@ function Filters() {
               </div>
             }
           </ChekBtn>
-          <ChekBtn name="manual" id={manualId} type="checkbox">
+          <ChekBtn
+            checked={filter === "manual"}
+            id={manualId}
+            type="checkbox"
+            onCheck={() => onFilter("manual")}
+          >
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>
@@ -47,7 +64,12 @@ function Filters() {
               </div>
             }
           </ChekBtn>
-          <ChekBtn name="hybrid" id={hybridId} type="checkbox">
+          <ChekBtn
+            checked={filter === "hybrid"}
+            id={hybridId}
+            type="checkbox"
+            onCheck={() => onFilter("hibrid")}
+          >
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>
@@ -57,7 +79,12 @@ function Filters() {
               </div>
             }
           </ChekBtn>
-          <ChekBtn name="petrol" id={petrolId} type="checkbox">
+          <ChekBtn
+            checked={filter === "petrol"}
+            id={petrolId}
+            type="checkbox"
+            onCheck={() => onFilter("petrol")}
+          >
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>
@@ -67,7 +94,12 @@ function Filters() {
               </div>
             }
           </ChekBtn>
-          <ChekBtn name="disel" id={diselId} type="checkbox">
+          <ChekBtn
+            checked={filter === "disel"}
+            id={diselId}
+            type="checkbox"
+            onCheck={() => onFilter("disel")}
+          >
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>
@@ -77,7 +109,12 @@ function Filters() {
               </div>
             }
           </ChekBtn>
-          <ChekBtn name="AC" id={acId} type="checkbox">
+          <ChekBtn
+            checked={filter === "AC"}
+            id={acId}
+            type="checkbox"
+            onCheck={() => onFilter("AC")}
+          >
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>
@@ -87,7 +124,12 @@ function Filters() {
               </div>
             }
           </ChekBtn>
-          <ChekBtn name="TV" id={tvId} type="checkbox">
+          <ChekBtn
+            checked={filter === "TV"}
+            id={tvId}
+            type="checkbox"
+            onCheck={() => onFilter("TV")}
+          >
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>
@@ -97,7 +139,12 @@ function Filters() {
               </div>
             }
           </ChekBtn>
-          <ChekBtn name="bathroom" id={bathroomId} type="checkbox">
+          <ChekBtn
+            checked={filter === "bathroom"}
+            id={bathroomId}
+            type="checkbox"
+            onCheck={() => onFilter("bathroom")}
+          >
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>
@@ -107,7 +154,12 @@ function Filters() {
               </div>
             }
           </ChekBtn>
-          <ChekBtn name="kitchen" id={kitchenId} type="checkbox">
+          <ChekBtn
+            checked={filter === "kitchen"}
+            id={kitchenId}
+            type="checkbox"
+            onCheck={() => onFilter("kitchen")}
+          >
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>
@@ -119,7 +171,7 @@ function Filters() {
           </ChekBtn>
         </div>
         <h2 className={css.titleTypeList}>Vehicle type</h2>
-        <hr className={css.lineBetween}/>
+        <hr className={css.lineBetween} />
         <div className={css.typeListContainer}>
           <ChekBtn name="type" id={vanId} type="radio">
             {
@@ -152,7 +204,9 @@ function Filters() {
             }
           </ChekBtn>
         </div>
-        <Button type="button" variant="search">Search</Button>
+        <Button type="button" variant="search">
+          Search
+        </Button>
       </form>
     </>
   );
