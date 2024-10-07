@@ -38,7 +38,7 @@ function Filters() {
             checked={filter === "automatic"}
             id={automatId}
             type="checkbox"
-            onCheck={() => onFilter("automatik")}
+            onCheck={() => onFilter("automatic")}
           >
             {
               <div className={css.buttonContent}>
@@ -68,7 +68,7 @@ function Filters() {
             checked={filter === "hybrid"}
             id={hybridId}
             type="checkbox"
-            onCheck={() => onFilter("hibrid")}
+            onCheck={() => onFilter("hybrid")}
           >
             {
               <div className={css.buttonContent}>
