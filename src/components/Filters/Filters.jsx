@@ -1,7 +1,10 @@
 import { useId } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selecttorFilter } from "../../redux/filterCamper/selectorsFilterCamper.js";
-import { togleFilter, resetFilter} from "../../redux/filterCamper/sliceFilterCamper.js";
+import {
+  togleFilter,
+  resetFilter,
+} from "../../redux/filterCamper/sliceFilterCamper.js";
 
 import ChekBtn from "../CheckBtn/CheckBtn.jsx";
 import icon from "../../images/icons.svg";
@@ -24,20 +27,25 @@ function Filters() {
 
   const dispatch = useDispatch();
   const filter = useSelector(selecttorFilter);
-  const onFilter = (filter) => dispatch(togleFilter(filter))
-// const resetFilters = dispatch(resetFilter())
+  const onFilter = (filter) => dispatch(togleFilter(filter));
+  // const resetFilters = dispatch(resetFilter())
 
   return (
     <>
-      <form className={css.catalogSearch} onSubmit={() => console.log(ChekBtn.value)}>
+      <form
+        className={css.catalogSearch}
+        onSubmit={() => console.log(ChekBtn.value)}
+      >
         <p className={css.itemFilters}>Filters</p>
         <h2 className={css.titleList}>Vehicle equipment</h2>
         <hr className={css.lineBetween} />
         <div className={css.listCheckBtnContainer}>
           <ChekBtn
-            checked={filter === "automatic"}
+            // checked={filter === "automatic"}
             id={automatId}
             type="checkbox"
+            name="transmission"
+            value="automatic"
             onCheck={() => onFilter("automatic")}
           >
             {
@@ -50,9 +58,11 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={filter === "manual"}
+            // checked={filter === "manual"}
             id={manualId}
             type="checkbox"
+            name="transmission"
+            value="manual"
             onCheck={() => onFilter("manual")}
           >
             {
@@ -65,9 +75,11 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={filter === "hybrid"}
+            // checked={filter === "hybrid"}
             id={hybridId}
             type="checkbox"
+            name="engine"
+            value="hybrid"
             onCheck={() => onFilter("hybrid")}
           >
             {
@@ -80,9 +92,11 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={filter === "petrol"}
+            // checked={filter === "petrol"}
             id={petrolId}
             type="checkbox"
+            name="engine"
+            value="petrol"
             onCheck={() => onFilter("petrol")}
           >
             {
@@ -98,6 +112,8 @@ function Filters() {
             checked={filter === "disel"}
             id={diselId}
             type="checkbox"
+            name="engine"
+            value="disel"
             onCheck={() => onFilter("disel")}
           >
             {
@@ -110,9 +126,11 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={filter === "AC"}
+            // checked={filter === "AC"}
             id={acId}
             type="checkbox"
+            name="AC"
+            value="true"
             onCheck={() => onFilter("AC")}
           >
             {
@@ -125,9 +143,11 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={filter === "TV"}
+            // checked={filter === "TV"}
             id={tvId}
             type="checkbox"
+            name="TV"
+            value="true"
             onCheck={() => onFilter("TV")}
           >
             {
@@ -140,9 +160,11 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={filter === "bathroom"}
+            // checked={filter === "bathroom"}
             id={bathroomId}
             type="checkbox"
+            name="bathroom"
+            value="true"
             onCheck={() => onFilter("bathroom")}
           >
             {
@@ -155,9 +177,11 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={filter === "kitchen"}
+            // checked={filter === "kitchen"}
             id={kitchenId}
             type="checkbox"
+            name="kitchen"
+            value="true"
             onCheck={() => onFilter("kitchen")}
           >
             {
@@ -183,7 +207,12 @@ function Filters() {
               </div>
             }
           </ChekBtn>
-          <ChekBtn name="type" id={fullyId} type="radio">
+          <ChekBtn
+            type="radio"
+            id={fullyId}
+            name="form"
+            value="fullyIntegrated"
+          >
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>
@@ -193,7 +222,12 @@ function Filters() {
               </div>
             }
           </ChekBtn>
-          <ChekBtn name="type" id={alcoveId} type="radio">
+          <ChekBtn
+            type="radio"
+            id={alcoveId}
+            name="form"
+            value="alcove"
+          >
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>
