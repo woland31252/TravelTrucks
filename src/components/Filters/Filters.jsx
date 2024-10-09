@@ -1,4 +1,5 @@
 import { useId } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selecttorFilter } from "../../redux/filterCamper/selectorsFilterCamper.js";
 import {
@@ -29,24 +30,29 @@ function Filters() {
   const filter = useSelector(selecttorFilter);
   const onFilter = (filter) => dispatch(togleFilter(filter));
   // const resetFilters = dispatch(resetFilter())
+  const [params, setParams] = useState({});
+  const handleChangeParams = (e) => {
+    setParams(e.target.value);
+    console.log(e.target.checked);
+  }
 
   return (
     <>
       <form
         className={css.catalogSearch}
-        onSubmit={() => console.log(ChekBtn.value)}
+        onClick={(e) => console.log(e.target.value)}
       >
         <p className={css.itemFilters}>Filters</p>
         <h2 className={css.titleList}>Vehicle equipment</h2>
         <hr className={css.lineBetween} />
         <div className={css.listCheckBtnContainer}>
           <ChekBtn
-            // checked={filter === "automatic"}
+            checked={params === "automatic"}
             id={automatId}
             type="checkbox"
             name="transmission"
             value="automatic"
-            onCheck={() => onFilter("automatic")}
+            onChange={handleChangeParams}
           >
             {
               <div className={css.buttonContent}>
@@ -58,12 +64,12 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            // checked={filter === "manual"}
+            checked={params === "manual"}
             id={manualId}
             type="checkbox"
             name="transmission"
             value="manual"
-            onCheck={() => onFilter("manual")}
+            onChange={handleChangeParams}
           >
             {
               <div className={css.buttonContent}>
@@ -75,12 +81,12 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            // checked={filter === "hybrid"}
+            checked={params === "hybrid"}
             id={hybridId}
             type="checkbox"
             name="engine"
             value="hybrid"
-            onCheck={() => onFilter("hybrid")}
+            onChange={handleChangeParams}
           >
             {
               <div className={css.buttonContent}>
@@ -197,7 +203,12 @@ function Filters() {
         <h2 className={css.titleTypeList}>Vehicle type</h2>
         <hr className={css.lineBetween} />
         <div className={css.typeListContainer}>
-          <ChekBtn name="type" id={vanId} type="radio">
+          <ChekBtn
+            type="radio"
+            id={vanId}
+            name="form"
+            value="van"
+          >
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>
