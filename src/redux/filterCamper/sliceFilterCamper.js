@@ -1,15 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// const initialState = {
+//   filters: {
+//     transmission: false,
+//     engine: false,
+//     form: false,
+//     AC: false,
+//     bathroom: false,
+//     kitchen: false,
+//     TV: false,
+//   },
+// };
+
+// const sliceFilterCamper = createSlice({
+//   name: "filters",
+//   initialState,
+//   reducers: {
+//     togleFilter: (state, action) => {
+//       const { param } = action.payload;
+//       state.filters[param] = !state.filters[param];
+//     },
+//     resetFilter: (state) => {
+//       state.filters = initialState.filters;
+//     },
+//   },
+// });
+
 const initialState = {
-  filters: {
-    transmission: false,
-    engine: false,
-    form: false,
-    AC: false,
-    bathroom: false,
-    kitchen: false,
-    TV: false,
-  },
+  item: [],
 };
 
 const sliceFilterCamper = createSlice({
@@ -17,11 +35,10 @@ const sliceFilterCamper = createSlice({
   initialState,
   reducers: {
     togleFilter: (state, action) => {
-      const { param } = action.payload;
-      state.filters[param] = !state.filters[param];
+      state.item = action.payload;
     },
     resetFilter: (state) => {
-      state.filters = initialState.filters;
+      state.item = initialState.item;
     },
   },
 });

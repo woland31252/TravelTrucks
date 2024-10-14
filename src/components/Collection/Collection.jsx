@@ -1,17 +1,17 @@
 import { useSelector } from "react-redux";
-import { selectorsCampers } from "../../redux/camper/selectorsCamper.js";
+// import { selectorsCampers } from "../../redux/camper/selectorsCamper.js";
 import CamperList from "../CamperList/CamperList.jsx";
 import css from "./Collection.module.css";
-// import { selectorsFilterCampers } from "../../redux/camper/selectorsCamper.js";
+import { selectFilteredCampers } from "../../redux/camper/selectorsCamper.js";
 
 const Collection = () => {
-  const campers = useSelector(selectorsCampers);
-  // const campers = useSelector(selectorsFilterCampers);
+  // const campers = useSelector(selectorsCampers);
+  const filtered = useSelector(selectFilteredCampers);
 
   return (
     <>
       <ul className={css.collectionList}>
-        {campers.map((item) => (
+        {filtered.map((item) => (
           <li key={item.id}>
             <CamperList item={item} />
           </li>

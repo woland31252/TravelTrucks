@@ -1,7 +1,7 @@
 import { useId } from "react";
-import { useState } from "react";
+// import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selecttorFilter } from "../../redux/filterCamper/selectorsFilterCamper.js";
+import { selectorFilter } from "../../redux/filterCamper/selectorsFilterCamper.js";
 import {
   togleFilter,
   resetFilter,
@@ -27,14 +27,14 @@ function Filters() {
   const alcoveId = useId();
 
   const dispatch = useDispatch();
-  const filter = useSelector(selecttorFilter);
+  const filter = useSelector(selectorFilter);
   const onFilter = (filter) => dispatch(togleFilter(filter));
   // const resetFilters = dispatch(resetFilter())
-  const [params, setParams] = useState({});
-  const handleChangeParams = (e) => {
-    setParams(e.target.value);
-    console.log(e.target.checked);
-  }
+  // const [params, setParams] = useState({});
+  // const handleChangeParams = (e) => {
+  //   setParams(e.target.value);
+  //   console.log(e.target.checked);
+  // }
 
   return (
     <>
@@ -47,12 +47,12 @@ function Filters() {
         <hr className={css.lineBetween} />
         <div className={css.listCheckBtnContainer}>
           <ChekBtn
-            checked={params === "automatic"}
+            checked={filter === "automatic"}
             id={automatId}
             type="checkbox"
             name="transmission"
             value="automatic"
-            onChange={handleChangeParams}
+            onChange={onFilter}
           >
             {
               <div className={css.buttonContent}>
@@ -64,12 +64,12 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={params === "manual"}
+            checked={filter === "manual"}
             id={manualId}
             type="checkbox"
             name="transmission"
             value="manual"
-            onChange={handleChangeParams}
+            onChange={()=>onFilter("manual")}
           >
             {
               <div className={css.buttonContent}>
@@ -81,12 +81,12 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={params === "hybrid"}
+            checked={filter === "hybrid"}
             id={hybridId}
             type="checkbox"
             name="engine"
             value="hybrid"
-            onChange={handleChangeParams}
+            onChange={()=>onFilter("hybrid")}
           >
             {
               <div className={css.buttonContent}>
@@ -98,7 +98,7 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            // checked={filter === "petrol"}
+            checked={filter === "petrol"}
             id={petrolId}
             type="checkbox"
             name="engine"
