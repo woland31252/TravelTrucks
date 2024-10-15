@@ -26,19 +26,24 @@ import { createSlice } from "@reduxjs/toolkit";
 //   },
 // });
 
-const initialState = {
-  item: [],
+const filterInitialState = {
+  item: {
+    transmission: "",
+    engine: "",
+    form: "",
+    AC: ""
+  },
 };
 
 const sliceFilterCamper = createSlice({
   name: "filters",
-  initialState,
+  initialState: filterInitialState,
   reducers: {
     togleFilter: (state, action) => {
       state.item = action.payload;
     },
     resetFilter: (state) => {
-      state.item = initialState.item;
+      state.item = filterInitialState.item;
     },
   },
 });

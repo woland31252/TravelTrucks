@@ -40,7 +40,7 @@ function Filters() {
     <>
       <form
         className={css.catalogSearch}
-        onClick={(e) => console.log(e.target.value)}
+        onClick={(e) => dispatch(togleFilter(e.target.value))}
       >
         <p className={css.itemFilters}>Filters</p>
         <h2 className={css.titleList}>Vehicle equipment</h2>
@@ -52,7 +52,7 @@ function Filters() {
             type="checkbox"
             name="transmission"
             value="automatic"
-            onChange={onFilter}
+            // onChange={onFilter}
           >
             {
               <div className={css.buttonContent}>
@@ -69,7 +69,7 @@ function Filters() {
             type="checkbox"
             name="transmission"
             value="manual"
-            onChange={()=>onFilter("manual")}
+            // onChange={()=>onFilter("manual")}
           >
             {
               <div className={css.buttonContent}>
@@ -86,7 +86,7 @@ function Filters() {
             type="checkbox"
             name="engine"
             value="hybrid"
-            onChange={()=>onFilter("hybrid")}
+            onChange={() => onFilter("hybrid")}
           >
             {
               <div className={css.buttonContent}>
@@ -136,7 +136,7 @@ function Filters() {
             id={acId}
             type="checkbox"
             name="AC"
-            value="true"
+            value="AC"
             onCheck={() => onFilter("AC")}
           >
             {
@@ -153,7 +153,7 @@ function Filters() {
             id={tvId}
             type="checkbox"
             name="TV"
-            value="true"
+            value="TV"
             onCheck={() => onFilter("TV")}
           >
             {
@@ -170,7 +170,7 @@ function Filters() {
             id={bathroomId}
             type="checkbox"
             name="bathroom"
-            value="true"
+            value="bathroom"
             onCheck={() => onFilter("bathroom")}
           >
             {
@@ -187,7 +187,7 @@ function Filters() {
             id={kitchenId}
             type="checkbox"
             name="kitchen"
-            value="true"
+            value="kitchen"
             onCheck={() => onFilter("kitchen")}
           >
             {
@@ -203,12 +203,7 @@ function Filters() {
         <h2 className={css.titleTypeList}>Vehicle type</h2>
         <hr className={css.lineBetween} />
         <div className={css.typeListContainer}>
-          <ChekBtn
-            type="radio"
-            id={vanId}
-            name="form"
-            value="van"
-          >
+          <ChekBtn type="radio" id={vanId} name="form" value="van">
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>
@@ -233,12 +228,7 @@ function Filters() {
               </div>
             }
           </ChekBtn>
-          <ChekBtn
-            type="radio"
-            id={alcoveId}
-            name="form"
-            value="alcove"
-          >
+          <ChekBtn type="radio" id={alcoveId} name="form" value="alcove">
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>

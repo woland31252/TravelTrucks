@@ -1,4 +1,5 @@
 
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import icon from "../../images/icons.svg";
 import css from "./CamperList.module.css";
@@ -24,6 +25,11 @@ function CamperList({
     radio,
   },
 }) {
+
+  const [page, setPage] = useState(1);
+  const handleLoadMore = () => {
+    setPage(page+1)
+  }
   
   return (
       <div className={css.camperCardContainer}>
@@ -114,7 +120,7 @@ function CamperList({
             ) : null}
           </div>
           <Link to ={`/catalog/${id}`}>
-          <Button type="button" variant="showMore">Show more</Button>
+          <Button type="button" variant="showMore" onClick={handleLoadMore}>Show more</Button>
           </Link>
         </div>
       </div>
