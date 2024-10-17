@@ -3,8 +3,7 @@ import { useId } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectorFilter } from "../../redux/filterCamper/selectorsFilterCamper.js";
 import {
-  togleFilter,
-  resetFilter,
+  togleFilter
 } from "../../redux/filterCamper/sliceFilterCamper.js";
 
 import ChekBtn from "../CheckBtn/CheckBtn.jsx";
@@ -28,31 +27,38 @@ function Filters() {
 
   const dispatch = useDispatch();
   const filter = useSelector(selectorFilter);
-  const onFilter = (filter) => dispatch(togleFilter(filter));
+  console.log(filter);
+  const onFilter = (param) => { dispatch(togleFilter({ param }))};
   // const resetFilters = dispatch(resetFilter())
   // const [params, setParams] = useState({});
   // const handleChangeParams = (e) => {
   //   setParams(e.target.value);
   //   console.log(e.target.checked);
   // }
-
+  console.log(filter);
   return (
     <>
       <form
         className={css.catalogSearch}
-        onClick={(e) => dispatch(togleFilter(e.target.value))}
+        onClick={(e) => {
+          alert({ [e.target.name]: e.target.value });
+          console.log(e.target.value);
+          console.log(e.target.checked)
+          console.log({[e.target.name]: e.target.value})
+         }}
+        // onSubmit={(e) => console.log(dispatch(e.target.value))}
       >
         <p className={css.itemFilters}>Filters</p>
         <h2 className={css.titleList}>Vehicle equipment</h2>
         <hr className={css.lineBetween} />
         <div className={css.listCheckBtnContainer}>
           <ChekBtn
-            checked={filter === "automatic"}
+            checked={ filter.transmission}
             id={automatId}
             type="checkbox"
             name="transmission"
             value="automatic"
-            // onChange={onFilter}
+            onChange={(e) => onFilter(e.target.name)}
           >
             {
               <div className={css.buttonContent}>
@@ -69,7 +75,7 @@ function Filters() {
             type="checkbox"
             name="transmission"
             value="manual"
-            // onChange={()=>onFilter("manual")}
+            onChange={() => onFilter}
           >
             {
               <div className={css.buttonContent}>
@@ -86,7 +92,7 @@ function Filters() {
             type="checkbox"
             name="engine"
             value="hybrid"
-            onChange={() => onFilter("hybrid")}
+            onChange={() => onFilter}
           >
             {
               <div className={css.buttonContent}>
