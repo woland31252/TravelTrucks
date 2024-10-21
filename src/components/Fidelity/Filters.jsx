@@ -28,7 +28,24 @@ function Filters() {
   const dispatch = useDispatch();
   const filter = useSelector(selectorFilter);
   console.log(filter);
-  const onFilter = (param) => { dispatch(togleFilter({ param }))};
+  // const onFilter = (param) => { dispatch(togleFilter({ param })) };
+
+  const handleClick = (param) => {
+          // console.log(e.target.value);
+          // console.log(e.target.checked)
+          // console.log({ [e.target.name]: e.target.value })
+    console.log(filter)
+   return  dispatch(togleFilter(param))
+  }
+         
+  const onFilter = (e) => {
+    if (e.target.checked) {
+console.log((filter.param = e.tareget.value));
+      return filter({ param: e.target.value } );
+    }
+    return filter.param !== e.target.value;
+    
+  };
   // const resetFilters = dispatch(resetFilter())
   // const [params, setParams] = useState({});
   // const handleChangeParams = (e) => {
@@ -40,12 +57,13 @@ function Filters() {
     <>
       <form
         className={css.catalogSearch}
-        onClick={(e) => {
-          alert({ [e.target.name]: e.target.value });
-          console.log(e.target.value);
-          console.log(e.target.checked)
-          console.log({[e.target.name]: e.target.value})
-         }}
+        onClick={handleClick}
+        // onClick={(e) => {
+        //   console.log(e.target.value);
+        //   console.log(e.target.checked)
+        //   console.log({ [e.target.name]: e.target.value })
+        //   console.log(filter)
+        //  }}
         // onSubmit={(e) => console.log(dispatch(e.target.value))}
       >
         <p className={css.itemFilters}>Filters</p>
@@ -53,12 +71,12 @@ function Filters() {
         <hr className={css.lineBetween} />
         <div className={css.listCheckBtnContainer}>
           <ChekBtn
-            checked={ filter.transmission}
+            checked={filter.transmission}
             id={automatId}
             type="checkbox"
             name="transmission"
             value="automatic"
-            onChange={(e) => onFilter(e.target.name)}
+            onClick={onFilter}
           >
             {
               <div className={css.buttonContent}>
