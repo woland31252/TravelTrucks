@@ -30,20 +30,20 @@ function Filters() {
   console.log(filter);
   // const onFilter = (param) => { dispatch(togleFilter({ param })) };
 
-  const handleClick = (param) => {
+  const handleClick = (e) => {
           // console.log(e.target.value);
           // console.log(e.target.checked)
           // console.log({ [e.target.name]: e.target.value })
     console.log(filter)
-   return  dispatch(togleFilter(param))
+   return  dispatch(togleFilter(e.target.value))
   }
          
   const onFilter = (e) => {
     if (e.target.checked) {
-console.log((filter.param = e.tareget.value));
-      return filter({ param: e.target.value } );
+console.log(filter)
+      return console.log({ [e.target.name]: e.target.value });
     }
-    return filter.param !== e.target.value;
+    return ;
     
   };
   // const resetFilters = dispatch(resetFilter())
@@ -71,10 +71,10 @@ console.log((filter.param = e.tareget.value));
         <hr className={css.lineBetween} />
         <div className={css.listCheckBtnContainer}>
           <ChekBtn
-            checked={filter.transmission}
+            // checked={filter.transmission}
             id={automatId}
             type="checkbox"
-            name="transmission"
+            name={filter['trasmission']}
             value="automatic"
             onClick={onFilter}
           >
