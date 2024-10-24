@@ -27,23 +27,14 @@ function Filters() {
 
   const dispatch = useDispatch();
   const filter = useSelector(selectorFilter);
-  console.log(filter);
-  // const onFilter = (param) => { dispatch(togleFilter({ param })) };
-
-  const handleClick = (e) => {
-          // console.log(e.target.value);
-          // console.log(e.target.checked)
-          // console.log({ [e.target.name]: e.target.value })
-    console.log(filter)
-   return  dispatch(togleFilter(e.target.value))
-  }
+  
+  
+  
          
   const onFilter = (e) => {
-    if (e.target.checked) {
-console.log(filter)
-      return console.log({ [e.target.name]: e.target.value });
-    }
-    return ;
+    const equipment = [...filter, { [e.target.name]: e.target.value }];
+    console.log(equipment)
+      return filter.push(equipment);
     
   };
   // const resetFilters = dispatch(resetFilter())
@@ -53,6 +44,15 @@ console.log(filter)
   //   console.log(e.target.checked);
   // }
   console.log(filter);
+
+  const handleClick = (e) => {
+    console.log(e.target.value);
+    // console.log(e.target.checked)
+    // console.log({ [e.target.name]: e.target.value })
+    console.log(filter);
+    console.log(togleFilter(filter))
+    return dispatch(togleFilter(filter));
+  };
   return (
     <>
       <form
@@ -71,12 +71,12 @@ console.log(filter)
         <hr className={css.lineBetween} />
         <div className={css.listCheckBtnContainer}>
           <ChekBtn
-            // checked={filter.transmission}
+            // checked={filter}
             id={automatId}
             type="checkbox"
-            name={filter['trasmission']}
+            name="transmission"
             value="automatic"
-            onClick={onFilter}
+            onClick={()=>onFilter}
           >
             {
               <div className={css.buttonContent}>
@@ -88,7 +88,7 @@ console.log(filter)
             }
           </ChekBtn>
           <ChekBtn
-            checked={filter === "manual"}
+            // checked={filter === "manual"}
             id={manualId}
             type="checkbox"
             name="transmission"
@@ -105,7 +105,7 @@ console.log(filter)
             }
           </ChekBtn>
           <ChekBtn
-            checked={filter === "hybrid"}
+            // checked={filter === "hybrid"}
             id={hybridId}
             type="checkbox"
             name="engine"
@@ -263,7 +263,7 @@ console.log(filter)
             }
           </ChekBtn>
         </div>
-        <Button type="button" variant="search">
+        <Button type="button" variant="search" onClick={handleClick}>
           Search
         </Button>
       </form>
