@@ -72,7 +72,7 @@ function Filters() {
             type="radio"
             name="transmission"
             value="automatic"
-            onChange={onFilter}
+            // onChange={onFilter}
           >
             {
               <div className={css.buttonContent}>
@@ -89,7 +89,7 @@ function Filters() {
             type="radio"
             name="transmission"
             value="manual"
-            onChange={onFilter}
+            // onChange={onFilter}
           >
             {
               <div className={css.buttonContent}>
@@ -106,7 +106,7 @@ function Filters() {
             type="radio"
             name="engine"
             value="hybrid"
-            onChange={onFilter}
+            // onChange={onFilter}
           >
             {
               <div className={css.buttonContent}>
@@ -123,7 +123,7 @@ function Filters() {
             type="radio"
             name="engine"
             value="petrol"
-            onChange={onFilter}
+            // onChange={onFilter}
           >
             {
               <div className={css.buttonContent}>
@@ -140,7 +140,7 @@ function Filters() {
             type="radio"
             name="engine"
             value="diesel"
-            onChange={onFilter}
+            // onChange={onFilter}
           >
             {
               <div className={css.buttonContent}>
@@ -157,7 +157,7 @@ function Filters() {
             type="checkbox"
             name="AC"
             value="true"
-            onChange={onFilter}
+            // onChange={onFilter}
           >
             {
               <div className={css.buttonContent}>
@@ -174,7 +174,7 @@ function Filters() {
             type="checkbox"
             name="TV"
             value="true"
-            onChange={onFilter}
+            // onChange={onFilter}
           >
             {
               <div className={css.buttonContent}>
@@ -191,7 +191,7 @@ function Filters() {
             type="checkbox"
             name="bathroom"
             value="true"
-            onChange={onFilter}
+            // onChange={onFilter}
           >
             {
               <div className={css.buttonContent}>
@@ -208,7 +208,7 @@ function Filters() {
             type="checkbox"
             name="kitchen"
             value="true"
-            onChange={onFilter}
+            // onChange={onFilter}
           >
             {
               <div className={css.buttonContent}>
