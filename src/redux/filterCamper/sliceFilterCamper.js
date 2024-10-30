@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const filterInitialState = {
-  equipment: []
+  equipment: {}
 };
 
 const sliceFilterCamper = createSlice({

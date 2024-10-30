@@ -11,8 +11,8 @@ export const fetchAllCampers = createAsyncThunk(
         params: {
           page: 1,
           limit: 5,
-          transmission: ""
-      }});
+        },
+      });
       return response.data.items;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
