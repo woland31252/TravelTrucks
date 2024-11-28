@@ -1,8 +1,8 @@
 import { useId } from "react";
-// import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectorFilter } from "../../redux/filterCamper/selectorsFilterCamper.js";
 import { togleFilter } from "../../redux/filterCamper/sliceFilterCamper.js";
+import { fetchAllCampers } from "../../redux/operations.js";
 
 import ChekBtn from "../CheckBtn/CheckBtn.jsx";
 import icon from "../../images/icons.svg";
@@ -52,7 +52,13 @@ function Filters() {
 
   console.log("filter: ", filter);
 
-  const handleClick = () => {
+  const handleClick = async (filter) => {
+    try {
+await fetchAllCampers(filter) 
+    } catch {
+
+    }
+    
     return console.log("changeFilter: ", filter);
   };
   return (
