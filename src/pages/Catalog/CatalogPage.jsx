@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllCampers } from "../../redux/operations.js";
+import {toglePage} from "../../redux/camper/sliceCamper.js"
 import { selectorsError, selectorsPage } from "../../redux/camper/selectorsCamper.js";
 import Location from "../../components/Location/Location.jsx";
 import Filters from "../../components/Filters/Filters.jsx";
@@ -16,7 +17,12 @@ function CatalogPage() {
 
   useEffect(() => {
     dispatch(fetchAllCampers());
-  }, [dispatch]);
+    const nextPage = () => {
+      const newPage = page + 1;
+      dispatch(toglePage(newPage))
+      fetchAllCampers(page)
+    }
+  }, [dispatch, page]);
 
   return (
     <>
@@ -30,7 +36,7 @@ function CatalogPage() {
           </div>
           <div className={css.catalogPageCampers}>
             <Collection />
-            <Button type="button" variant="loadMore">Load more</Button>
+            <Button type="button" variant="loadMore" onClick = {()=>nextPage}>Load more</Button>
           </div>
         </div>
       )}
