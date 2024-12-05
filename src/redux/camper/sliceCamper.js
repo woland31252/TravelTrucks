@@ -5,6 +5,7 @@ import { fetchAllCampers, fetchCamperId } from "../operations";
 const camperInitlState = {
   items: [],
   itemId: {},
+  page: 1,
   isLoading: false,
   error: null,
 };
@@ -21,6 +22,11 @@ const handleError = (state, action) => {
 const sliceCamper = createSlice({
   name: "camper",
   initialState: camperInitlState,
+  reducers: {
+    toglePage(state, action) {
+      state.page = action.payload
+    }
+  },
   extraReducers: (builder) =>
     builder
       .addCase(fetchAllCampers.pending, handlePending)
@@ -37,4 +43,6 @@ const sliceCamper = createSlice({
       .addCase(fetchCamperId.rejected, handleError),
 });
 
+
+export const {toglePage} = sliceCamper.actions
 export default sliceCamper.reducer;
