@@ -1,3 +1,4 @@
+ 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllCampers } from "../../redux/operations.js";
@@ -15,31 +16,30 @@ function CatalogPage() {
   const isError = useSelector(selectorsError);
   const page = useSelector(selectorsPage)
 
+  function handleLoadMore() {
+    dispatch(toglePage(page + 1))
+    console.log(page);
+  }
+  
+
   useEffect(() => {
     dispatch(fetchAllCampers());
-    const nextPage = () => {
-      const newPage = page + 1;
-      dispatch(toglePage(newPage))
-      fetchAllCampers(page)
-    }
-  }, [dispatch, page]);
+  }, [dispatch]);
 
   return (
     <>
-      {isError ? (
-        <FetchError />
-      ) : (
-        <div className={css.catalogPageContainer}>
-          <div className={css.catalogSearchContainer}>
-            <Location />
-            <Filters />
-          </div>
-          <div className={css.catalogPageCampers}>
-            <Collection />
-            <Button type="button" variant="loadMore" onClick = {()=>nextPage}>Load more</Button>
-          </div>
+      <div className={css.catalogPageContainer}>
+        <div className={css.catalogSearchContainer}>
+          <Location />
+          <Filters/>
         </div>
-      )}
+        <div className={css.catalogPageCampers}>
+          {isError ? <FetchError /> : <Collection />}
+          <Button type="button" variant="loadMore" onClick={handleLoadMore}>
+            Load more
+          </Button>
+        </div>
+      </div>
     </>
   );
 }
