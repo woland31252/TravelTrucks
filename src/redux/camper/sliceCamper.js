@@ -3,9 +3,9 @@ import { fetchAllCampers, fetchCamperId } from "../operations";
 
 
 const camperInitlState = {
+  page: 1,
   items: [],
   itemId: {},
-  page: 1,
   isLoading: false,
   error: null,
 };

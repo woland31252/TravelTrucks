@@ -14,12 +14,13 @@ import css from "./CatalogPage.module.css";
 function CatalogPage() {
   const dispatch = useDispatch();
   const isError = useSelector(selectorsError);
-  const page = useSelector(selectorsPage)
+  const page = useSelector(selectorsPage);
 
   function handleLoadMore() {
     dispatch(toglePage(page + 1))
-    console.log(page);
   }
+
+  console.log(page)
   
 
   useEffect(() => {
