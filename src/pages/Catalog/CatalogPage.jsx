@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllCampers } from "../../redux/operations.js";
-import {toglePage} from "../../redux/camper/sliceCamper.js"
+import { toglePage } from "../../redux/camper/sliceCamper.js";
 import { selectorsError, selectorsPage } from "../../redux/camper/selectorsCamper.js";
 import Location from "../../components/Location/Location.jsx";
 import Filters from "../../components/Filters/Filters.jsx";
@@ -17,12 +17,10 @@ function CatalogPage() {
   const page = useSelector(selectorsPage);
 
   function handleLoadMore() {
-    dispatch(toglePage(page + 1))
+    dispatch(toglePage(page+1))
   }
 
-  console.log(page)
   
-
   useEffect(() => {
     dispatch(fetchAllCampers());
   }, [dispatch]);
