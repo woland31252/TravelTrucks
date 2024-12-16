@@ -23,6 +23,10 @@ function CatalogPage() {
   
   useEffect(() => {
     dispatch(fetchAllCampers());
+    async function getCampers () {
+      const data = await fetchAllCampers(query, page);
+      const currentCampers = data.items
+    }
   }, [dispatch]);
 
   return (
