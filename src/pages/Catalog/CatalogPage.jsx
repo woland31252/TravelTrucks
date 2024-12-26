@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAllCampers } from "../../redux/operations.js";
 import { toglePage } from "../../redux/camper/sliceCamper.js";
 import { selectorsError, selectorsPage } from "../../redux/camper/selectorsCamper.js";
+import { selectorFilter } from "../../redux/filterCamper/selectorsFilterCamper.js";
 import Location from "../../components/Location/Location.jsx";
 import Filters from "../../components/Filters/Filters.jsx";
 import Collection from "../../components/Collection/Collection.jsx";
@@ -15,6 +16,7 @@ function CatalogPage() {
   const dispatch = useDispatch();
   const isError = useSelector(selectorsError);
   const page = useSelector(selectorsPage);
+  const query = useSelector(selectorFilter);
 
   function handleLoadMore() {
     dispatch(toglePage(page+1))
@@ -27,7 +29,7 @@ function CatalogPage() {
       const data = await fetchAllCampers(query, page);
       const currentCampers = data.items
     }
-  }, [dispatch]);
+  }, [dispatch, page, query]);
 
   return (
     <>
