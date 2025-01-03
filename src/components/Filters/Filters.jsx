@@ -1,7 +1,9 @@
 import { useId } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectorFilter } from "../../redux/filterCamper/selectorsFilterCamper.js";
+// import { selectorsCampers } from "../../redux/camper/selectorsCamper.js";
 import { togleFilter } from "../../redux/filterCamper/sliceFilterCamper.js";
+// import { fetchAllCampers } from "../../redux/operations.js";
 
 
 import ChekBtn from "../CheckBtn/CheckBtn.jsx";
@@ -25,6 +27,7 @@ function Filters() {
 
   const dispatch = useDispatch();
   const filter = useSelector(selectorFilter);
+  // const fetchCampers = useSelector(selectorsCampers)
 
   const onFilter = (e) => {
     const param = e.target.name;
@@ -52,7 +55,8 @@ function Filters() {
 
   console.log("filter: ", filter);
 
-  const handleClick =  () => {
+  const handleClick = (filter) => {
+    // dispatch(fetchAllCampers(filter))
     return console.log("changeFilter: ", filter);
   };
   return (
