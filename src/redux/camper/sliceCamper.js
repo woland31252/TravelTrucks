@@ -4,6 +4,7 @@ import { fetchAllCampers, fetchCamperId } from "../operations";
 
 const camperInitlState = {
   page: 1,
+  limit: null,
   total: null,
   items: [],
   itemId: {},
@@ -26,6 +27,9 @@ const sliceCamper = createSlice({
   reducers: {
     toglePage(state, action) {
       state.page = action.payload
+    },
+    changeLimit(state, action) {
+      state.limit = action.payload
     }
   },
   extraReducers: (builder) =>
@@ -46,5 +50,5 @@ const sliceCamper = createSlice({
 });
 
 
-export const {toglePage} = sliceCamper.actions
+export const {toglePage, changeLimit} = sliceCamper.actions
 export default sliceCamper.reducer;
