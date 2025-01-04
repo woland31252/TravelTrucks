@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllCampers } from "../../redux/operations.js";
-import { toglePage, changeLimit } from "../../redux/camper/sliceCamper.js";
+import { toglePage, changeLimit} from "../../redux/camper/sliceCamper.js";
 import {
   selectorsCampers,
   selectorsCampersTotal,
@@ -34,13 +34,12 @@ function CatalogPage() {
   }
 
   useEffect(() => {
-    const fetchData = () => {
-      dispatch(changeLimit(5))
-      dispatch(fetchAllCampers(page));
+    dispatch(changeLimit(4))
+    async function fetchData() {
+      dispatch(fetchAllCampers(limit, page));
       setItemsLength(campers.length);
-      setShowBtn(itemsLength >= limit && total !== 0);
-      console.log("limit: ", limit)
-    };
+      setShowBtn(itemsLength >= 5 && total !== 0);
+    }
     fetchData();
   }, [dispatch, page, total, itemsLength, campers.length, limit]);
 

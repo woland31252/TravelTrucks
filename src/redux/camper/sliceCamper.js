@@ -4,7 +4,7 @@ import { fetchAllCampers, fetchCamperId } from "../operations";
 
 const camperInitlState = {
   page: 1,
-  limit: null,
+  limit: 5,
   total: null,
   items: [],
   itemId: {},
