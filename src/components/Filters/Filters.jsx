@@ -11,7 +11,7 @@ import icon from "../../images/icons.svg";
 import css from "./Filters.module.css";
 import Button from "../Button/Button.jsx";
 
-function Filters() {
+function Filters({onSearch}) {
   const automatId = useId();
   const manualId = useId();
   const hybridId = useId();
@@ -55,16 +55,12 @@ function Filters() {
 
   console.log("filter: ", filter);
 
-  const handleClick = (filter) => {
-    // dispatch(fetchAllCampers(filter))
-    return console.log("changeFilter: ", filter);
-  };
   return (
     <>
       <form
         className={css.catalogSearch}
         onChange={onFilter}
-        onClick={handleClick}
+        onClick={onSearch(filter)}
       >
         <p className={css.itemFilters}>Filters</p>
         <h2 className={css.titleList}>Vehicle equipment</h2>

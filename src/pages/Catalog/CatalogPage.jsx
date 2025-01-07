@@ -18,30 +18,38 @@ import Button from "../../components/Button/Button.jsx";
 import css from "./CatalogPage.module.css";
 
 function CatalogPage() {
-  const [showBtn, setShowBtn] = useState(false);
-  const [notFound, setNotFound] = useState(false);
-  const [itemsLength, setItemsLength] = useState(null);
+  
   const dispatch = useDispatch();
   const isError = useSelector(selectorsError);
   const campers = useSelector(selectorsCampers);
   const total = useSelector(selectorsCampersTotal);
   const page = useSelector(selectorsPage);
   const limit = useSelector(selectorsLimit);
-  const query = useSelector(selectorFilter);
+  const [showBtn, setShowBtn] = useState(false);
+  const [notFound, setNotFound] = useState(false);
+  const [itemsLength, setItemsLength] = useState(null);
+  const [query, setQuery] = useState({ limit, page });
+  // const query = useSelector(selectorFilter);
+
+  async function handleSearch(newQuery ) {
+    setQuery({ ...query, newQuery })
+
+  }
 
   function handleLoadMore() {
     dispatch(toglePage(page + 1));
   }
 
   useEffect(() => {
-    dispatch(changeLimit(4))
+    
     async function fetchData() {
-      dispatch(fetchAllCampers(limit, page));
+      dispatch(fetchAllCampers(query));
       setItemsLength(campers.length);
       setShowBtn(itemsLength >= 5 && total !== 0);
+      console.log("query: ", query)
     }
     fetchData();
-  }, [dispatch, page, total, itemsLength, campers.length, limit]);
+  }, [dispatch, total, itemsLength, campers.length, query]);
 
   
 
@@ -50,7 +58,7 @@ function CatalogPage() {
       <div className={css.catalogPageContainer}>
         <div className={css.catalogSearchContainer}>
           <Location />
-          <Filters />
+          <Filters onSearch={handleSearch} />
         </div>
         <div className={css.catalogPageCampers}>
           {isError ? <FetchError /> : <Collection />}
