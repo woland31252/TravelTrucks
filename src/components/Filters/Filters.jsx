@@ -60,7 +60,7 @@ function Filters({onSearch}) {
       <form
         className={css.catalogSearch}
         onChange={onFilter}
-        onClick={onSearch(filter)}
+        onClick={()=>onSearch(filter)}
       >
         <p className={css.itemFilters}>Filters</p>
         <h2 className={css.titleList}>Vehicle equipment</h2>

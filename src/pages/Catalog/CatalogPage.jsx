@@ -32,7 +32,7 @@ function CatalogPage() {
   // const query = useSelector(selectorFilter);
 
   async function handleSearch(newQuery ) {
-    setQuery({ ...query, newQuery })
+    setQuery({ ...query, ...newQuery })
 
   }
 
