@@ -1,17 +1,26 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
 axios.defaults.baseURL = "https://66b1f8e71ca8ad33d4f5f63e.mockapi.io";
-
-// not workoing string 12 and 14
 
 export const fetchAllCampers = createAsyncThunk(
   "campers/fetchAllCampers",
   async (query, thunkApi) => {
-    const key = Object.keys(query)
     try {
-      const response = await axios.get(`/campers?${key}=${Object.values(query)}`); 
+      console.log("query", query);
+      const response = await axios.get("/campers", {
+        params: {
+          limit: query.limit,
+          page: query.page,
+          transmission: query.transmission,
+          engine: query.engine,
+          AC: query.AC,
+          TV: query.TV,
+          bathroom: query.bathroom,
+          kitchen: query.kitchen,
+          form: query.form,
+        }
+      });
       return response.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

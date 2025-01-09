@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllCampers } from "../../redux/operations.js";
-import { toglePage, changeLimit} from "../../redux/camper/sliceCamper.js";
+import { toglePage } from "../../redux/camper/sliceCamper.js";
 import {
   selectorsCampers,
   selectorsCampersTotal,
@@ -9,7 +9,7 @@ import {
   selectorsPage,
   selectorsLimit
 } from "../../redux/camper/selectorsCamper.js";
-import { selectorFilter } from "../../redux/filterCamper/selectorsFilterCamper.js";
+
 import Location from "../../components/Location/Location.jsx";
 import Filters from "../../components/Filters/Filters.jsx";
 import Collection from "../../components/Collection/Collection.jsx";
@@ -29,7 +29,6 @@ function CatalogPage() {
   const [notFound, setNotFound] = useState(false);
   const [itemsLength, setItemsLength] = useState(null);
   const [query, setQuery] = useState({ limit, page });
-  // const query = useSelector(selectorFilter);
 
   async function handleSearch(newQuery ) {
     setQuery({ ...query, ...newQuery })
@@ -45,11 +44,11 @@ function CatalogPage() {
     async function fetchData() {
       dispatch(fetchAllCampers(query));
       setItemsLength(campers.length);
-      setShowBtn(itemsLength >= 5 && total !== 0);
+      setShowBtn(itemsLength >= limit && total !== 0);
       console.log("query: ", query)
     }
     fetchData();
-  }, [dispatch, total, itemsLength, campers.length, query]);
+  }, [dispatch, total, itemsLength, campers.length, query, page]);
 
   
 
