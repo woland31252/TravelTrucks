@@ -44,7 +44,7 @@ const sliceCamper = createSlice({
       .addCase(fetchCamperId.pending, handlePending)
       .addCase(fetchCamperId.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.itemId = action.payload.items;
+        state.itemId = action.payload;
       })
       .addCase(fetchCamperId.rejected, handleError),
 });

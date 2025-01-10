@@ -28,27 +28,29 @@ function CatalogPage() {
   const [showBtn, setShowBtn] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const [itemsLength, setItemsLength] = useState(null);
-  const [query, setQuery] = useState({ limit, page });
-
-  async function handleSearch(newQuery ) {
-    setQuery({ ...query, ...newQuery })
-
-  }
+  const [filter, setFilter] = useState();
 
   function handleLoadMore() {
     dispatch(toglePage(page + 1));
   }
+  
+  // async function handleSearch(newFilter) {
+  //   setFilter(newFilter)
+
+  // }
+
+  
 
   useEffect(() => {
-    
+    // const query = { limit: limit, page: page, ...filter}
     async function fetchData() {
-      dispatch(fetchAllCampers(query));
+      dispatch(fetchAllCampers(page));
       setItemsLength(campers.length);
       setShowBtn(itemsLength >= limit && total !== 0);
-      console.log("query: ", query)
+      // console.log("query: ", query)
     }
     fetchData();
-  }, [dispatch, total, itemsLength, campers.length, query, page, limit]);
+  }, [dispatch, total, itemsLength, campers.length, limit, page]);
 
   
 
@@ -57,7 +59,7 @@ function CatalogPage() {
       <div className={css.catalogPageContainer}>
         <div className={css.catalogSearchContainer}>
           <Location />
-          <Filters onSearch={handleSearch} />
+          <Filters />
         </div>
         <div className={css.catalogPageCampers}>
           {isError ? <FetchError /> : <Collection />}
