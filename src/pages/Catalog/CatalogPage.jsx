@@ -48,7 +48,7 @@ function CatalogPage() {
       console.log("query: ", query)
     }
     fetchData();
-  }, [dispatch, total, itemsLength, campers.length, query, page]);
+  }, [dispatch, total, itemsLength, campers.length, query, page, limit]);
 
   
 
