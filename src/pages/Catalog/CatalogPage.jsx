@@ -28,29 +28,30 @@ function CatalogPage() {
   const [showBtn, setShowBtn] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const [itemsLength, setItemsLength] = useState(null);
-  const [filter, setFilter] = useState();
+  const [search, setSearch] = useState();
 
   function handleLoadMore() {
     dispatch(toglePage(page + 1));
   }
   
-  // async function handleSearch(newFilter) {
-  //   setFilter(newFilter)
+  async function handleSearch(newQuery) {
+    setSearch(newQuery)
 
-  // }
+  }
 
   
 
   useEffect(() => {
-    // const query = { limit: limit, page: page, ...filter}
+    if (!search) {
+      dispatch(fetchAllCampers({page, limit}))
+    }
     async function fetchData() {
-      dispatch(fetchAllCampers(page));
-      setItemsLength(campers.length);
-      setShowBtn(itemsLength >= limit && total !== 0);
-      // console.log("query: ", query)
+      dispatch(fetchAllCampers({ page, limit, ...search }));
+      setShowBtn(campers.length >= limit && campers.length !== 0);
+      console.log("length: ", campers.length)
     }
     fetchData();
-  }, [dispatch, total, itemsLength, campers.length, limit, page]);
+  }, [dispatch, total, itemsLength, campers.length, limit, page, search]);
 
   
 
@@ -59,7 +60,7 @@ function CatalogPage() {
       <div className={css.catalogPageContainer}>
         <div className={css.catalogSearchContainer}>
           <Location />
-          <Filters />
+          <Filters onSearch={handleSearch } />
         </div>
         <div className={css.catalogPageCampers}>
           {isError ? <FetchError /> : <Collection />}
