@@ -30,28 +30,31 @@ function CatalogPage() {
   const [itemsLength, setItemsLength] = useState(null);
   const [search, setSearch] = useState();
 
+  
+  
+  async function handleSearch(newQuery ) {
+    setSearch( newQuery )
+    // dispatch(toglePage(page))
+
+  }
+
   function handleLoadMore() {
     dispatch(toglePage(page + 1));
   }
-  
-  async function handleSearch(newQuery) {
-    setSearch(newQuery)
-
-  }
-
-  
 
   useEffect(() => {
     if (!search) {
       dispatch(fetchAllCampers({page, limit}))
     }
     async function fetchData() {
+
       dispatch(fetchAllCampers({ page, limit, ...search }));
       setShowBtn(campers.length >= limit && campers.length !== 0);
       console.log("length: ", campers.length)
+      console.log(search)
     }
     fetchData();
-  }, [dispatch, total, itemsLength, campers.length, limit, page, search]);
+  }, [dispatch, total, campers.length, limit, page, search]);
 
   
 

@@ -6,7 +6,7 @@ function Button ({variant, type, onClick, children}) {
     const styleVariant = clsx(css.button, css[variant])
     return (
         <>
-        <button type={type} onClick={onClick} className={styleVariant}>{children}</button>
+            <button type={type} onClick={ onClick} className={styleVariant}>{children}</button>
         </>
     )
 }

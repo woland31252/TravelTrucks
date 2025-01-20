@@ -27,7 +27,6 @@ function Filters({onSearch}) {
 
   const dispatch = useDispatch();
   const filter = useSelector(selectorFilter);
-  // const fetchCampers = useSelector(selectorsCampers)
 
   const onFilter = (e) => {
     const param = e.target.name;
@@ -53,14 +52,12 @@ function Filters({onSearch}) {
     return dispatch(togleFilter(equipment));
   };
 
-  console.log("filter: ", filter);
-
   return (
     <>
       <form
         className={css.catalogSearch}
         onChange={onFilter}
-        onClick={()=>onSearch(filter)}
+        onClick={() => onSearch(filter)}
       >
         <p className={css.itemFilters}>Filters</p>
         <h2 className={css.titleList}>Vehicle equipment</h2>
