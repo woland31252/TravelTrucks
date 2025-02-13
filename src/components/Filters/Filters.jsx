@@ -1,17 +1,16 @@
 import { useId } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectorFilter } from "../../redux/filterCamper/selectorsFilterCamper.js";
-// import { selectorsCampers } from "../../redux/camper/selectorsCamper.js";
-import { togleFilter } from "../../redux/filterCamper/sliceFilterCamper.js";
-// import { fetchAllCampers } from "../../redux/operations.js";
+// import { useDispatch, useSelector } from "react-redux";
+// import { selectorFilter } from "../../redux/filterCamper/selectorsFilterCamper.js";
+// import { togleFilter } from "../../redux/filterCamper/sliceFilterCamper.js";
 
+import { useState } from "react";
 
 import ChekBtn from "../CheckBtn/CheckBtn.jsx";
 import icon from "../../images/icons.svg";
 import css from "./Filters.module.css";
 import Button from "../Button/Button.jsx";
 
-function Filters({onSearch}) {
+function Filters () {
   const automatId = useId();
   const manualId = useId();
   const hybridId = useId();
@@ -25,31 +24,27 @@ function Filters({onSearch}) {
   const fullyId = useId();
   const alcoveId = useId();
 
-  const dispatch = useDispatch();
-  const filter = useSelector(selectorFilter);
-
+  // const dispatch = useDispatch();
+  // const filter = useSelector(selectorFilter);
+  const [values, setValues] = useState({});
   const onFilter = (e) => {
-    const param = e.target.name;
-    let equipment = { ...filter, [param]: e.target.value };
+    const param = e.target;
+    setValues({ ...values, [param.name]: param.value }); ;
 
     if (e.target.checked === false) {
-      if (param === "AC") {
-        delete equipment.AC;
-      } else if (param === "TV") {
-        delete equipment.TV;
-      } else if (param === "bathroom") {
-        delete equipment.bathroom;
-      } else if (param === "kitchen") {
-        delete equipment.kitchen;
+      if (param.name === "AC") {
+        delete values.AC;
+      } else if (param.name === "TV") {
+        delete values.TV;
+      } else if (param.name === "bathroom") {
+        delete values.bathroom;
+      } else if (param.name === "kitchen") {
+        delete values.kitchen;
       }
-      console.log("checked: ", e.target.checked);
-
-      console.log("false: ", equipment);
-    
     }
-    console.log("true: ", equipment);
-    console.log("checked: ", e.target.checked);
-    return dispatch(togleFilter(equipment));
+    return console.log("values:", values);
+    // console.log("checked: ", e.target.checked);
+    // return dispatch(togleFilter(equipment));
   };
 
   return (
@@ -57,7 +52,7 @@ function Filters({onSearch}) {
       <form
         className={css.catalogSearch}
         onChange={onFilter}
-        onClick={() => onSearch(filter)}
+        // onClick={() => onSearch(filter)}
       >
         <p className={css.itemFilters}>Filters</p>
         <h2 className={css.titleList}>Vehicle equipment</h2>
@@ -81,7 +76,7 @@ function Filters({onSearch}) {
             }
           </ChekBtn>
           <ChekBtn
-            checked={filter === "tramsmission"}
+            // checked={filter === "tramsmission"}
             id={manualId}
             type="radio"
             name="transmission"
@@ -98,7 +93,7 @@ function Filters({onSearch}) {
             }
           </ChekBtn>
           <ChekBtn
-            checked={filter === "engine"}
+            // checked={filter === "engine"}
             id={hybridId}
             type="radio"
             name="engine"
@@ -115,7 +110,7 @@ function Filters({onSearch}) {
             }
           </ChekBtn>
           <ChekBtn
-            checked={filter === "engine"}
+            // checked={filter === "engine"}
             id={petrolId}
             type="radio"
             name="engine"
@@ -132,7 +127,7 @@ function Filters({onSearch}) {
             }
           </ChekBtn>
           <ChekBtn
-            checked={filter === "engine"}
+            // checked={filter === "engine"}
             id={diselId}
             type="radio"
             name="engine"
@@ -149,7 +144,7 @@ function Filters({onSearch}) {
             }
           </ChekBtn>
           <ChekBtn
-            checked={filter === "AC"}
+            // checked={filter === "AC"}
             id={acId}
             type="checkbox"
             name="AC"
@@ -166,7 +161,7 @@ function Filters({onSearch}) {
             }
           </ChekBtn>
           <ChekBtn
-            checked={filter === "TV"}
+            // checked={filter === "TV"}
             id={tvId}
             type="checkbox"
             name="TV"
@@ -183,7 +178,7 @@ function Filters({onSearch}) {
             }
           </ChekBtn>
           <ChekBtn
-            checked={filter === "bathroom"}
+            // checked={filter === "bathroom"}
             id={bathroomId}
             type="checkbox"
             name="bathroom"
@@ -200,7 +195,7 @@ function Filters({onSearch}) {
             }
           </ChekBtn>
           <ChekBtn
-            checked={filter === "kitchen"}
+            // checked={filter === "kitchen"}
             id={kitchenId}
             type="checkbox"
             name="kitchen"
