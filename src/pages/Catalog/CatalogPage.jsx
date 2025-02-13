@@ -9,6 +9,7 @@ import {
   selectorsPage,
   selectorsLimit
 } from "../../redux/camper/selectorsCamper.js";
+import { selectorFilter } from "../../redux/filterCamper/selectorsFilterCamper.js";
 
 import Location from "../../components/Location/Location.jsx";
 import Filters from "../../components/Filters/Filters.jsx";
@@ -25,18 +26,16 @@ function CatalogPage() {
   const total = useSelector(selectorsCampersTotal);
   const page = useSelector(selectorsPage);
   const limit = useSelector(selectorsLimit);
+  const search = useSelector(selectorFilter);
   const [showBtn, setShowBtn] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const [itemsLength, setItemsLength] = useState(null);
-  const [search, setSearch] = useState();
+  
+  
 
   
   
-  async function handleSearch(newQuery ) {
-    setSearch( newQuery )
-    // dispatch(toglePage(page))
-
-  }
+  
 
   function handleLoadMore() {
     dispatch(toglePage(page + 1));
@@ -63,7 +62,7 @@ function CatalogPage() {
       <div className={css.catalogPageContainer}>
         <div className={css.catalogSearchContainer}>
           <Location />
-          <Filters onSearch={handleSearch } />
+          <Filters/>
         </div>
         <div className={css.catalogPageCampers}>
           {isError ? <FetchError /> : <Collection />}

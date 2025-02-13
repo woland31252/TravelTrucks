@@ -1,7 +1,7 @@
 import { useId } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { selectorFilter } from "../../redux/filterCamper/selectorsFilterCamper.js";
-// import { togleFilter } from "../../redux/filterCamper/sliceFilterCamper.js";
+import { useDispatch, useSelector } from "react-redux";
+import { selectorFilter } from "../../redux/filterCamper/selectorsFilterCamper.js";
+import { togleFilter} from "../../redux/filterCamper/sliceFilterCamper.js";
 
 import { useState } from "react";
 
@@ -10,7 +10,7 @@ import icon from "../../images/icons.svg";
 import css from "./Filters.module.css";
 import Button from "../Button/Button.jsx";
 
-function Filters () {
+function Filters() {
   const automatId = useId();
   const manualId = useId();
   const hybridId = useId();
@@ -24,14 +24,16 @@ function Filters () {
   const fullyId = useId();
   const alcoveId = useId();
 
-  // const dispatch = useDispatch();
-  // const filter = useSelector(selectorFilter);
+  const dispatch = useDispatch();
+  const filter = useSelector(selectorFilter);
   const [values, setValues] = useState({});
+  const [hasChanged, setHasChanged] = useState(false);
+
   const onFilter = (e) => {
     const param = e.target;
-    setValues({ ...values, [param.name]: param.value }); ;
-
-    if (e.target.checked === false) {
+    setValues({ ...values, [param.name]: param.value });
+    setHasChanged(param.checked);
+    if (!hasChanged) {
       if (param.name === "AC") {
         delete values.AC;
       } else if (param.name === "TV") {
@@ -42,29 +44,36 @@ function Filters () {
         delete values.kitchen;
       }
     }
-    return console.log("values:", values);
-    // console.log("checked: ", e.target.checked);
-    // return dispatch(togleFilter(equipment));
   };
+
+  const onSearch = (e) => {
+    e.preventDefault();
+    dispatch(togleFilter(values));
+    setValues({});
+    setHasChanged(false);
+    e.target.reset();
+  };
+  console.log("checked: ", hasChanged)
+  console.log("values: ", values)
+  console.log("filter", filter);
 
   return (
     <>
       <form
         className={css.catalogSearch}
         onChange={onFilter}
-        // onClick={() => onSearch(filter)}
+        onSubmit={onSearch}
       >
         <p className={css.itemFilters}>Filters</p>
         <h2 className={css.titleList}>Vehicle equipment</h2>
         <hr className={css.lineBetween} />
         <div className={css.listCheckBtnContainer}>
           <ChekBtn
-            // checked={filter === "transmission"}
+            checked={hasChanged}
             id={automatId}
             type="radio"
             name="transmission"
             value="automatic"
-            // onChange={onFilter}
           >
             {
               <div className={css.buttonContent}>
@@ -76,12 +85,11 @@ function Filters () {
             }
           </ChekBtn>
           <ChekBtn
-            // checked={filter === "tramsmission"}
+            checked={hasChanged}
             id={manualId}
             type="radio"
             name="transmission"
             value="manual"
-            // onChange={onFilter}
           >
             {
               <div className={css.buttonContent}>
@@ -93,12 +101,11 @@ function Filters () {
             }
           </ChekBtn>
           <ChekBtn
-            // checked={filter === "engine"}
+            checked={hasChanged}
             id={hybridId}
             type="radio"
             name="engine"
             value="hybrid"
-            // onChange={onFilter}
           >
             {
               <div className={css.buttonContent}>
@@ -110,12 +117,11 @@ function Filters () {
             }
           </ChekBtn>
           <ChekBtn
-            // checked={filter === "engine"}
+            checked={hasChanged}
             id={petrolId}
             type="radio"
             name="engine"
             value="petrol"
-            // onChange={onFilter}
           >
             {
               <div className={css.buttonContent}>
@@ -127,12 +133,11 @@ function Filters () {
             }
           </ChekBtn>
           <ChekBtn
-            // checked={filter === "engine"}
+            checked={hasChanged}
             id={diselId}
             type="radio"
             name="engine"
             value="diesel"
-            // onChange={onFilter}
           >
             {
               <div className={css.buttonContent}>
@@ -144,12 +149,11 @@ function Filters () {
             }
           </ChekBtn>
           <ChekBtn
-            // checked={filter === "AC"}
+            checked={hasChanged}
             id={acId}
             type="checkbox"
             name="AC"
             value="true"
-            // onChange={onFilter}
           >
             {
               <div className={css.buttonContent}>
@@ -161,12 +165,11 @@ function Filters () {
             }
           </ChekBtn>
           <ChekBtn
-            // checked={filter === "TV"}
+            checked={hasChanged}
             id={tvId}
             type="checkbox"
             name="TV"
             value="true"
-            // onChange={onFilter}
           >
             {
               <div className={css.buttonContent}>
@@ -178,12 +181,11 @@ function Filters () {
             }
           </ChekBtn>
           <ChekBtn
-            // checked={filter === "bathroom"}
+            checked={hasChanged}
             id={bathroomId}
             type="checkbox"
             name="bathroom"
             value="true"
-            // onChange={onFilter}
           >
             {
               <div className={css.buttonContent}>
@@ -195,12 +197,11 @@ function Filters () {
             }
           </ChekBtn>
           <ChekBtn
-            // checked={filter === "kitchen"}
+            checked={hasChanged}
             id={kitchenId}
             type="checkbox"
             name="kitchen"
             value="true"
-            // onChange={onFilter}
           >
             {
               <div className={css.buttonContent}>
@@ -215,7 +216,13 @@ function Filters () {
         <h2 className={css.titleTypeList}>Vehicle type</h2>
         <hr className={css.lineBetween} />
         <div className={css.typeListContainer}>
-          <ChekBtn type="radio" id={vanId} name="form" value="van">
+          <ChekBtn
+            checked={hasChanged}
+            type="radio"
+            id={vanId}
+            name="form"
+            value="van"
+          >
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>
@@ -226,6 +233,7 @@ function Filters () {
             }
           </ChekBtn>
           <ChekBtn
+            checked={hasChanged}
             type="radio"
             id={fullyId}
             name="form"
@@ -240,7 +248,13 @@ function Filters () {
               </div>
             }
           </ChekBtn>
-          <ChekBtn type="radio" id={alcoveId} name="form" value="alcove">
+          <ChekBtn
+            checked={hasChanged}
+            type="radio"
+            id={alcoveId}
+            name="form"
+            value="alcove"
+          >
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>
@@ -251,9 +265,15 @@ function Filters () {
             }
           </ChekBtn>
         </div>
-        <Button type="button" variant="search">
-          Search
-        </Button>
+        {!hasChanged ? (
+          <Button variant="disabled-search" disabled>
+            Search
+          </Button>
+        ) : (
+          <Button type="submit" variant="search">
+            Search
+          </Button>
+        )}
       </form>
     </>
   );
