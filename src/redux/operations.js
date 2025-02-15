@@ -7,7 +7,8 @@ export const fetchAllCampers = createAsyncThunk(
   "fetchAllCampers",
   async (query, thunkApi) => {
     try {
-      const response = await axios.get("/campers", {
+      const response = await axios.get("/campers", 
+        {
         params: {
           page: query.page,
           limit: query.limit,
@@ -19,7 +20,8 @@ export const fetchAllCampers = createAsyncThunk(
           kitchen: query.kitchen,
           form: query.form
         }
-      });
+        }
+      );
       return response.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

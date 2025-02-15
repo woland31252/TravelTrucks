@@ -23,12 +23,14 @@ function CatalogPage() {
   
   const dispatch = useDispatch();
   const isError = useSelector(selectorsError);
-  const campers = useSelector(selectorsCampers);
+  // const camper = useSelector(selectorsCampers);
   const total = useSelector(selectorsCampersTotal);
   const page = useSelector(selectorsPage);
   const limit = useSelector(selectorsLimit);
   const search = useSelector(selectorFilter);
   const [showBtn, setShowBtn] = useState(false);
+  const [campers, setCampers] = useState([]);
+  const [error, setError] = useState(false)
   const [notFound, setNotFound] = useState(false);
   const [itemsLength, setItemsLength] = useState(null);
   
@@ -41,24 +43,48 @@ function CatalogPage() {
   function handleLoadMore() {
     dispatch(toglePage(page + 1));
   }
+  // useEffect(() => {
+  //   if (!search) {
+  //     dispatch(fetchAllCampers({ page, limit }));
+  //   }
+  //   async function fetchData() {
+  //     dispatch(fetchAllCampers({ page, limit, ...search }));
+  //     setShowBtn(campers.length >= limit && campers.length !== 0);
+  //     // dispatch(resetFilter())
+
+  //     console.log("length: ", campers.length);
+  //     console.log(search);
+  //   }
+  //   fetchData();
+  // }, [dispatch, total, campers.length, limit, page, search]);
 
   useEffect(() => {
     if (!search) {
       dispatch(fetchAllCampers({page, limit}))
     }
     async function fetchData() {
+      try {
+        const { data } = await dispatch(fetchAllCampers({ page, limit, ...search }));
+        const curentCampers = data.items;
+        setCampers((prevCampers) => { return [...prevCampers, ...curentCampers] })
+        // const totalPages = data.total;
+        // setShowBtn(totalPages && totalPages != page);
+        setNotFound(data.length === 0);
 
-      dispatch(fetchAllCampers({ page, limit, ...search }));
       setShowBtn(campers.length >=limit && campers.length !== 0);
-      // dispatch(resetFilter())
-
-      console.log("length: ", campers.length)
-      console.log(search)
+      
+console.log("curentCampers: ", curentCampers)
+      
+      } catch (error){
+        setError(true)
+}
+      
     }
     fetchData();
-  }, [dispatch, total, campers.length, limit, page, search]);
+  }, [campers.length, dispatch, limit, page, search]);
 
   
+  console.log(search);
 
   return (
     <>
