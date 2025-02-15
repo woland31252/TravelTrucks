@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllCampers } from "../../redux/operations.js";
 import { toglePage } from "../../redux/camper/sliceCamper.js";
+import { resetFilter } from "../../redux/filterCamper/sliceFilterCamper.js";
 import {
   selectorsCampers,
   selectorsCampersTotal,
@@ -48,7 +49,9 @@ function CatalogPage() {
     async function fetchData() {
 
       dispatch(fetchAllCampers({ page, limit, ...search }));
-      setShowBtn(campers.length >= limit && campers.length !== 0);
+      setShowBtn(campers.length >=limit && campers.length !== 0);
+      // dispatch(resetFilter())
+
       console.log("length: ", campers.length)
       console.log(search)
     }

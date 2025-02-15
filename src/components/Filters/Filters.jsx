@@ -221,7 +221,7 @@ function Filters() {
             type="radio"
             id={vanId}
             name="form"
-            value="van"
+            value="panelTruck"
           >
             {
               <div className={css.buttonContent}>
