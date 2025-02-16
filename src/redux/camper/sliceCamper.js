@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchAllCampers, fetchCamperId } from "../operations";
 
-
 const camperInitlState = {
   page: 1,
   limit: 5,
@@ -26,11 +25,11 @@ const sliceCamper = createSlice({
   initialState: camperInitlState,
   reducers: {
     toglePage(state, action) {
-      state.page = action.payload
+      state.page = action.payload;
     },
     changeLimit(state, action) {
-      state.limit = action.payload
-    }
+      state.limit = action.payload;
+    },
   },
   extraReducers: (builder) =>
     builder
@@ -49,6 +48,5 @@ const sliceCamper = createSlice({
       .addCase(fetchCamperId.rejected, handleError),
 });
 
-
-export const {toglePage, changeLimit} = sliceCamper.actions
+export const { toglePage, changeLimit } = sliceCamper.actions;
 export default sliceCamper.reducer;

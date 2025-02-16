@@ -1,6 +1,6 @@
 import { useId } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectorFilter } from "../../redux/filterCamper/selectorsFilterCamper.js";
+import { useDispatch} from "react-redux";
+// import { selectorFilter } from "../../redux/filterCamper/selectorsFilterCamper.js";
 import { togleFilter} from "../../redux/filterCamper/sliceFilterCamper.js";
 
 import { useState } from "react";
@@ -25,7 +25,7 @@ function Filters() {
   const alcoveId = useId();
 
   const dispatch = useDispatch();
-  const filter = useSelector(selectorFilter);
+  // const filter = useSelector(selectorFilter);
   const [values, setValues] = useState({});
   const [hasChanged, setHasChanged] = useState(false);
 
@@ -53,10 +53,7 @@ function Filters() {
     setHasChanged(false);
     e.target.reset();
   };
-  console.log("checked: ", hasChanged)
-  console.log("values: ", values)
-  console.log("filter", filter);
-
+  
   return (
     <>
       <form

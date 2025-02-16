@@ -23,7 +23,7 @@ function CatalogPage() {
   
   const dispatch = useDispatch();
   const isError = useSelector(selectorsError);
-  // const camper = useSelector(selectorsCampers);
+  const camperItems = useSelector(selectorsCampers);
   const total = useSelector(selectorsCampersTotal);
   const page = useSelector(selectorsPage);
   const limit = useSelector(selectorsLimit);
@@ -64,16 +64,15 @@ function CatalogPage() {
     }
     async function fetchData() {
       try {
-        const { data } = await dispatch(fetchAllCampers({ page, limit, ...search }));
-        const curentCampers = data.items;
-        setCampers((prevCampers) => { return [...prevCampers, ...curentCampers] })
+        await dispatch(fetchAllCampers({ page, limit, ...search }));
+        
         // const totalPages = data.total;
         // setShowBtn(totalPages && totalPages != page);
-        setNotFound(data.length === 0);
+        // setNotFound(data.length === 0);
 
-      setShowBtn(campers.length >=limit && campers.length !== 0);
+      // setShowBtn(campers.length >=limit && campers.length !== 0);
       
-console.log("curentCampers: ", curentCampers)
+        
       
       } catch (error){
         setError(true)
@@ -81,17 +80,20 @@ console.log("curentCampers: ", curentCampers)
       
     }
     fetchData();
-  }, [campers.length, dispatch, limit, page, search]);
+    
+  }, [ dispatch, limit, page, search]);
 
-  
+  console.log("campers:", campers)
   console.log(search);
+  
+  
 
   return (
     <>
       <div className={css.catalogPageContainer}>
         <div className={css.catalogSearchContainer}>
           <Location />
-          <Filters/>
+          <Filters />
         </div>
         <div className={css.catalogPageCampers}>
           {isError ? <FetchError /> : <Collection />}
@@ -100,6 +102,9 @@ console.log("curentCampers: ", curentCampers)
               Load more
             </Button>
           )}
+            <Button type="button" variant="loadMore" onClick={handleLoadMore}>
+              Load more
+            </Button>
         </div>
       </div>
     </>
