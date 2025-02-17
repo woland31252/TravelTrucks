@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllCampers } from "../../redux/operations.js";
 import { toglePage } from "../../redux/camper/sliceCamper.js";
-import { resetFilter } from "../../redux/filterCamper/sliceFilterCamper.js";
 import {
   selectorsCampers,
   selectorsCampersTotal,
@@ -27,52 +26,30 @@ function CatalogPage() {
   const total = useSelector(selectorsCampersTotal);
   const page = useSelector(selectorsPage);
   const limit = useSelector(selectorsLimit);
-  const search = useSelector(selectorFilter);
-  const [showBtn, setShowBtn] = useState(false);
-  const [campers, setCampers] = useState([]);
+  const query = useSelector(selectorFilter);
+  const [showBtn, setShowBtn] = useState(true);
+  // const [campers, setCampers] = useState([]);
   const [error, setError] = useState(false)
   const [notFound, setNotFound] = useState(false);
   const [itemsLength, setItemsLength] = useState(null);
   
   
-
-  
-  
-  
-
   function handleLoadMore() {
     dispatch(toglePage(page + 1));
   }
-  // useEffect(() => {
-  //   if (!search) {
-  //     dispatch(fetchAllCampers({ page, limit }));
-  //   }
-  //   async function fetchData() {
-  //     dispatch(fetchAllCampers({ page, limit, ...search }));
-  //     setShowBtn(campers.length >= limit && campers.length !== 0);
-  //     // dispatch(resetFilter())
-
-  //     console.log("length: ", campers.length);
-  //     console.log(search);
-  //   }
-  //   fetchData();
-  // }, [dispatch, total, campers.length, limit, page, search]);
+  
 
   useEffect(() => {
-    if (!search) {
-      dispatch(fetchAllCampers({page, limit}))
-    }
+    // if (!query) {
+    //   dispatch(fetchAllCampers({page, limit}))
+    // }
     async function fetchData() {
       try {
-        await dispatch(fetchAllCampers({ page, limit, ...search }));
+        await dispatch(fetchAllCampers({ page, limit, ...query }));
         
-        // const totalPages = data.total;
-        // setShowBtn(totalPages && totalPages != page);
-        // setNotFound(data.length === 0);
-
-      // setShowBtn(campers.length >=limit && campers.length !== 0);
-      
         
+        setShowBtn(total > limit && camperItems.length >= limit);
+        setNotFound(camperItems.length === 0);
       
       } catch (error){
         setError(true)
@@ -81,10 +58,10 @@ function CatalogPage() {
     }
     fetchData();
     
-  }, [ dispatch, limit, page, search]);
+  }, [camperItems.length, dispatch, limit, page, query, total]);
 
-  console.log("campers:", campers)
-  console.log(search);
+  console.log("campersItems:", camperItems.length)
+  console.log("total: ", total);
   
   
 
@@ -93,7 +70,7 @@ function CatalogPage() {
       <div className={css.catalogPageContainer}>
         <div className={css.catalogSearchContainer}>
           <Location />
-          <Filters />
+          <Filters/>
         </div>
         <div className={css.catalogPageCampers}>
           {isError ? <FetchError /> : <Collection />}
@@ -102,9 +79,6 @@ function CatalogPage() {
               Load more
             </Button>
           )}
-            <Button type="button" variant="loadMore" onClick={handleLoadMore}>
-              Load more
-            </Button>
         </div>
       </div>
     </>
