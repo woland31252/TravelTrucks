@@ -1,0 +1,13 @@
+.notFoundContainer {
+    width: 888px;
+    height: 785px;
+    background-color: beige;
+    border-radius: 8px;
+}
+
+.notFoudItem {
+    font-size: 86px;
+    font-weight: 700;
+    text-align: center;
+    padding: 224px;
+}

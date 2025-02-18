@@ -44,7 +44,7 @@ function Filters() {
     }
   };
 
-  const onSearch = async (e) => {
+  const onSearch = (e) => {
     e.preventDefault();
     dispatch(togleFilter(values));
     setValues({});

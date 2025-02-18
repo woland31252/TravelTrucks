@@ -17,6 +17,7 @@ import Collection from "../../components/Collection/Collection.jsx";
 import FetchError from "../../components/FetchError/FetchError.jsx";
 import Button from "../../components/Button/Button.jsx";
 import css from "./CatalogPage.module.css";
+import { NotFound } from "../../components/NotFound/NotFound.jsx";
 
 function CatalogPage() {
   
@@ -31,7 +32,7 @@ function CatalogPage() {
   // const [campers, setCampers] = useState([]);
   const [error, setError] = useState(false)
   const [notFound, setNotFound] = useState(false);
-  const [itemsLength, setItemsLength] = useState(null);
+  
   
   
   function handleLoadMore() {
@@ -43,19 +44,13 @@ function CatalogPage() {
     // if (!query) {
     //   dispatch(fetchAllCampers({page, limit}))
     // }
-    async function fetchData() {
-      try {
-        await dispatch(fetchAllCampers({ page, limit, ...query }));
+    function fetchData() {
+      dispatch(fetchAllCampers({ page, limit, ...query }));
         
         
-        setShowBtn(total > limit && camperItems.length >= limit);
-        setNotFound(camperItems.length === 0);
-      
-      } catch (error){
-        setError(true)
-}
-      
-    }
+      setShowBtn(total > limit && camperItems.length >= limit);
+      setNotFound(camperItems.length === 0);
+    };
     fetchData();
     
   }, [camperItems.length, dispatch, limit, page, query, total]);
@@ -73,7 +68,7 @@ function CatalogPage() {
           <Filters/>
         </div>
         <div className={css.catalogPageCampers}>
-          {isError ? <FetchError /> : <Collection />}
+          {notFound ? <NotFound/> : <Collection />}
           {showBtn && (
             <Button type="button" variant="loadMore" onClick={handleLoadMore}>
               Load more
