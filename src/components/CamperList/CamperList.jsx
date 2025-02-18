@@ -24,11 +24,6 @@ function CamperList({
     radio,
   },
 }) {
-
-  // const [page, setPage] = useState(1);
-  // const handleLoadMore = () => {
-  //   setPage(page+1)
-  // }
   
   return (
       <div className={css.camperCardContainer}>

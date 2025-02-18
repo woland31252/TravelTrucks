@@ -4,7 +4,7 @@ import css from "./Loader.module.css";
 function Loader() {
   return (
     <div className={css.loader}>
-      <RotatingLines
+      <  RotatingLines
         height="96"
         width="96"
         color="grey"

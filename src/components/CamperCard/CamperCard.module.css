@@ -18,7 +18,6 @@
   display: flex;
   justify-content: flex-start;
   column-gap: 16px;
-  
 }
 .ratingContainer,
 .locationContainer {
@@ -63,16 +62,16 @@
 
 .camperLink {
   text-decoration: none;
-font-size: 20px;
-font-weight: 600;
-line-height: 1.2;
-position: relative;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+  position: relative;
 }
 
 .camperLinkActive::after {
-  content:'';
+  content: "";
   position: absolute;
-  width:100%;
+  width: 100%;
   height: 5px;
   left: 0;
   bottom: -28px;
