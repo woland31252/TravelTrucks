@@ -5,32 +5,31 @@ import { toglePage } from "../../redux/camper/sliceCamper.js";
 import {
   selectorsCampers,
   selectorsCampersTotal,
-  selectorsError,
   selectorsPage,
-  selectorsLimit
+  selectorsLimit,
+  selectorsIsLoading,
 } from "../../redux/camper/selectorsCamper.js";
 import { selectorFilter } from "../../redux/filterCamper/selectorsFilterCamper.js";
 
 import Location from "../../components/Location/Location.jsx";
 import Filters from "../../components/Filters/Filters.jsx";
 import Collection from "../../components/Collection/Collection.jsx";
-import FetchError from "../../components/FetchError/FetchError.jsx";
 import Button from "../../components/Button/Button.jsx";
 import css from "./CatalogPage.module.css";
 import { NotFound } from "../../components/NotFound/NotFound.jsx";
 
+
+
 function CatalogPage() {
   
   const dispatch = useDispatch();
-  const isError = useSelector(selectorsError);
   const camperItems = useSelector(selectorsCampers);
   const total = useSelector(selectorsCampersTotal);
+  const isLoading = useSelector(selectorsIsLoading);
   const page = useSelector(selectorsPage);
   const limit = useSelector(selectorsLimit);
   const query = useSelector(selectorFilter);
   const [showBtn, setShowBtn] = useState(true);
-  // const [campers, setCampers] = useState([]);
-  const [error, setError] = useState(false)
   const [notFound, setNotFound] = useState(false);
   
   
@@ -41,15 +40,16 @@ function CatalogPage() {
   
 
   useEffect(() => {
-    // if (!query) {
-    //   dispatch(fetchAllCampers({page, limit}))
-    // }
+    if (!query) {
+      dispatch(fetchAllCampers({page, limit}))
+    }
     function fetchData() {
       dispatch(fetchAllCampers({ page, limit, ...query }));
         
         
       setShowBtn(total > limit && camperItems.length >= limit);
-      setNotFound(camperItems.length === 0);
+      setNotFound(total === 0 || camperItems.length === 0);
+      
     };
     fetchData();
     
@@ -65,10 +65,10 @@ function CatalogPage() {
       <div className={css.catalogPageContainer}>
         <div className={css.catalogSearchContainer}>
           <Location />
-          <Filters/>
+          <Filters />
         </div>
         <div className={css.catalogPageCampers}>
-          {notFound ? <NotFound/> : <Collection />}
+          {(!isLoading && !notFound )? <Collection />: <NotFound/>}
           {showBtn && (
             <Button type="button" variant="loadMore" onClick={handleLoadMore}>
               Load more
