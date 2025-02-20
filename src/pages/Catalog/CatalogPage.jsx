@@ -47,13 +47,13 @@ function CatalogPage() {
       dispatch(fetchAllCampers({ page, limit, ...query }));
         
         
-      setShowBtn(total > limit && camperItems.length >= limit);
+      setShowBtn(total > limit && camperItems.length >= limit && !isError);
       setNotFound(total === 0 || camperItems.length === 0);
       
     };
     fetchData();
     
-  }, [camperItems.length, dispatch, limit, page, query, total]);
+  }, [camperItems.length, dispatch, isError, limit, page, query, total]);
 
   console.log("campersItems:", camperItems.length)
   console.log("total: ", total);
@@ -69,8 +69,8 @@ function CatalogPage() {
         </div>
         <div className={css.catalogPageCampers}>
           {/* {notFound && <NotFound notFound={notFound} />} */}
-          {isError && notFound && <NotFound notFound={notFound} />}
-          {camperItems !== 0 && <Collection />}
+          {(isError || notFound)? <NotFound notFound={notFound} />:<Collection/>}
+          {/* {camperItems.length !== 0 && <Collection />} */}
           {showBtn && (
             <Button type="button" variant="loadMore" onClick={handleLoadMore}>
               Load more

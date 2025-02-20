@@ -1,16 +1,13 @@
 .notFoundContainerTrue {
     width: 888px;
     height: 785px;
-    background-color: #ebe1e1;
+    background-color: #e6e6e6f2;
     border-radius: 8px;
 }
 
 .notFoundContainerFalse {
     display: none;
-    /* width: 888px;
-    height: 785px;
-    background-color: #ebe1e1;
-    border-radius: 8px; */
+    
 }
 
 .notFoudItem {
