@@ -68,7 +68,8 @@ function CatalogPage() {
           <Filters />
         </div>
         <div className={css.catalogPageCampers}>
-          {(!isLoading && !notFound )? <Collection />: <NotFound/>}
+          {notFound && <NotFound />}
+          {camperItems !== 0 && <Collection />}
           {showBtn && (
             <Button type="button" variant="loadMore" onClick={handleLoadMore}>
               Load more
