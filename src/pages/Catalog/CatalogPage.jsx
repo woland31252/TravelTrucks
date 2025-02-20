@@ -6,8 +6,7 @@ import {
   selectorsCampers,
   selectorsCampersTotal,
   selectorsPage,
-  selectorsLimit,
-  selectorsIsLoading,
+  selectorsLimit
 } from "../../redux/camper/selectorsCamper.js";
 import { selectorFilter } from "../../redux/filterCamper/selectorsFilterCamper.js";
 
@@ -25,12 +24,11 @@ function CatalogPage() {
   const dispatch = useDispatch();
   const camperItems = useSelector(selectorsCampers);
   const total = useSelector(selectorsCampersTotal);
-  const isLoading = useSelector(selectorsIsLoading);
   const page = useSelector(selectorsPage);
   const limit = useSelector(selectorsLimit);
   const query = useSelector(selectorFilter);
   const [showBtn, setShowBtn] = useState(true);
-  const [notFound, setNotFound] = useState(false);
+  const [notFound, setNotFound] = useState(true);
   
   
   
