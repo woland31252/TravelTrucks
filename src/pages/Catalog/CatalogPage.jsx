@@ -6,7 +6,8 @@ import {
   selectorsCampers,
   selectorsCampersTotal,
   selectorsPage,
-  selectorsLimit
+  selectorsLimit,
+  selectorsError
 } from "../../redux/camper/selectorsCamper.js";
 import { selectorFilter } from "../../redux/filterCamper/selectorsFilterCamper.js";
 
@@ -15,7 +16,7 @@ import Filters from "../../components/Filters/Filters.jsx";
 import Collection from "../../components/Collection/Collection.jsx";
 import Button from "../../components/Button/Button.jsx";
 import css from "./CatalogPage.module.css";
-import { NotFound } from "../../components/NotFound/NotFound.jsx";
+import NotFound  from "../../components/NotFound/NotFound.jsx";
 
 
 
@@ -27,6 +28,7 @@ function CatalogPage() {
   const page = useSelector(selectorsPage);
   const limit = useSelector(selectorsLimit);
   const query = useSelector(selectorFilter);
+  const isError = useSelector(selectorsError)
   const [showBtn, setShowBtn] = useState(true);
   const [notFound, setNotFound] = useState(true);
   
@@ -66,7 +68,8 @@ function CatalogPage() {
           <Filters />
         </div>
         <div className={css.catalogPageCampers}>
-          {notFound && <NotFound />}
+          {/* {notFound && <NotFound notFound={notFound} />} */}
+          {isError && notFound && <NotFound notFound={notFound} />}
           {camperItems !== 0 && <Collection />}
           {showBtn && (
             <Button type="button" variant="loadMore" onClick={handleLoadMore}>
