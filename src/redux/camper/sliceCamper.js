@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchAllCampers, fetchCamperId } from "../operations";
+import { fetchAllCampers, fetchCamperId } from "../operations.js";
+import { LIMIT, PAGE } from "../constantsFunctions/constants.js";
+import { handlePending, handleError } from "../constantsFunctions/functions.js";
 
 const camperInitlState = {
-  page: 1,
-  limit: 5,
+  page: PAGE,
+  limit: LIMIT,
   total: null,
   items: [],
   itemId: {},
@@ -11,19 +13,25 @@ const camperInitlState = {
   error: null,
 };
 
-const handlePending = (state) => {
-  state.isLoading = true;
-};
+// const handlePending = (state) => {
+//   state.isLoading = true;
+// };
 
-const handleError = (state, action) => {
-  state.isLoading = false;
-  state.error = action.payload;
-};
+// const handleError = (state, action) => {
+//   state.isLoading = false;
+//   state.error = action.payload;
+// };
 
 const sliceCamper = createSlice({
   name: "camper",
   initialState: camperInitlState,
   reducers: {
+    // resetItems(state) {
+    //   state.items = camperInitlState.items;
+    // },
+    // addCampers(state, action) {
+    //   state.items = [...camperInitlState.items, ...action.payload.items];
+    // },
     toglePage(state, action) {
       state.page = action.payload;
     },
