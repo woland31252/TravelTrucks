@@ -1,17 +1,17 @@
 import { useSelector } from "react-redux";
-import { selectorsCampers } from "../../redux/camper/selectorsCamper";
+import { useId } from "react";
+import { selectorsLocation } from "../../redux/camper/selectorsCamper";
 import css from "../LocationList/LocationList.module.css";
 
 function LocationList() {
-    const items = useSelector(selectorsCampers);
-    console.log(items)
+  const locationId = useId();
+  const location = useSelector(selectorsLocation);
+  console.log(location);
   return (
     <>
-      
-    {items.map((data) => { <option value={data.location}> {data.location}</option> })}
-      
+      {location.map((elem) => {<option key={locationId } value={elem}>{elem}</option>})}
     </>
-  );
+  )
 }
 
 export default LocationList;

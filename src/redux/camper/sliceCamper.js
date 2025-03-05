@@ -8,19 +8,11 @@ const camperInitlState = {
   limit: LIMIT,
   total: null,
   items: [],
+  location: [],
   itemId: {},
   isLoading: false,
   error: null,
 };
-
-// const handlePending = (state) => {
-//   state.isLoading = true;
-// };
-
-// const handleError = (state, action) => {
-//   state.isLoading = false;
-//   state.error = action.payload;
-// };
 
 const sliceCamper = createSlice({
   name: "camper",
@@ -35,9 +27,6 @@ const sliceCamper = createSlice({
     toglePage(state, action) {
       state.page = action.payload;
     },
-    changeLimit(state, action) {
-      state.limit = action.payload;
-    },
   },
   extraReducers: (builder) =>
     builder
@@ -46,6 +35,10 @@ const sliceCamper = createSlice({
         state.isLoading = false;
         state.items = action.payload.items;
         state.total = action.payload.total;
+        const data = state.location;
+        const items = state.items;
+        items.map((elem) => { if (!data.includes(elem.location)) { data.push(elem.location) } });
+        
       })
       .addCase(fetchAllCampers.rejected, handleError)
       .addCase(fetchCamperId.pending, handlePending)

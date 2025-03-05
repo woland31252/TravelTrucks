@@ -1,11 +1,11 @@
 // import { Formik, Field } from "formik";
 import { useId } from "react";
-import LocationList from "../LocationList/LocationList.jsx";
+import LocationList  from "../LocationList/LocationList.jsx";
 // import { useDispatch, useSelector } from "react-redux";
 // import { selectorsCampers } from "../../redux/camper/selectorsCamper.js";
 import icon from "../../images/icons.svg";
 import css from "./Location.module.css";
-import { Form } from "react-router-dom";
+// import { Form } from "react-router-dom";
 
 // const initialValues = { location: "" };
 
@@ -40,7 +40,7 @@ function Location() {
           Location
         </label>
         <select className={css.inputLocation} id={id} name="location" autoFocus>
-          <LocationList />
+          <LocationList/>
         </select>
         <svg className={css.svgIcon}>
           <use href={`${icon}#icon-map`} />
