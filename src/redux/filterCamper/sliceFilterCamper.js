@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const filterInitialState = {
-  equipment: {}
+  equipment: {},
+  locationFilter: "",
 };
 
 const sliceFilterCamper = createSlice({
@@ -9,13 +10,17 @@ const sliceFilterCamper = createSlice({
   initialState: filterInitialState,
   reducers: {
     togleFilter(state, action)  {
-      state.equipment = action.payload
+      state.equipment = action.payload;
     },
     resetFilter( state ) {
       state.equipment = filterInitialState.equipment;
     },
+    togleLocationFilter(state, action) {
+      state.locationFilter = action.payload;
+    }
   },
 });
 
-export const { togleFilter, resetFilter } = sliceFilterCamper.actions;
+export const { togleFilter, resetFilter, togleLocationFilter } =
+  sliceFilterCamper.actions;
 export default sliceFilterCamper.reducer;
