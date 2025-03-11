@@ -6,4 +6,4 @@ export const selectorsCampersTotal = (state) => state.camper.total
 export const selectorsCamperById = (state) => state.camper.itemId;
 export const selectorsPage = (state) => state.camper.page;
 export const selectorsLimit = (state) => state.camper.limit;
-export const selectorsLocation = (state) => state.camper.location;
+export const selectorsLocation = (state) => state.camper.locationList;

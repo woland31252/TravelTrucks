@@ -9,7 +9,7 @@ import {
   selectorsLimit,
   selectorsError
 } from "../../redux/camper/selectorsCamper.js";
-import { selectorFilter } from "../../redux/filterCamper/selectorsFilterCamper.js";
+import { selectorFilter, selectLocationCampers } from "../../redux/filterCamper/selectorsFilterCamper.js";
 
 import Location from "../../components/Location/Location.jsx";
 import Filters from "../../components/Filters/Filters.jsx";
@@ -27,6 +27,7 @@ function CatalogPage() {
   const total = useSelector(selectorsCampersTotal);
   const page = useSelector(selectorsPage);
   const limit = useSelector(selectorsLimit);
+  const location = useSelector(selectLocationCampers);
   const query = useSelector(selectorFilter);
   const isError = useSelector(selectorsError)
   const [showBtn, setShowBtn] = useState(true);
@@ -41,10 +42,10 @@ function CatalogPage() {
 
   useEffect(() => {
     if (!query) {
-      dispatch(fetchAllCampers({page, limit}))
+      dispatch(fetchAllCampers({page, limit, location}))
     }
     function fetchData() {
-      dispatch(fetchAllCampers({ page, limit, ...query }));
+      dispatch(fetchAllCampers({ page, limit, location, ...query}));
       
         
       setShowBtn(total > limit && camperItems.length >= limit && !isError);
@@ -53,7 +54,7 @@ function CatalogPage() {
     };
     fetchData();
     
-  }, [camperItems.length, dispatch, isError, limit, page, query, total]);
+  }, [camperItems.length, dispatch, isError, limit, page, query, total, location]);
 
   console.log("campersItems:", camperItems.length)
   console.log("total: ", total);

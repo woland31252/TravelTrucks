@@ -8,7 +8,7 @@ const camperInitlState = {
   limit: LIMIT,
   total: null,
   items: [],
-  location: [],
+  locationList: [],
   itemId: {},
   isLoading: false,
   error: null,
@@ -35,7 +35,7 @@ const sliceCamper = createSlice({
         state.isLoading = false;
         state.items = action.payload.items;
         state.total = action.payload.total;
-        const data = state.location;
+        const data = state.locationList;
         const items = state.items;
         items.map((elem) => { if (!data.includes(elem.location)) { data.push(elem.location) } });
         
@@ -49,5 +49,5 @@ const sliceCamper = createSlice({
       .addCase(fetchCamperId.rejected, handleError),
 });
 
-export const { toglePage, changeLimit } = sliceCamper.actions;
+export const { toglePage } = sliceCamper.actions;
 export default sliceCamper.reducer;
