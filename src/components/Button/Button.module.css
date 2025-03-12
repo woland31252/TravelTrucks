@@ -8,6 +8,7 @@
   line-height: 1.5;
   letter-spacing: 0.0063em;
   color: #ffffff;
+  cursor: pointer;
 }
 
 .search:hover,
@@ -39,6 +40,7 @@
   letter-spacing: -0.005em;
   margin-top: 40px;
   background-color: lightgray;
+  cursor: none;
 }
 
 .loadMore {

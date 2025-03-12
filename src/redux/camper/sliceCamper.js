@@ -1,9 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchAllCampers, fetchCamperId } from "../operations.js";
+import {
+  fetchAllCampers,
+  fetchCamperId,
+  fetchLocation,
+} from "../operations.js";
 import { LIMIT, PAGE } from "../constantsFunctions/constants.js";
 import { handlePending, handleError } from "../constantsFunctions/functions.js";
 
-const camperInitlState = {
+const camperInitState = {
   page: PAGE,
   limit: LIMIT,
   total: null,
@@ -16,7 +20,7 @@ const camperInitlState = {
 
 const sliceCamper = createSlice({
   name: "camper",
-  initialState: camperInitlState,
+  initialState: camperInitState,
   reducers: {
     // resetItems(state) {
     //   state.items = camperInitlState.items;
@@ -35,10 +39,6 @@ const sliceCamper = createSlice({
         state.isLoading = false;
         state.items = action.payload.items;
         state.total = action.payload.total;
-        const data = state.locationList;
-        const items = state.items;
-        items.map((elem) => { if (!data.includes(elem.location)) { data.push(elem.location) } });
-        
       })
       .addCase(fetchAllCampers.rejected, handleError)
       .addCase(fetchCamperId.pending, handlePending)
@@ -46,7 +46,19 @@ const sliceCamper = createSlice({
         state.isLoading = false;
         state.itemId = action.payload;
       })
-      .addCase(fetchCamperId.rejected, handleError),
+      .addCase(fetchCamperId.rejected, handleError)
+      .addCase(fetchLocation.pending, handlePending)
+      .addCase(fetchLocation.fulfilled, (state, action) => {
+        state.isLoading = false;
+        const locations = state.locationList;
+        const data = action.payload;
+        data.map((item) => {
+          if (!locations.includes(item.location)) {
+            locations.push(item.location);
+          }
+        });
+      })
+      .addCase(fetchLocation.rejected, handleError),
 });
 
 export const { toglePage } = sliceCamper.actions;

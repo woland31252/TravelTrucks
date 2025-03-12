@@ -1,27 +1,27 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllCampers } from "../../redux/operations.js";
+import { fetchAllCampers, fetchLocation } from "../../redux/operations.js";
 import { toglePage } from "../../redux/camper/sliceCamper.js";
 import {
   selectorsCampers,
   selectorsCampersTotal,
   selectorsPage,
   selectorsLimit,
-  selectorsError
+  selectorsError,
 } from "../../redux/camper/selectorsCamper.js";
-import { selectorFilter, selectLocationCampers } from "../../redux/filterCamper/selectorsFilterCamper.js";
+import {
+  selectorFilter,
+  selectLocationCampers,
+} from "../../redux/filterCamper/selectorsFilterCamper.js";
 
 import Location from "../../components/Location/Location.jsx";
 import Filters from "../../components/Filters/Filters.jsx";
 import Collection from "../../components/Collection/Collection.jsx";
 import Button from "../../components/Button/Button.jsx";
 import css from "./CatalogPage.module.css";
-import NotFound  from "../../components/NotFound/NotFound.jsx";
-
-
+import NotFound from "../../components/NotFound/NotFound.jsx";
 
 function CatalogPage() {
-  
   const dispatch = useDispatch();
   const camperItems = useSelector(selectorsCampers);
   const total = useSelector(selectorsCampersTotal);
@@ -29,37 +29,41 @@ function CatalogPage() {
   const limit = useSelector(selectorsLimit);
   const location = useSelector(selectLocationCampers);
   const query = useSelector(selectorFilter);
-  const isError = useSelector(selectorsError)
+  const isError = useSelector(selectorsError);
   const [showBtn, setShowBtn] = useState(true);
   const [notFound, setNotFound] = useState(false);
-  
-  
-  
+
   function handleLoadMore() {
     dispatch(toglePage(page + 1));
   }
-  
 
   useEffect(() => {
-    if (!query) {
-      dispatch(fetchAllCampers({page, limit, location}))
-    }
+    // dispatch(fetchLocation());
+    // dispatch(fetchAllCampers({ page, limit, location }));
+    // if (!query) {
+    //   dispatch(fetchAllCampers({ page, limit, location }));
+    // }
     function fetchData() {
-      dispatch(fetchAllCampers({ page, limit, location, ...query}));
-      
-        
+      dispatch(fetchLocation());
+      dispatch(fetchAllCampers({ page, limit, location, ...query }));
+
       setShowBtn(total > limit && camperItems.length >= limit && !isError);
       setNotFound(total === 0 || camperItems.length === 0);
-      
-    };
+    }
     fetchData();
-    
-  }, [camperItems.length, dispatch, isError, limit, page, query, total, location]);
+  }, [
+    camperItems.length,
+    dispatch,
+    isError,
+    limit,
+    page,
+    query,
+    total,
+    location,
+  ]);
 
-  console.log("campersItems:", camperItems.length)
+  console.log("campersItems:", camperItems.length);
   console.log("total: ", total);
-  
-  
 
   return (
     <>
@@ -69,7 +73,11 @@ function CatalogPage() {
           <Filters />
         </div>
         <div className={css.catalogPageCampers}>
-          {(isError || notFound)? <NotFound notFound={notFound} />:<Collection/>}
+          {isError || notFound ? (
+            <NotFound notFound={notFound} />
+          ) : (
+            <Collection />
+          )}
           {showBtn && (
             <Button type="button" variant="loadMore" onClick={handleLoadMore}>
               Load more

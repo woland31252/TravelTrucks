@@ -11,8 +11,6 @@ function Location() {
   const dispatch = useDispatch();
   const data = useSelector(selectorsLocation);
 
-  console.log("data: ", data);
-
   const handleChange = (e) => {
     dispatch(togleLocationFilter(e.target.value));
   };
