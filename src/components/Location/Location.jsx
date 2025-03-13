@@ -1,7 +1,8 @@
 import { useId } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { togleLocationFilter } from "../../redux/filterCamper/sliceFilterCamper.js";
-import { selectorsLocation } from "../../redux/camper/selectorsCamper.js";
+import { toglePage } from "../../redux/camper/sliceCamper.js";
+import { togleLocationFilter, togleFilter } from "../../redux/filterCamper/sliceFilterCamper.js";
+import { selectorsLocation} from "../../redux/camper/selectorsCamper.js";
 import LocationList from "../LocationList/LocationList.jsx";
 import icon from "../../images/icons.svg";
 import css from "./Location.module.css";
@@ -12,6 +13,8 @@ function Location() {
   const data = useSelector(selectorsLocation);
 
   const handleChange = (e) => {
+    dispatch(toglePage(1));
+    dispatch(togleFilter({}));
     dispatch(togleLocationFilter(e.target.value));
   };
   return (

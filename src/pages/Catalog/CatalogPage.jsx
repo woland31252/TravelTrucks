@@ -31,7 +31,7 @@ function CatalogPage() {
   const query = useSelector(selectorFilter);
   const isError = useSelector(selectorsError);
   const [showBtn, setShowBtn] = useState(true);
-  const [notFound, setNotFound] = useState(false);
+  const [notFound, setNotFound] = useState(true);
 
   function handleLoadMore() {
     dispatch(toglePage(page + 1));
@@ -45,10 +45,11 @@ function CatalogPage() {
     // }
     function fetchData() {
       dispatch(fetchLocation());
-      dispatch(fetchAllCampers({ page, limit, location, ...query }));
+      dispatch(fetchAllCampers({ location, page, limit, ...query }));
 
       setShowBtn(total > limit && camperItems.length >= limit && !isError);
-      setNotFound(total === 0 || camperItems.length === 0);
+      setNotFound(camperItems.length === 0 || isError);
+      // setNotFound(!total === 0 || !camperItems.length === 0);
     }
     fetchData();
   }, [
@@ -62,8 +63,10 @@ function CatalogPage() {
     location,
   ]);
 
+  console.log("campersItems:", camperItems);
   console.log("campersItems:", camperItems.length);
   console.log("total: ", total);
+  console.log("filter: ", query)
 
   return (
     <>
@@ -73,7 +76,7 @@ function CatalogPage() {
           <Filters />
         </div>
         <div className={css.catalogPageCampers}>
-          {isError || notFound ? (
+          { notFound ? (
             <NotFound notFound={notFound} />
           ) : (
             <Collection />

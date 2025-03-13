@@ -25,12 +25,14 @@ function Filters() {
 
   const dispatch = useDispatch();
   const [values, setValues] = useState({});
+  const [hasChangRadio, setHasChangRadio] = useState(false);
   const [hasChanged, setHasChanged] = useState(false);
 
   const onFilter = (e) => {
     const param = e.target;
     setValues({ ...values, [param.name]: param.value });
     setHasChanged(param.checked);
+    setHasChangRadio(param.checked);
     if (!hasChanged) {
       if (param.name === "AC") {
         delete values.AC;
@@ -43,7 +45,7 @@ function Filters() {
       }
     }
   };
-
+console.log(values)
   const onSearch = (e) => {
     e.preventDefault();
     dispatch(togleFilter(values));
@@ -64,7 +66,7 @@ function Filters() {
         <hr className={css.lineBetween} />
         <div className={css.listCheckBtnContainer}>
           <ChekBtn
-            checked={hasChanged}
+            checked={hasChangRadio}
             id={automatId}
             type="radio"
             name="transmission"
@@ -80,7 +82,7 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={hasChanged}
+            checked={hasChangRadio}
             id={manualId}
             type="radio"
             name="transmission"
@@ -96,7 +98,7 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={hasChanged}
+            checked={hasChangRadio}
             id={hybridId}
             type="radio"
             name="engine"
@@ -112,7 +114,7 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={hasChanged}
+            checked={hasChangRadio}
             id={petrolId}
             type="radio"
             name="engine"
@@ -128,7 +130,7 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={hasChanged}
+            checked={hasChangRadio}
             id={diselId}
             type="radio"
             name="engine"
@@ -212,7 +214,7 @@ function Filters() {
         <hr className={css.lineBetween} />
         <div className={css.typeListContainer}>
           <ChekBtn
-            checked={hasChanged}
+            checked={hasChangRadio}
             type="radio"
             id={vanId}
             name="form"
@@ -228,7 +230,7 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={hasChanged}
+            checked={hasChangRadio}
             type="radio"
             id={fullyId}
             name="form"
@@ -244,7 +246,7 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={hasChanged}
+            checked={hasChangRadio}
             type="radio"
             id={alcoveId}
             name="form"
@@ -260,7 +262,7 @@ function Filters() {
             }
           </ChekBtn>
         </div>
-        {!hasChanged ? (
+        {(!hasChanged || !hasChangRadio) ? (
           <Button variant="disabled-search" disabled>
             Search
           </Button>
