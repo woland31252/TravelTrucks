@@ -14,7 +14,7 @@ function Filters() {
   const manualId = useId();
   const hybridId = useId();
   const petrolId = useId();
-  const diselId = useId();
+  const dieselId = useId();
   const acId = useId();
   const tvId = useId();
   const bathroomId = useId();
@@ -31,26 +31,41 @@ function Filters() {
   const onFilter = (e) => {
     const param = e.target;
     setValues({ ...values, [param.name]: param.value });
-    setHasChanged(param.checked);
-    setHasChangRadio(param.checked);
-    if (!hasChanged) {
+    if (param.type === "checkbox") {
+      setHasChanged(param.checked);
+    };
+    if (param.type === "radio") { setHasChangRadio(param.checked) };
+
+    deleteValues(values, hasChanged, param);
+  };
+
+  console.log(values)
+  console.log("hasChanged: ", hasChanged);
+  console.log("hasChangRadio: ", hasChangRadio);
+
+  function deleteValues(val, state, param) {
+    if (state) {
       if (param.name === "AC") {
-        delete values.AC;
-      } else if (param.name === "TV") {
-        delete values.TV;
-      } else if (param.name === "bathroom") {
-        delete values.bathroom;
-      } else if (param.name === "kitchen") {
-        delete values.kitchen;
-      }
+        setValues({ ...val, AC: delete val.AC })
+      };
+      if (param.name === "TV") {
+        setValues({ ...val, TV: delete val.TV })
+      };
+      if (param.name === "bathroom") {
+        setValues({ ...val, bathroom: delete val.bathroom })
+      };
+      if (param.name === "kitchen") {
+        setValues({ ...val, kitchen: delete val.kitchen })
+      };
     }
   };
-console.log(values)
+  
   const onSearch = (e) => {
     e.preventDefault();
     dispatch(togleFilter(values));
     setValues({});
     setHasChanged(false);
+    setHasChangRadio(false);
     e.target.reset();
   };
 
@@ -131,7 +146,7 @@ console.log(values)
           </ChekBtn>
           <ChekBtn
             checked={hasChangRadio}
-            id={diselId}
+            id={dieselId}
             type="radio"
             name="engine"
             value="diesel"
@@ -262,7 +277,7 @@ console.log(values)
             }
           </ChekBtn>
         </div>
-        {(!hasChanged || !hasChangRadio) ? (
+        {(!hasChanged && !hasChangRadio) ? (
           <Button variant="disabled-search" disabled>
             Search
           </Button>
