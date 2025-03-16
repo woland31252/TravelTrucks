@@ -24,48 +24,66 @@ function Filters() {
   const alcoveId = useId();
 
   const dispatch = useDispatch();
-  const [values, setValues] = useState({});
-  const [hasChangRadio, setHasChangRadio] = useState(false);
-  const [hasChanged, setHasChanged] = useState(false);
-
+  // const [values, setValues] = useState({});
+  let valuesObj = {};
+  let enabled = false;
+  // const [hasChangRadio, setHasChangRadio] = useState(false);
+  // const [isEnabled, setIsEnabled] = useState(false);
+  
+  
   const onFilter = (e) => {
+    // let valuesObj = {};
     const param = e.target;
-    setValues({ ...values, [param.name]: param.value });
-    if (param.type === "checkbox") {
-      setHasChanged(param.checked);
-    };
-    if (param.type === "radio") { setHasChangRadio(param.checked) };
 
-    deleteValues(values, hasChanged, param);
+    // setHasChanged(param.checked)
+    // if(param.checked === true) {setHasChanged(true)}
+    // if (param.type === "checkbox") {
+    //   setHasChanged(param.checked);
+    // };
+    // if (param.type === "radio") { setHasChangRadio(param.checked) };
+
+    valuesObj = { ...valuesObj, [param.name]: param.value };
+    // handleEnabled (param)
+    deleteValues(param, valuesObj);
+    console.log(valuesObj);
+    console.log('checked: ', param.checked)
+    if (param.checked === true) { enabled = true }
   };
 
-  console.log(values)
-  console.log("hasChanged: ", hasChanged);
-  console.log("hasChangRadio: ", hasChangRadio);
+  
 
-  function deleteValues(val, state, param) {
-    if (state) {
+  // const handleEnabled = (param) => {
+  //   if (param.checked === true) {
+  //     setHasChanged(true);
+  //   }
+  // }
+
+  console.log(valuesObj);
+  console.log("hasChanged: ", enabled);
+  // console.log("hasChangRadio: ", hasChangRadio);
+
+  function deleteValues(param, val) {
+    if (param.checked === false) {
       if (param.name === "AC") {
-        setValues({ ...val, AC: delete val.AC })
-      };
-      if (param.name === "TV") {
-        setValues({ ...val, TV: delete val.TV })
-      };
-      if (param.name === "bathroom") {
-        setValues({ ...val, bathroom: delete val.bathroom })
-      };
-      if (param.name === "kitchen") {
-        setValues({ ...val, kitchen: delete val.kitchen })
+        delete val.AC 
+      } else if (param.name === "TV") {
+        delete val.TV 
+      } else if (param.name === "bathroom") {
+      delete val.bathroom
+      } else if (param.name === "kitchen") {
+        delete val.kitchen
       };
     }
   };
   
   const onSearch = (e) => {
     e.preventDefault();
-    dispatch(togleFilter(values));
-    setValues({});
-    setHasChanged(false);
-    setHasChangRadio(false);
+    dispatch(togleFilter(valuesObj));
+    // setValues({});
+    // valuesObj = {};
+    // setHasChanged(false);
+    // setHasChangRadio(false);
+    // isEnabled = false
     e.target.reset();
   };
 
@@ -81,7 +99,6 @@ function Filters() {
         <hr className={css.lineBetween} />
         <div className={css.listCheckBtnContainer}>
           <ChekBtn
-            checked={hasChangRadio}
             id={automatId}
             type="radio"
             name="transmission"
@@ -97,7 +114,6 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={hasChangRadio}
             id={manualId}
             type="radio"
             name="transmission"
@@ -113,7 +129,6 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={hasChangRadio}
             id={hybridId}
             type="radio"
             name="engine"
@@ -129,7 +144,6 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={hasChangRadio}
             id={petrolId}
             type="radio"
             name="engine"
@@ -145,7 +159,6 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={hasChangRadio}
             id={dieselId}
             type="radio"
             name="engine"
@@ -161,7 +174,6 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={hasChanged}
             id={acId}
             type="checkbox"
             name="AC"
@@ -177,7 +189,6 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={hasChanged}
             id={tvId}
             type="checkbox"
             name="TV"
@@ -193,7 +204,6 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={hasChanged}
             id={bathroomId}
             type="checkbox"
             name="bathroom"
@@ -209,7 +219,6 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={hasChanged}
             id={kitchenId}
             type="checkbox"
             name="kitchen"
@@ -229,7 +238,6 @@ function Filters() {
         <hr className={css.lineBetween} />
         <div className={css.typeListContainer}>
           <ChekBtn
-            checked={hasChangRadio}
             type="radio"
             id={vanId}
             name="form"
@@ -245,7 +253,6 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={hasChangRadio}
             type="radio"
             id={fullyId}
             name="form"
@@ -261,7 +268,6 @@ function Filters() {
             }
           </ChekBtn>
           <ChekBtn
-            checked={hasChangRadio}
             type="radio"
             id={alcoveId}
             name="form"
@@ -277,7 +283,7 @@ function Filters() {
             }
           </ChekBtn>
         </div>
-        {(!hasChanged && !hasChangRadio) ? (
+        {/* {!hasChanged ? (
           <Button variant="disabled-search" disabled>
             Search
           </Button>
@@ -285,7 +291,10 @@ function Filters() {
           <Button type="submit" variant="search">
             Search
           </Button>
-        )}
+        )} */}
+        <Button type="submit" variant="search">
+          Search
+        </Button>
       </form>
     </>
   );
