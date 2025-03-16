@@ -47,7 +47,7 @@ function Filters() {
     deleteValues(param, valuesObj);
     console.log(valuesObj);
     console.log('checked: ', param.checked)
-    if (param.checked === true) { enabled = true }
+    // if (param.checked === true) { enabled = true }
   };
 
   
@@ -283,7 +283,7 @@ function Filters() {
             }
           </ChekBtn>
         </div>
-        {/* {!hasChanged ? (
+        {enabled ? (
           <Button variant="disabled-search" disabled>
             Search
           </Button>
@@ -291,10 +291,10 @@ function Filters() {
           <Button type="submit" variant="search">
             Search
           </Button>
-        )} */}
-        <Button type="submit" variant="search">
+        )}
+        {/* <Button type="submit" variant="search">
           Search
-        </Button>
+        </Button> */}
       </form>
     </>
   );

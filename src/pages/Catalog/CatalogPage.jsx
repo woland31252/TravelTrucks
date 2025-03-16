@@ -31,11 +31,13 @@ function CatalogPage() {
   const query = useSelector(selectorFilter);
   const isError = useSelector(selectorsError);
   const [showBtn, setShowBtn] = useState(true);
-  const [notFound, setNotFound] = useState(true);
+  const [notFound, setNotFound] = useState(false);
 
   function handleLoadMore() {
     dispatch(toglePage(page + 1));
   }
+
+
 
   useEffect(() => {
     // dispatch(fetchLocation());
@@ -48,7 +50,7 @@ function CatalogPage() {
       dispatch(fetchAllCampers({ location, page, limit, ...query }));
 
       setShowBtn(total > limit && camperItems.length >= limit && !isError);
-      setNotFound(camperItems.length === 0 || isError);
+      setNotFound(camperItems.length === 0 && isError);
       // setNotFound(!total === 0 || !camperItems.length === 0);
     }
     fetchData();
