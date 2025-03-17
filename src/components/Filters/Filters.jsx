@@ -1,15 +1,19 @@
 import { useId } from "react";
-import { useDispatch } from "react-redux";
-import { togleFilter } from "../../redux/filterCamper/sliceFilterCamper.js";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  togleFilter,
+  deleteValueFilter,
+} from "../../redux/filterCamper/sliceFilterCamper.js";
+import { selectorFilter } from "../../redux/filterCamper/selectorsFilterCamper.js";
 
-import { useState } from "react";
+// import { useState } from "react";
 
 import ChekBtn from "../CheckBtn/CheckBtn.jsx";
 import icon from "../../images/icons.svg";
 import css from "./Filters.module.css";
 import Button from "../Button/Button.jsx";
 
-function Filters() {
+function Filters({ onSearch }) {
   const automatId = useId();
   const manualId = useId();
   const hybridId = useId();
@@ -24,75 +28,68 @@ function Filters() {
   const alcoveId = useId();
 
   const dispatch = useDispatch();
+  const filter = useSelector(selectorFilter);
   // const [values, setValues] = useState({});
-  let valuesObj = {};
-  let enabled = false;
+  // let valuesObj = {};
+  // let enabled = false;
   // const [hasChangRadio, setHasChangRadio] = useState(false);
   // const [isEnabled, setIsEnabled] = useState(false);
-  
-  
+
   const onFilter = (e) => {
-    // let valuesObj = {};
     const param = e.target;
-
-    // setHasChanged(param.checked)
-    // if(param.checked === true) {setHasChanged(true)}
-    // if (param.type === "checkbox") {
-    //   setHasChanged(param.checked);
-    // };
-    // if (param.type === "radio") { setHasChangRadio(param.checked) };
-
-    valuesObj = { ...valuesObj, [param.name]: param.value };
-    // handleEnabled (param)
-    deleteValues(param, valuesObj);
-    console.log(valuesObj);
-    console.log('checked: ', param.checked)
-    // if (param.checked === true) { enabled = true }
+    dispatch(togleFilter({ ...filter, [param.name]: param.value }));
+    if (param.checked === false) {
+      if (param.name === "AC") {
+        dispatch(deleteValueFilter(filter.AC));
+      } else if (param.name === "TV") {
+        delete filter.TV;
+      } else if (param.name === "bathroom") {
+        delete filter.bathroom;
+      } else if (param.name === "kitchen") {
+        delete filter.kitchen;
+      }
+    }
+    // deleteValues(param, filter);
+    console.log(filter);
+    console.log("checked: ", param.checked);
   };
-
-  
-
-  // const handleEnabled = (param) => {
-  //   if (param.checked === true) {
-  //     setHasChanged(true);
-  //   }
-  // }
-
-  console.log(valuesObj);
-  console.log("hasChanged: ", enabled);
-  // console.log("hasChangRadio: ", hasChangRadio);
+  console.log(filter);
 
   function deleteValues(param, val) {
     if (param.checked === false) {
       if (param.name === "AC") {
-        delete val.AC 
+        delete val.AC;
       } else if (param.name === "TV") {
-        delete val.TV 
+        delete val.TV;
       } else if (param.name === "bathroom") {
-      delete val.bathroom
+        delete val.bathroom;
       } else if (param.name === "kitchen") {
-        delete val.kitchen
-      };
+        delete val.kitchen;
+      }
     }
   };
-  
-  const onSearch = (e) => {
-    e.preventDefault();
-    dispatch(togleFilter(valuesObj));
-    // setValues({});
-    // valuesObj = {};
-    // setHasChanged(false);
-    // setHasChangRadio(false);
-    // isEnabled = false
-    e.target.reset();
-  };
+
+  // const onSearch = (e) => {
+  //   e.preventDefault();
+  //   dispatch(togleFilter(valuesObj));
+  //   // setValues({});
+  //   // valuesObj = {};
+  //   // setHasChanged(false);
+  //   // setHasChangRadio(false);
+  //   // isEnabled = false
+  //   e.target.reset();
+  // };
 
   return (
     <>
       <form
         className={css.catalogSearch}
         onChange={onFilter}
-        onSubmit={onSearch}
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSearch;
+          e.target.reset();
+        }}
       >
         <p className={css.itemFilters}>Filters</p>
         <h2 className={css.titleList}>Vehicle equipment</h2>
@@ -128,12 +125,7 @@ function Filters() {
               </div>
             }
           </ChekBtn>
-          <ChekBtn
-            id={hybridId}
-            type="radio"
-            name="engine"
-            value="hybrid"
-          >
+          <ChekBtn id={hybridId} type="radio" name="engine" value="hybrid">
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>
@@ -143,12 +135,7 @@ function Filters() {
               </div>
             }
           </ChekBtn>
-          <ChekBtn
-            id={petrolId}
-            type="radio"
-            name="engine"
-            value="petrol"
-          >
+          <ChekBtn id={petrolId} type="radio" name="engine" value="petrol">
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>
@@ -158,12 +145,7 @@ function Filters() {
               </div>
             }
           </ChekBtn>
-          <ChekBtn
-            id={dieselId}
-            type="radio"
-            name="engine"
-            value="diesel"
-          >
+          <ChekBtn id={dieselId} type="radio" name="engine" value="diesel">
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>
@@ -173,12 +155,7 @@ function Filters() {
               </div>
             }
           </ChekBtn>
-          <ChekBtn
-            id={acId}
-            type="checkbox"
-            name="AC"
-            value="true"
-          >
+          <ChekBtn id={acId} type="checkbox" name="AC" value="true">
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>
@@ -188,12 +165,7 @@ function Filters() {
               </div>
             }
           </ChekBtn>
-          <ChekBtn
-            id={tvId}
-            type="checkbox"
-            name="TV"
-            value="true"
-          >
+          <ChekBtn id={tvId} type="checkbox" name="TV" value="true">
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>
@@ -203,12 +175,7 @@ function Filters() {
               </div>
             }
           </ChekBtn>
-          <ChekBtn
-            id={bathroomId}
-            type="checkbox"
-            name="bathroom"
-            value="true"
-          >
+          <ChekBtn id={bathroomId} type="checkbox" name="bathroom" value="true">
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>
@@ -218,12 +185,7 @@ function Filters() {
               </div>
             }
           </ChekBtn>
-          <ChekBtn
-            id={kitchenId}
-            type="checkbox"
-            name="kitchen"
-            value="true"
-          >
+          <ChekBtn id={kitchenId} type="checkbox" name="kitchen" value="true">
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>
@@ -237,12 +199,7 @@ function Filters() {
         <h2 className={css.titleTypeList}>Vehicle type</h2>
         <hr className={css.lineBetween} />
         <div className={css.typeListContainer}>
-          <ChekBtn
-            type="radio"
-            id={vanId}
-            name="form"
-            value="panelTruck"
-          >
+          <ChekBtn type="radio" id={vanId} name="form" value="panelTruck">
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>
@@ -267,12 +224,7 @@ function Filters() {
               </div>
             }
           </ChekBtn>
-          <ChekBtn
-            type="radio"
-            id={alcoveId}
-            name="form"
-            value="alcove"
-          >
+          <ChekBtn type="radio" id={alcoveId} name="form" value="alcove">
             {
               <div className={css.buttonContent}>
                 <svg className={css.iconProperties}>
@@ -283,7 +235,7 @@ function Filters() {
             }
           </ChekBtn>
         </div>
-        {enabled ? (
+        {/* {(checked === false) ? (
           <Button variant="disabled-search" disabled>
             Search
           </Button>
@@ -291,10 +243,10 @@ function Filters() {
           <Button type="submit" variant="search">
             Search
           </Button>
-        )}
-        {/* <Button type="submit" variant="search">
+        )} */}
+        <Button type="submit" variant="search">
           Search
-        </Button> */}
+        </Button>
       </form>
     </>
   );

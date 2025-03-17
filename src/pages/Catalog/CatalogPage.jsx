@@ -28,14 +28,27 @@ function CatalogPage() {
   const page = useSelector(selectorsPage);
   const limit = useSelector(selectorsLimit);
   const location = useSelector(selectLocationCampers);
-  const query = useSelector(selectorFilter);
+  const filter = useSelector(selectorFilter);
   const isError = useSelector(selectorsError);
   const [showBtn, setShowBtn] = useState(true);
   const [notFound, setNotFound] = useState(false);
+  const [query, setQuery] = useState({})
+
 
   function handleLoadMore() {
     dispatch(toglePage(page + 1));
-  }
+  };
+
+  const handleSearch = () => {
+   
+    setQuery(filter)
+    // setValues({});
+    // valuesObj = {};
+    // setHasChanged(false);
+    // setHasChangRadio(false);
+    // isEnabled = false
+    
+  };
 
 
 
@@ -75,7 +88,7 @@ function CatalogPage() {
       <div className={css.catalogPageContainer}>
         <div className={css.catalogSearchContainer}>
           <Location />
-          <Filters />
+          <Filters onSearch={handleSearch} />
         </div>
         <div className={css.catalogPageCampers}>
           { notFound ? (
