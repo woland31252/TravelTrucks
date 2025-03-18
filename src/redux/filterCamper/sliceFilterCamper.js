@@ -13,7 +13,7 @@ const sliceFilterCamper = createSlice({
       state.equipment = action.payload;
     },
     // deleteValueFilter(state, action) {
-    //     delete state.equipment.action.payload
+    //     state.equipment = delete action.payload
     // },
     resetFilter( state ) {
       state.equipment = filterInitialState.equipment;

@@ -1,12 +1,9 @@
 import { useId } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  togleFilter,
-  deleteValueFilter,
-} from "../../redux/filterCamper/sliceFilterCamper.js";
+import { togleFilter } from "../../redux/filterCamper/sliceFilterCamper.js";
 import { selectorFilter } from "../../redux/filterCamper/selectorsFilterCamper.js";
 
-// import { useState } from "react";
+import { useState } from "react";
 
 import ChekBtn from "../CheckBtn/CheckBtn.jsx";
 import icon from "../../images/icons.svg";
@@ -30,30 +27,22 @@ function Filters({ onSearch }) {
   const dispatch = useDispatch();
   const filter = useSelector(selectorFilter);
   // const [values, setValues] = useState({});
-  // let valuesObj = {};
+  let valuesObj = {};
   // let enabled = false;
   // const [hasChangRadio, setHasChangRadio] = useState(false);
-  // const [isEnabled, setIsEnabled] = useState(false);
+  const [isEnabled, setIsEnabled] = useState(0);
 
   const onFilter = (e) => {
     const param = e.target;
-    dispatch(togleFilter({ ...filter, [param.name]: param.value }));
-    if (param.checked === false) {
-      if (param.name === "AC") {
-        dispatch(deleteValueFilter(filter.AC));
-      } else if (param.name === "TV") {
-        delete filter.TV;
-      } else if (param.name === "bathroom") {
-        delete filter.bathroom;
-      } else if (param.name === "kitchen") {
-        delete filter.kitchen;
-      }
-    }
-    // deleteValues(param, filter);
-    console.log(filter);
+    valuesObj = { ...filter, [param.name]: param.value };
+    setIsEnabled(Object.keys(valuesObj).length);
+    deleteValues(param, valuesObj);
+    dispatch(togleFilter(valuesObj));
+    console.log(Object.keys(filter).length);
     console.log("checked: ", param.checked);
   };
   console.log(filter);
+  console.log(Object.keys(filter).length);
 
   function deleteValues(param, val) {
     if (param.checked === false) {
@@ -67,29 +56,27 @@ function Filters({ onSearch }) {
         delete val.kitchen;
       }
     }
-  };
+  }
 
-  // const onSearch = (e) => {
-  //   e.preventDefault();
-  //   dispatch(togleFilter(valuesObj));
-  //   // setValues({});
-  //   // valuesObj = {};
-  //   // setHasChanged(false);
-  //   // setHasChangRadio(false);
-  //   // isEnabled = false
-  //   e.target.reset();
-  // };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSearch;
+    valuesObj = {};
+    e.target.reset();
+  };
 
   return (
     <>
       <form
         className={css.catalogSearch}
         onChange={onFilter}
-        onSubmit={(e) => {
-          e.preventDefault();
-          onSearch;
-          e.target.reset();
-        }}
+        onSubmit={handleSubmit}
+        // onSubmit={(e) => {
+        //   e.preventDefault();
+        //   onSearch;
+        //   valuesObj = {};
+        //   e.target.reset();
+        // }}
       >
         <p className={css.itemFilters}>Filters</p>
         <h2 className={css.titleList}>Vehicle equipment</h2>
@@ -235,18 +222,21 @@ function Filters({ onSearch }) {
             }
           </ChekBtn>
         </div>
-        {/* {(checked === false) ? (
+        {isEnabled === 0 ? (
           <Button variant="disabled-search" disabled>
             Search
           </Button>
         ) : (
-          <Button type="submit" variant="search">
+          <Button
+            type="submit"
+            variant="search"
+          >
             Search
           </Button>
-        )} */}
-        <Button type="submit" variant="search">
+        )}
+        {/* <Button type="submit" variant="search">
           Search
-        </Button>
+        </Button> */}
       </form>
     </>
   );

@@ -32,7 +32,7 @@ function CatalogPage() {
   const isError = useSelector(selectorsError);
   const [showBtn, setShowBtn] = useState(true);
   const [notFound, setNotFound] = useState(false);
-  const [query, setQuery] = useState({})
+  const [query, setQuery] = useState({});
 
 
   function handleLoadMore() {
@@ -42,15 +42,9 @@ function CatalogPage() {
   const handleSearch = () => {
    
     setQuery(filter)
-    // setValues({});
-    // valuesObj = {};
-    // setHasChanged(false);
-    // setHasChangRadio(false);
-    // isEnabled = false
-    
   };
 
-
+console.log(query)
 
   useEffect(() => {
     // dispatch(fetchLocation());
