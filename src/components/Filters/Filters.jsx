@@ -70,7 +70,7 @@ function Filters({ onSearch }) {
       <form
         className={css.catalogSearch}
         onChange={onFilter}
-        onSubmit={handleSubmit}
+        onSubmit={(e) => { e.preventDefault(); onSearch; e.target.reset() }}
         // onSubmit={(e) => {
         //   e.preventDefault();
         //   onSearch;
