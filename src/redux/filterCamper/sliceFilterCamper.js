@@ -12,9 +12,6 @@ const sliceFilterCamper = createSlice({
     togleFilter(state, action)  {
       state.equipment = action.payload;
     },
-    // deleteValueFilter(state, action) {
-    //     state.equipment = delete action.payload
-    // },
     resetFilter( state ) {
       state.equipment = filterInitialState.equipment;
     },
@@ -24,6 +21,6 @@ const sliceFilterCamper = createSlice({
   },
 });
 
-export const { togleFilter, resetFilter, togleLocationFilter, deleteValueFilter } =
+export const { togleFilter, resetFilter, togleLocationFilter} =
   sliceFilterCamper.actions;
 export default sliceFilterCamper.reducer;

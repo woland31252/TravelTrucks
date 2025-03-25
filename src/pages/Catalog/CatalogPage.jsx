@@ -31,29 +31,16 @@ function CatalogPage() {
   const query = useSelector(selectorFilter);
   const isError = useSelector(selectorsError);
   const [showBtn, setShowBtn] = useState(true);
-  const [notFound, setNotFound] = useState(false);
- 
-
 
   function handleLoadMore() {
     dispatch(toglePage(page + 1));
-  };
-
-console.log(query)
+  }
 
   useEffect(() => {
-    // dispatch(fetchLocation());
-    // dispatch(fetchAllCampers({ page, limit, location }));
-    // if (!query) {
-    //   dispatch(fetchAllCampers({ page, limit, location }));
-    // }
     function fetchData() {
       dispatch(fetchLocation());
       dispatch(fetchAllCampers({ location, page, limit, ...query }));
-
       setShowBtn(total > limit && camperItems.length >= limit && !isError);
-      setNotFound(camperItems.length === 0 && isError);
-      // setNotFound(!total === 0 || !camperItems.length === 0);
     }
     fetchData();
   }, [
@@ -70,21 +57,18 @@ console.log(query)
   console.log("campersItems:", camperItems);
   console.log("campersItems:", camperItems.length);
   console.log("total: ", total);
-  console.log("filter: ", query)
+  console.log("query: ", query);
+  
 
   return (
     <>
       <div className={css.catalogPageContainer}>
         <div className={css.catalogSearchContainer}>
           <Location />
-          <Filters/>
+          <Filters />
         </div>
         <div className={css.catalogPageCampers}>
-          { notFound ? (
-            <NotFound notFound={notFound} />
-          ) : (
-            <Collection />
-          )}
+          {isError ? <NotFound notFound = { isError }/> : <Collection />}
           {showBtn && (
             <Button type="button" variant="loadMore" onClick={handleLoadMore}>
               Load more

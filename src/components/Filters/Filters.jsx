@@ -1,7 +1,6 @@
 import { useId } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { togleFilter } from "../../redux/filterCamper/sliceFilterCamper.js";
-import { selectorFilter } from "../../redux/filterCamper/selectorsFilterCamper.js";
 
 import { useState } from "react";
 
@@ -10,7 +9,7 @@ import icon from "../../images/icons.svg";
 import css from "./Filters.module.css";
 import Button from "../Button/Button.jsx";
 
-function Filters({ onSearch }) {
+function Filters() {
   const automatId = useId();
   const manualId = useId();
   const hybridId = useId();
@@ -25,24 +24,22 @@ function Filters({ onSearch }) {
   const alcoveId = useId();
 
   const dispatch = useDispatch();
-  const filter = useSelector(selectorFilter);
-  // const [values, setValues] = useState({});
+  const [values, setValues] = useState({});
   let valuesObj = {};
-  // let enabled = false;
-  // const [hasChangRadio, setHasChangRadio] = useState(false);
   const [isEnabled, setIsEnabled] = useState(0);
 
   const onFilter = (e) => {
     const param = e.target;
-    valuesObj = { ...filter, [param.name]: param.value };
-    setIsEnabled(Object.keys(valuesObj).length);
+    valuesObj = { ...values, [param.name]: param.value };
     deleteValues(param, valuesObj);
-    dispatch(togleFilter(valuesObj));
-    console.log(Object.keys(filter).length);
+    setValues(valuesObj);
+    setIsEnabled(Object.keys(valuesObj).length);
+    console.log(Object.keys(values).length);
+    console.log("isEnabled: ", isEnabled)
     console.log("checked: ", param.checked);
   };
-  console.log(filter);
-  console.log(Object.keys(filter).length);
+  console.log("values: ", values);
+  console.log(Object.keys(values).length);
 
   function deleteValues(param, val) {
     if (param.checked === false) {
@@ -60,8 +57,10 @@ function Filters({ onSearch }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSearch;
+    dispatch(togleFilter(values));
     valuesObj = {};
+    setValues({});
+    setIsEnabled(0);
     e.target.reset();
   };
 
@@ -70,13 +69,7 @@ function Filters({ onSearch }) {
       <form
         className={css.catalogSearch}
         onChange={onFilter}
-        onSubmit={(e) => { e.preventDefault(); onSearch; e.target.reset() }}
-        // onSubmit={(e) => {
-        //   e.preventDefault();
-        //   onSearch;
-        //   valuesObj = {};
-        //   e.target.reset();
-        // }}
+        onSubmit={handleSubmit}
       >
         <p className={css.itemFilters}>Filters</p>
         <h2 className={css.titleList}>Vehicle equipment</h2>
@@ -227,16 +220,10 @@ function Filters({ onSearch }) {
             Search
           </Button>
         ) : (
-          <Button
-            type="submit"
-            variant="search"
-          >
+          <Button type="submit" variant="search">
             Search
           </Button>
         )}
-        {/* <Button type="submit" variant="search">
-          Search
-        </Button> */}
       </form>
     </>
   );
