@@ -56,3 +56,15 @@
   background-color: #f8f6c9fb;
   border: 1px solid #d84343;
 }
+
+.iconHeartButton {
+  color: dimgrey;
+  padding: 0;
+  background-color: white;
+  width: 25px;
+  height: 24px;
+}
+
+.iconHeartButton:hover {
+  color: rgb(236, 18, 18);
+}
