@@ -58,7 +58,7 @@
 }
 
 .iconHeartButton {
-  color: dimgrey;
+  color: #101828;
   padding: 0;
   background-color: white;
   width: 25px;
@@ -66,5 +66,5 @@
 }
 
 .iconHeartButton:hover {
-  color: rgb(236, 18, 18);
+  color: #E44848;
 }
