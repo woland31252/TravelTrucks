@@ -2,7 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import { lazy } from "react";
 import Layout from "./Layout/Layout.jsx";
 const HomePage = lazy(() => import("../pages/Home/HomePage.jsx"));
-const CatalogPage = lazy (()=>import('../pages/Catalog/CatalogPage.jsx'));
+const CatalogPage = lazy(() => import('../pages/Catalog/CatalogPage.jsx'));
+const FavoritesPage = lazy(()=> import('../pages/Favorites/Favorites.jsx'))
 const CamperPage = lazy(() => import('../pages/Camper/CamperPage.jsx'));
 const NotFoundPage = lazy(()=>import('../pages/NotFoundPage/NotFoundPage.jsx'));
 const FeaturesCamper = lazy(()=>import('./FeaturesCamper/FeaturesCamper.jsx')) ;
@@ -15,13 +16,14 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/catalog" element={<CatalogPage />} />
+        <Route path="/favorite" element={<FavoritesPage />} />
         <Route path="/catalog/:id" element={<CamperPage />}>
           <Route path="features" element={<FeaturesCamper />} />
           <Route path="reviews" element={<ReviewsCamper />} />
-        </Route >
+        </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Layout>
- )
+  );
 }
 export default App

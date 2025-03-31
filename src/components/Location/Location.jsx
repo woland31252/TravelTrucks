@@ -29,7 +29,7 @@ function Location() {
         autoFocus
         defaultValue="Location"
       >
-        <option disabled="disabled">Location</option>
+        <option disabled="disabled">City</option>
         {data.map((elem) => (
           <LocationList key={elem} LocationElem={elem} />
         ))}
