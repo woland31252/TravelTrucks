@@ -35,7 +35,7 @@ function Filters() {
     setValues(valuesObj);
     setIsEnabled(Object.keys(valuesObj).length);
     console.log(Object.keys(values).length);
-    console.log("isEnabled: ", isEnabled)
+    console.log("isEnabled: ", isEnabled);
     console.log("checked: ", param.checked);
   };
   console.log("values: ", values);

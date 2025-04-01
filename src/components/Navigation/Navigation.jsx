@@ -1,4 +1,4 @@
-import { NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import icon from "../../images/icons.svg";
 import css from "./Navigation.module.css";
 import clsx from "clsx";

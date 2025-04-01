@@ -29,26 +29,25 @@
 }
 
 .titleFeatures {
-font-size: 20px;
-font-weight: 600;
-line-height: 1.2;
-margin-bottom: 24px;
-
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 24px;
 }
 
 .lineAfterTitle {
-  border: 1px solid #DADDE1;
+  border: 1px solid #dadde1;
   margin-bottom: 24px;
 }
 
 .vehicleList {
-  display:flex;
+  display: flex;
   flex-direction: column;
   row-gap: 16px;
 }
 
 .vehicleItem {
-  display:flex;
+  display: flex;
   justify-content: space-between;
 }
 

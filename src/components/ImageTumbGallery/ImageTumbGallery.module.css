@@ -1,13 +1,8 @@
 .imgCamperCard {
-    width: 350px;
-    height: 350px;
-    border-radius: 10px;
-    object-fit: none;
-    background-color: #a9a9a9;
-    border: 1px solid #a9a9a9;
-  }
-
-  /* .imgContainer {
-    width: 350px;
-    height: 350px;
-  } */
+  width: 350px;
+  height: 350px;
+  border-radius: 10px;
+  object-fit: none;
+  background-color: #a9a9a9;
+  border: 1px solid #a9a9a9;
+}

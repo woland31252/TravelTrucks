@@ -1,8 +1,11 @@
 import { useId } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { toglePage } from "../../redux/camper/sliceCamper.js";
-import { togleLocationFilter, resetFilter} from "../../redux/filterCamper/sliceFilterCamper.js";
-import { selectorsLocation} from "../../redux/camper/selectorsCamper.js";
+import {
+  togleLocationFilter,
+  resetFilter,
+} from "../../redux/filterCamper/sliceFilterCamper.js";
+import { selectorsLocation } from "../../redux/camper/selectorsCamper.js";
 import LocationList from "../LocationList/LocationList.jsx";
 import icon from "../../images/icons.svg";
 import css from "./Location.module.css";
