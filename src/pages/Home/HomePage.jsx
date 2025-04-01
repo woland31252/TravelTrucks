@@ -7,9 +7,11 @@ function HomePage() {
     <div className={css.homeSection}>
       <div className={css.homeTitleBox}>
         <h1 className={css.homeTitle}>Campres of your dreams</h1>
-        <h2 className={css.homeItem}>You can find everything you want in our catalog</h2>
+        <h2 className={css.homeItem}>
+          You can find everything you want in our catalog
+        </h2>
         <Link to="/catalog">
-        <Button type="button">View Now</Button>
+          <Button type="button">View Now</Button>
         </Link>
       </div>
     </div>

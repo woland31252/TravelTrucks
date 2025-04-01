@@ -1,3 +1,6 @@
+import { togleFavorite } from "../../redux/favoriteCamper/sliceFavoriteCamper.js";
+import { useDispatch, useSelector} from "react-redux";
+import { selectorFavorite } from "../../redux/favoriteCamper/selectorFavoriteCamper.js";
 
 import { Link } from "react-router-dom";
 import icon from "../../images/icons.svg";
@@ -24,6 +27,13 @@ function CamperList({
     radio,
   },
 }) {
+  const dispatch = useDispatch();
+  const favorite = useSelector(selectorFavorite);
+
+  const createFavoriteList = () => {
+    dispatch(togleFavorite(id));
+    console.log("favorite", favorite);
+  }
   
   return (
     <div className={css.camperCardContainer}>
@@ -39,7 +49,7 @@ function CamperList({
           <h2 className={css.camperTitle}>{name}</h2>
           <div className={css.camperPriceContainer}>
             <p className={css.camperPrice}>€{price.toFixed(2)}</p>
-            <Button type="button" variant="iconHeartButton">
+            <Button type="button" variant="iconHeartButton" onClick={createFavoriteList}>
               <svg className={css.iconHeart}>
                 <use href={`${icon}#icon-heart`} />
               </svg>

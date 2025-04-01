@@ -58,7 +58,6 @@ function CatalogPage() {
   console.log("campersItems:", camperItems.length);
   console.log("total: ", total);
   console.log("query: ", query);
-  
 
   return (
     <>
@@ -68,7 +67,7 @@ function CatalogPage() {
           <Filters />
         </div>
         <div className={css.catalogPageCampers}>
-          {isError ? <NotFound notFound = { isError }/> : <Collection />}
+          {isError ? <NotFound notFound={isError} /> : <Collection />}
           {showBtn && (
             <Button type="button" variant="loadMore" onClick={handleLoadMore}>
               Load more

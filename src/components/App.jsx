@@ -2,13 +2,16 @@ import { Routes, Route } from "react-router-dom";
 import { lazy } from "react";
 import Layout from "./Layout/Layout.jsx";
 const HomePage = lazy(() => import("../pages/Home/HomePage.jsx"));
-const CatalogPage = lazy(() => import('../pages/Catalog/CatalogPage.jsx'));
-const FavoritesPage = lazy(()=> import('../pages/Favorites/Favorites.jsx'))
-const CamperPage = lazy(() => import('../pages/Camper/CamperPage.jsx'));
-const NotFoundPage = lazy(()=>import('../pages/NotFoundPage/NotFoundPage.jsx'));
-const FeaturesCamper = lazy(()=>import('./FeaturesCamper/FeaturesCamper.jsx')) ;
-const ReviewsCamper = lazy(()=>import('./ReviewsCampers/ReviewsCampers.jsx')) ;
-
+const CatalogPage = lazy(() => import("../pages/Catalog/CatalogPage.jsx"));
+const FavoritesPage = lazy(() => import("../pages/Favorites/Favorites.jsx"));
+const CamperPage = lazy(() => import("../pages/Camper/CamperPage.jsx"));
+const NotFoundPage = lazy(
+  () => import("../pages/NotFoundPage/NotFoundPage.jsx")
+);
+const FeaturesCamper = lazy(
+  () => import("./FeaturesCamper/FeaturesCamper.jsx")
+);
+const ReviewsCamper = lazy(() => import("./ReviewsCampers/ReviewsCampers.jsx"));
 
 const App = () => {
   return (
@@ -25,5 +28,5 @@ const App = () => {
       </Routes>
     </Layout>
   );
-}
-export default App
+};
+export default App;

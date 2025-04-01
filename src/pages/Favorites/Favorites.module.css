@@ -1,9 +1,9 @@
 .favoriteContainer {
-padding: 40px;
+  padding: 40px;
 }
 
 .favoriteItem {
-text-align: center;
-font-size: 56px;
-font-weight: 700;
+  text-align: center;
+  font-size: 56px;
+  font-weight: 700;
 }

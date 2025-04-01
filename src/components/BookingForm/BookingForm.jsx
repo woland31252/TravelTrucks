@@ -1,6 +1,6 @@
 import { useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 import * as Yup from "yup";
 import Button from "../Button/Button.jsx";
 import clsx from "clsx";
@@ -39,7 +39,7 @@ function BookingForm() {
       date: value.date,
       comment: value.comment,
     });
-    toast.success('Successfully created!');
+    toast.success("Successfully created!");
     actions.resetForm();
   };
 
