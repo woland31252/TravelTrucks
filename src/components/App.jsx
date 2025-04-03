@@ -3,7 +3,7 @@ import { lazy } from "react";
 import Layout from "./Layout/Layout.jsx";
 const HomePage = lazy(() => import("../pages/Home/HomePage.jsx"));
 const CatalogPage = lazy(() => import("../pages/Catalog/CatalogPage.jsx"));
-const FavoritesPage = lazy(() => import("../pages/Favorites/Favorites.jsx"));
+const FavoritesPage = lazy(() => import("../pages/Favorites/FavoritesPage.jsx"));
 const CamperPage = lazy(() => import("../pages/Camper/CamperPage.jsx"));
 const NotFoundPage = lazy(
   () => import("../pages/NotFoundPage/NotFoundPage.jsx")

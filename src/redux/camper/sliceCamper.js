@@ -14,6 +14,7 @@ const camperInitState = {
   items: [],
   locationList: [],
   itemId: {},
+  favorite: [],
   isLoading: false,
   error: null,
 };
@@ -31,6 +32,14 @@ const sliceCamper = createSlice({
     toglePage(state, action) {
       state.page = action.payload;
     },
+    togleFavorite(state, action) {
+      const favorites = state.favorite;
+      if (favorites.includes(action.payload)) {
+        state.favorite = favorites.filter(
+          (elem) => elem !== action.payload
+        );
+      } else {state.favorite = [...favorites, action.payload] }
+        },
   },
   extraReducers: (builder) =>
     builder
@@ -61,5 +70,5 @@ const sliceCamper = createSlice({
       .addCase(fetchLocation.rejected, handleError),
 });
 
-export const { toglePage } = sliceCamper.actions;
+export const { toglePage, togleFavorite } = sliceCamper.actions;
 export default sliceCamper.reducer;

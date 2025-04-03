@@ -1,6 +1,7 @@
-import { togleFavorite } from "../../redux/favoriteCamper/sliceFavoriteCamper.js";
+import { togleFavorite } from "../../redux/camper/sliceCamper.js";
 import { useDispatch, useSelector} from "react-redux";
-import { selectorFavorite } from "../../redux/favoriteCamper/selectorFavoriteCamper.js";
+import { selectorsFavorite } from "../../redux/camper/selectorsCamper.js";
+import { selectorsCampers } from "../../redux/camper/selectorsCamper.js";
 
 import { Link } from "react-router-dom";
 import icon from "../../images/icons.svg";
@@ -28,10 +29,13 @@ function CamperList({
   },
 }) {
   const dispatch = useDispatch();
-  const favorite = useSelector(selectorFavorite);
+  const favorite = useSelector(selectorsFavorite);
+  const campers = useSelector(selectorsCampers);
 
   const createFavoriteList = () => {
-    dispatch(togleFavorite(id));
+    const item = campers.filter((item) => item.id === id); 
+    dispatch(togleFavorite(...item));
+    console.log("includes", favorite.includes(...item))
     console.log("favorite", favorite);
   }
   

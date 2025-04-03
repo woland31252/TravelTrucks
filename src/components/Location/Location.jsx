@@ -30,7 +30,7 @@ function Location() {
         id={id}
         name="location"
         autoFocus
-        defaultValue="Location"
+        defaultValue="City"
       >
         <option disabled="disabled">City</option>
         {data.map((elem) => (
