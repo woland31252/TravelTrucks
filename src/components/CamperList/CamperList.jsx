@@ -33,9 +33,9 @@ function CamperList({
   const campers = useSelector(selectorsCampers);
 
   const createFavoriteList = () => {
-    const item = campers.filter((item) => item.id === id); 
-    dispatch(togleFavorite(...item));
-    console.log("includes", favorite.includes(...item))
+    const item = campers.filter((item) => item.id === id);
+    const favorites = favorite.includes(...item) ? favorite.filter((elem) => elem !== item) : [...favorite, ...item];
+    dispatch(togleFavorite(favorites));
     console.log("favorite", favorite);
   }
   

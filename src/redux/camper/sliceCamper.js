@@ -33,13 +33,8 @@ const sliceCamper = createSlice({
       state.page = action.payload;
     },
     togleFavorite(state, action) {
-      const favorites = state.favorite;
-      if (favorites.includes(action.payload)) {
-        state.favorite = favorites.filter(
-          (elem) => elem !== action.payload
-        );
-      } else {state.favorite = [...favorites, action.payload] }
-        },
+      state.favorite = action.payload;
+    },
   },
   extraReducers: (builder) =>
     builder

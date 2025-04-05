@@ -1,9 +1,21 @@
 import css from '../FavoriteCollection/FavoriteCollection.module.css';
+import { useSelector } from 'react-redux';
+import { selectorsFavorite } from '../../redux/camper/selectorsCamper';
+import CamperList from "../CamperList/CamperList.jsx";
 
-export function FavoriteCollection() {
-    return (
-      <div className={css.favoriteContainer}>
-        <p className={css.favoriteItem}>Favorites Page</p>
-      </div>
-    );
+const FavoriteCollection = () => {
+  const favorites = useSelector(selectorsFavorite);
+  return (
+    <>
+      <ul >
+        {favorites.map((item) => (
+          <li key={item.id}>
+            <CamperList item={item} />
+          </li>
+        ))}
+      </ul>
+    </>
+  );
 }
+
+export default FavoriteCollection;
