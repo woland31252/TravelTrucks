@@ -34,6 +34,10 @@ const sliceCamper = createSlice({
     },
     togleFavorite(state, action) {
       state.favorite = action.payload;
+      if (state.favorite.includes(action.payload)) {
+        console.log("helo: ", action.payload)
+      }
+      
     },
   },
   extraReducers: (builder) =>

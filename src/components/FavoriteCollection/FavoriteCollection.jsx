@@ -7,7 +7,7 @@ const FavoriteCollection = () => {
   const favorites = useSelector(selectorsFavorite);
   return (
     <>
-      <ul >
+      <ul className={css.collectionList}>
         {favorites.map((item) => (
           <li key={item.id}>
             <CamperList item={item} />
