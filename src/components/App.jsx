@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Navigate, Routes, Route } from "react-router-dom";
 import { lazy } from "react";
 import Layout from "./Layout/Layout.jsx";
 const HomePage = lazy(() => import("../pages/Home/HomePage.jsx"));
@@ -12,6 +12,7 @@ const FeaturesCamper = lazy(
   () => import("./FeaturesCamper/FeaturesCamper.jsx")
 );
 const ReviewsCamper = lazy(() => import("./ReviewsCampers/ReviewsCampers.jsx"));
+// import FeaturesCamper from './FeaturesCamper/FeaturesCamper.jsx';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/catalog" element={<CatalogPage />} />
         <Route path="/favorite" element={<FavoritesPage />} />
         <Route path="/catalog/:id" element={<CamperPage />}>
+          <Route index element={ <Navigate to="features" replace/>} />
           <Route path="features" element={<FeaturesCamper />} />
           <Route path="reviews" element={<ReviewsCamper />} />
         </Route>

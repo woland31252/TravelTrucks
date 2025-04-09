@@ -50,7 +50,7 @@ function CamperCard() {
 
       <div className={css.bookingForm}>
         <Suspense fallback={<Loader />}>
-          <Outlet />
+          <Outlet/>
           <BookingForm />
         </Suspense>
       </div>

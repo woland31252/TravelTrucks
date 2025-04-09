@@ -5,12 +5,14 @@ import Location from "../../components/Location/Location.jsx";
 import Filters from "../../components/Filters/Filters.jsx";
 import css from "../Favorites/FavoritesPage.module.css";
 import FavoriteCollection from "../../components/FavoriteCollection/FavoriteCollection.jsx";
+// import { useEffect } from "react";
+// import { togleFavorite } from "../../redux/camper/sliceCamper.js";
 
 
 function FavoritesPage() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const favorite = useSelector(selectorsFavorite);
-
+  
 
 
   console.log("favPage: ", favorite);
