@@ -121,3 +121,22 @@
   width: 20px;
   height: 20px;
 }
+
+.favoriteBtn {
+  color: #101828;
+  padding: 0;
+  background-color: white;
+  width: 27px;
+  height: 27px;
+  border: none;
+}
+
+.favoriteBtn:hover {
+  color: #ca4f4f;
+}
+
+.favoriteBtnActive {
+  color: #e44848;
+}
+
+

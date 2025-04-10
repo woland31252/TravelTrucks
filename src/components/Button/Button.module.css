@@ -57,14 +57,22 @@
   border: 1px solid #d84343;
 }
 
-.iconHeartButton {
+.favoriteBtn {
   color: #101828;
   padding: 0;
   background-color: white;
   width: 25px;
-  height: 24px;
+  height: 25px;
 }
 
-.iconHeartButton:hover {
+.favoriteBtn:hover {
+  color: #ca4f4f;
+}
+
+.favoriteBtnActive {
   color: #e44848;
+  padding: 0;
+  background-color: white;
+  width: 25px;
+  height: 25px;
 }

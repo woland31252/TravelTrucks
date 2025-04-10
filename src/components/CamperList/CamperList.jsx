@@ -1,9 +1,7 @@
-import { togleFavorite } from "../../redux/camper/sliceCamper.js";
-import { useDispatch, useSelector} from "react-redux";
-import { selectorsFavorite } from "../../redux/camper/selectorsCamper.js";
-import { selectorsCampers } from "../../redux/camper/selectorsCamper.js";
 
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import clsx from "clsx";
 import icon from "../../images/icons.svg";
 import css from "./CamperList.module.css";
 import Button from "../Button/Button.jsx";
@@ -28,17 +26,17 @@ function CamperList({
     radio,
   },
 }) {
-  const dispatch = useDispatch();
-  const favorite = useSelector(selectorsFavorite);
-  const campers = useSelector(selectorsCampers);
+  
+  const [isFavorite, setIsFavorite] = useState(false);
+  const buildBtnLinkClass = clsx(
+      css.favoriteBtn,
+      isFavorite && css.favoriteBtnActive
+    );
 
   const createFavoriteList = () => {
-    const [item] = campers.filter((item) => item.id === id);
-    const favorites = favorite.includes(item) ? favorite.filter((elem) => elem !== item) : [...favorite, item];
-    dispatch(togleFavorite(favorites));
-    console.log("favorite", favorite);
+    setIsFavorite(!isFavorite);
   }
-  console.log("favorite1", favorite);
+  console.log(isFavorite)
   return (
     <div className={css.camperCardContainer}>
       <div className={css.imgCamperContainer}>
@@ -53,11 +51,15 @@ function CamperList({
           <h2 className={css.camperTitle}>{name}</h2>
           <div className={css.camperPriceContainer}>
             <p className={css.camperPrice}>€{price.toFixed(2)}</p>
-            <Button type="button" variant="iconHeartButton" onClick={createFavoriteList}>
+            <button
+              type="button"
+              className={buildBtnLinkClass}
+              onClick={createFavoriteList}
+            >
               <svg className={css.iconHeart}>
                 <use href={`${icon}#icon-heart`} />
               </svg>
-            </Button>
+            </button>
           </div>
         </div>
         <div className={css.camperRatingLocation}>
