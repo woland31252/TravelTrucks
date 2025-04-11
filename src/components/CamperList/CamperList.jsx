@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import icon from "../../images/icons.svg";
@@ -27,8 +27,19 @@ function CamperList({
   },
 }) {
   
-  const [isFavorite, setIsFavorite] = useState(false);
-  const buildBtnLinkClass = clsx(
+  const [isFavorite, setIsFavorite] = useState(() => { 
+    const savedFavorite = window.localStorage.getItem("saved-favorite");
+    if (savedFavorite !== null) {
+      return savedFavorite
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    window.localStorage.setItem("saved-favorite", isFavorite);
+  }, [isFavorite]);
+  
+  const buildBtnClass = clsx(
       css.favoriteBtn,
       isFavorite && css.favoriteBtnActive
     );
@@ -53,7 +64,7 @@ function CamperList({
             <p className={css.camperPrice}>€{price.toFixed(2)}</p>
             <button
               type="button"
-              className={buildBtnLinkClass}
+              className={buildBtnClass}
               onClick={createFavoriteList}
             >
               <svg className={css.iconHeart}>
