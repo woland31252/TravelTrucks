@@ -7,36 +7,18 @@ import css from "./CamperList.module.css";
 import Button from "../Button/Button.jsx";
 
 
-function CamperList({
-  item: {
-    id,
-    name,
-    price,
-    rating,
-    location,
-    transmission,
-    engine,
-    AC,
-    kitchen,
-    gallery,
-    reviews,
-    description,
-    bathroom,
-    TV,
-    radio,
-  },
-}) {
+function CamperList({item}) {
   
   const [isFavorite, setIsFavorite] = useState(() => { 
     const savedFavorite = window.localStorage.getItem("saved-favorite");
     if (savedFavorite !== null) {
-      return savedFavorite
+      return JSON.parse(savedFavorite);
     }
-    return false;
+    return [];
   });
 
   useEffect(() => {
-    window.localStorage.setItem("saved-favorite", isFavorite);
+    window.localStorage.setItem("saved-favorite", JSON.stringify(isFavorite));
   }, [isFavorite]);
   
   const buildBtnClass = clsx(
@@ -44,8 +26,10 @@ function CamperList({
       isFavorite && css.favoriteBtnActive
     );
 
-  const createFavoriteList = () => {
-    setIsFavorite(!isFavorite);
+  const createFavoriteList = (camper) => {
+    let objFav = []
+    objFav.push(camper)
+    setIsFavorite(objFav);
   }
   console.log(isFavorite)
   return (
@@ -53,19 +37,19 @@ function CamperList({
       <div className={css.imgCamperContainer}>
         <img
           className={css.imgCamperCard}
-          src={gallery[0].thumb}
+          src={item.gallery[0].thumb}
           alt="The camper"
         />
       </div>
       <div className={css.informCamperContainer}>
         <div className={css.camperTitlePrice}>
-          <h2 className={css.camperTitle}>{name}</h2>
+          <h2 className={css.camperTitle}>{item.name}</h2>
           <div className={css.camperPriceContainer}>
-            <p className={css.camperPrice}>€{price.toFixed(2)}</p>
+            <p className={css.camperPrice}>€{item.price.toFixed(2)}</p>
             <button
               type="button"
               className={buildBtnClass}
-              onClick={createFavoriteList}
+              onClick={() => createFavoriteList(item)}
             >
               <svg className={css.iconHeart}>
                 <use href={`${icon}#icon-heart`} />
@@ -79,8 +63,8 @@ function CamperList({
               <use href={`${icon}#icon-star`} />
             </svg>
             <p className={css.camperRating}>
-              {rating}
-              <span>({reviews.length}Reviews)</span>
+              {item.rating}
+              <span>({item.reviews.length}Reviews)</span>
             </p>
           </div>
 
@@ -88,24 +72,24 @@ function CamperList({
             <svg className={css.iconMap}>
               <use href={`${icon}#icon-map`} />
             </svg>
-            {location}
+            {item.location}
           </p>
         </div>
-        <p className={css.camperDescription}>{description}</p>
+        <p className={css.camperDescription}>{item.description}</p>
         <div className={css.camperProperties}>
           <div className={css.camperPropertieContainer}>
             <svg className={css.iconProperties}>
               <use href={`${icon}#icon-diagram`} />
             </svg>
-            <p className={css.camperPropertiesItem}>{transmission}</p>
+            <p className={css.camperPropertiesItem}>{item.transmission}</p>
           </div>
           <div className={css.camperPropertieContainer}>
             <svg className={css.iconProperties}>
               <use href={`${icon}#icon-fuel-pump`} />
             </svg>
-            <p className={css.camperPropertiesItem}>{engine}</p>
+            <p className={css.camperPropertiesItem}>{item.engine}</p>
           </div>
-          {kitchen ? (
+          {item.kitchen ? (
             <div className={css.camperPropertieContainer}>
               <svg className={css.iconProperties}>
                 <use href={`${icon}#icon-cup-hot`} />
@@ -113,7 +97,7 @@ function CamperList({
               <p className={css.camperPropertiesItem}>Kitchen</p>
             </div>
           ) : null}
-          {AC ? (
+          {item.AC ? (
             <div className={css.camperPropertieContainer}>
               <svg className={css.iconProperties}>
                 <use href={`${icon}#icon-wind`} />
@@ -121,7 +105,7 @@ function CamperList({
               <p className={css.camperPropertiesItem}>AC</p>
             </div>
           ) : null}
-          {bathroom ? (
+          {item.bathroom ? (
             <div className={css.camperPropertieContainer}>
               <svg className={css.iconProperties}>
                 <use href={`${icon}#icon-bi-droplet20`} />
@@ -129,7 +113,7 @@ function CamperList({
               <p className={css.camperPropertiesItem}>bathroom</p>
             </div>
           ) : null}
-          {TV ? (
+          {item.TV ? (
             <div className={css.camperPropertieContainer}>
               <svg className={css.iconProperties}>
                 <use href={`${icon}#icon-tv20`} />
@@ -137,7 +121,7 @@ function CamperList({
               <p className={css.camperPropertiesItem}>TV</p>
             </div>
           ) : null}
-          {radio ? (
+          {item.radio ? (
             <div className={css.camperPropertieContainer}>
               <svg className={css.iconProperties}>
                 <use href={`${icon}#icon-ui-radios`} />
@@ -146,7 +130,7 @@ function CamperList({
             </div>
           ) : null}
         </div>
-        <Link to={`/catalog/${id}`}>
+        <Link to={`/catalog/${item.id}`}>
           <Button type="button" variant="showMore">
             Show more
           </Button>
