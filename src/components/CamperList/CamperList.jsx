@@ -1,37 +1,31 @@
-
-import { useEffect, useState } from "react";
+// import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import icon from "../../images/icons.svg";
 import css from "./CamperList.module.css";
 import Button from "../Button/Button.jsx";
+import {
+  addFavorite,
+  removeFavorite,
+} from "../../redux/camper/sliceCamper.js";
 
-
-function CamperList({item}) {
-  
-  const [isFavorite, setIsFavorite] = useState(() => { 
-    const savedFavorite = window.localStorage.getItem("saved-favorite");
-    if (savedFavorite !== null) {
-      return JSON.parse(savedFavorite);
-    }
-    return [];
-  });
-
-  useEffect(() => {
-    window.localStorage.setItem("saved-favorite", JSON.stringify(isFavorite));
-  }, [isFavorite]);
-  
+function CamperList({ item, favorites, isFavorite }) {
+  const dispatch = useDispatch();
+ 
   const buildBtnClass = clsx(
-      css.favoriteBtn,
-      isFavorite && css.favoriteBtnActive
-    );
+    css.favoriteBtn,
+    isFavorite && css.favoriteBtnActive
+  );
 
   const createFavoriteList = (camper) => {
-    let objFav = []
-    objFav.push(camper)
-    setIsFavorite(objFav);
-  }
-  console.log(isFavorite)
+    if (favorites.some((item) => item.id === camper.id)) {
+      dispatch(removeFavorite(item));
+    } else {
+      dispatch(addFavorite(item));
+    }
+  };
+  console.log("favorites: ", favorites);
   return (
     <div className={css.camperCardContainer}>
       <div className={css.imgCamperContainer}>

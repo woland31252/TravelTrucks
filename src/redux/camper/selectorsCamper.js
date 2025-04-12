@@ -6,3 +6,5 @@ export const selectorsCamperById = (state) => state.camper.itemId;
 export const selectorsPage = (state) => state.camper.page;
 export const selectorsLimit = (state) => state.camper.limit;
 export const selectorsLocation = (state) => state.camper.locationList;
+export const selectorsFavorite = (state) => state.camper.favorite;
+export const selectorsIsFavorite = (state) => state.camper.isFavorite;

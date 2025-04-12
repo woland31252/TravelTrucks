@@ -16,6 +16,7 @@ const camperInitState = {
   itemId: {},
   isLoading: false,
   error: null,
+  favorite: JSON.parse(localStorage.getItem("saved-favorite")) || [],
 };
 
 const sliceCamper = createSlice({
@@ -28,8 +29,21 @@ const sliceCamper = createSlice({
     // addCampers(state, action) {
     //   state.items = [...camperInitlState.items, ...action.payload.items];
     // },
+
     toglePage(state, action) {
       state.page = action.payload;
+    },
+
+    addFavorite(state, action) {
+      state.favorite.push(action.payload);
+      localStorage.setItem("saved-favorite", JSON.stringify(state.favorite));
+    },
+
+    removeFavorite(state, action) {
+      state.favorite = state.favorite.filter(
+        (item) => item.id !== action.payload.id
+      );
+      localStorage.setItem("saved-favorite", JSON.stringify(state.favorite));
     },
   },
   extraReducers: (builder) =>
@@ -61,5 +75,5 @@ const sliceCamper = createSlice({
       .addCase(fetchLocation.rejected, handleError),
 });
 
-export const { toglePage } = sliceCamper.actions;
+export const { toglePage, addFavorite, removeFavorite } = sliceCamper.actions;
 export default sliceCamper.reducer;
