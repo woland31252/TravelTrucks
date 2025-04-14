@@ -1,10 +1,10 @@
 import clsx from "clsx";
 import css from "./NotFound.module.css";
 
-function NotFound({ isError }) {
+function NotFound({ isError, notFound }) {
   const notFoudStyle = clsx(
     css.notFoundContainerTrue,
-    isError && css.notFoundContainerFalse
+    isError || notFound && css.notFoundContainerFalse
   );
   return (
     <div className={notFoudStyle}>

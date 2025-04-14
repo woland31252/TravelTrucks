@@ -20,7 +20,7 @@ function CamperPage() {
   }
   return (
     <>
-      <CamperCard />
+      <CamperCard camper={ camper} />
     </>
   );
 }

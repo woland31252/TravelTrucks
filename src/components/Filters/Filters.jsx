@@ -1,6 +1,6 @@
 import { useId } from "react";
 import { useDispatch } from "react-redux";
-import { togleFilter } from "../../redux/filterCamper/sliceFilterCamper.js";
+import { togleFilter, resetFilter } from "../../redux/filterCamper/sliceFilterCamper.js";
 
 import { useState } from "react";
 
@@ -57,6 +57,7 @@ function Filters() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(resetFilter());
     dispatch(togleFilter(values));
     valuesObj = {};
     setValues({});

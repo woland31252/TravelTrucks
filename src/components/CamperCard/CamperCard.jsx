@@ -1,16 +1,16 @@
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { NavLink, Outlet } from "react-router-dom";
 import BookingForm from "../BookingForm/BookingForm.jsx";
 import { Suspense } from "react";
 import Loader from "../Loader/Loader.jsx";
 import ImageTumbGallery from "../ImageTumbGallery/ImageTumbGallery.jsx";
-import { selectorsCamperById } from "../../redux/camper/selectorsCamper.js";
+// import { selectorsCamperById } from "../../redux/camper/selectorsCamper.js";
 import icon from "../../images/icons.svg";
 import css from "../CamperCard/CamperCard.module.css";
 import clsx from "clsx";
 
-function CamperCard() {
-  const camper = useSelector(selectorsCamperById);
+function CamperCard({camper}) {
+  // const camper = useSelector(selectorsCamperById);
   const buildCamperLinkClass = ({ isActive }) => {
     return clsx(css.camperLink, isActive && css.camperLinkActive);
   };
