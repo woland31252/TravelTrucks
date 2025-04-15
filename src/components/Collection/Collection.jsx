@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
   // selectorsCampers,
@@ -10,22 +10,22 @@ import css from "./Collection.module.css";
 const Collection = ({ camperItems }) => {
   // const campers = useSelector(selectorsCampers);
   const favorites = useSelector(selectorsFavorite);
-  const [campers, setCampers] = useState([]);
+  // const [campers, setCampers] = useState([]);
 
-  useEffect(() => {
-    setCampers([]);
-  }, []);
+  // useEffect(() => {
+  //   setCampers([]);
+  // }, []);
 
-  useEffect(() => {
-     setCampers((campers) => [...campers, ...camperItems]);
-  }, [camperItems])
+  // useEffect(() => {
+  //    setCampers((campers) => [...campers, ...camperItems]);
+  // }, [camperItems])
   
   
   
   return (
     <>
       <ul className={css.collectionList}>
-        {campers.map((item) => (
+        {camperItems.map((item) => (
           <li key={item.id}>
             <CamperList
               item={item}
