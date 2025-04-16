@@ -32,17 +32,19 @@ function CatalogPage() {
   const isError = useSelector(selectorsError);
   const [showBtn, setShowBtn] = useState(true);
   const [notFound, setNotFound] = useState(false);
-  // const [campers, setCampers] = useState([]);
+  const [campers, setCampers] = useState([]);
 
   function handleLoadMore() {
     dispatch(toglePage(page + 1));
   }
 
   useEffect(() => {
+    setCampers((campers) =>  [...campers, ...camperItems]  );
     function fetchData() {
+      
       dispatch(fetchLocation());
       dispatch(fetchAllCampers({ location, page, limit, ...query }));
-      // setCampers((campers)=>[...campers, ...camperItems] );
+      
       setShowBtn(total > limit && camperItems.length >= limit && !isError);
       setNotFound(camperItems.length === 0 || total === 0);
     }
@@ -66,7 +68,7 @@ function CatalogPage() {
           {isError || notFound ? (
             <NotFound isError={isError} notFound={ notFound} />
           ) : (
-              <Collection camperItems={ camperItems} />
+              <Collection camperItems={campers} />
           )}
           {showBtn && (
             <Button type="button" variant="loadMore" onClick={handleLoadMore}>

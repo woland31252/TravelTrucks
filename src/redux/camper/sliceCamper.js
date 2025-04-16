@@ -52,8 +52,6 @@ const sliceCamper = createSlice({
       .addCase(fetchAllCampers.fulfilled, (state, action) => {
         state.isLoading = false;
         state.items = action.payload.items;
-        [...state.items, ...action.payload.items];
-
         state.total = action.payload.total;
       })
       .addCase(fetchAllCampers.rejected, handleError)
