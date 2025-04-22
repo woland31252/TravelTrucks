@@ -23,11 +23,11 @@ const sliceCamper = createSlice({
   name: "camper",
   initialState: camperInitState,
   reducers: {
-    // resetItems(state) {
-    //   state.items = camperInitlState.items;
-    // },
+    resetItems(state) {
+      state.items = [];
+    },
     // addCampers(state, action) {
-    //   state.items = [...camperInitlState.items, ...action.payload.items];
+    //   state.items = state.items.concat(action.payload.items);
     // },
 
     toglePage(state, action) {
@@ -51,7 +51,7 @@ const sliceCamper = createSlice({
       .addCase(fetchAllCampers.pending, handlePending)
       .addCase(fetchAllCampers.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items = action.payload.items;
+        state.items = state.items.concat(action.payload.items);
         state.total = action.payload.total;
       })
       .addCase(fetchAllCampers.rejected, handleError)
@@ -75,5 +75,5 @@ const sliceCamper = createSlice({
       .addCase(fetchLocation.rejected, handleError),
 });
 
-export const { toglePage, addFavorite, removeFavorite } = sliceCamper.actions;
+export const { toglePage, addFavorite, removeFavorite, resetItems } = sliceCamper.actions;
 export default sliceCamper.reducer;

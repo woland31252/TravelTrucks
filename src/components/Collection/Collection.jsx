@@ -1,27 +1,21 @@
-// import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { resetItems } from "../../redux/camper/sliceCamper.js";
 import {
-  // selectorsCampers,
   selectorsFavorite,
 } from "../../redux/camper/selectorsCamper.js";
 import CamperList from "../CamperList/CamperList.jsx";
 import css from "./Collection.module.css";
 
 const Collection = ({ camperItems }) => {
-  // const campers = useSelector(selectorsCampers);
+  const dispatch = useDispatch();
   const favorites = useSelector(selectorsFavorite);
-  // const [campers, setCampers] = useState([]);
+  
+  useEffect(() => {
+    dispatch(resetItems)
+  }, []);
 
-  // useEffect(() => {
-  //   setCampers([]);
-  // }, []);
-
-  // useEffect(() => {
-  //    setCampers((campers) => [...campers, ...camperItems]);
-  // }, [camperItems])
-  
-  
-  
   return (
     <>
       <ul className={css.collectionList}>

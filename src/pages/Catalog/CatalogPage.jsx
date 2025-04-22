@@ -32,31 +32,45 @@ function CatalogPage() {
   const isError = useSelector(selectorsError);
   const [showBtn, setShowBtn] = useState(true);
   const [notFound, setNotFound] = useState(false);
-  const [campers, setCampers] = useState([]);
+  // const [campers, setCampers] = useState([]);
 
   function handleLoadMore() {
     dispatch(toglePage(page + 1));
+    // dispatch(fetchAllCampers())
   }
 
+  // function resetItems() {
+  //   setCampers([]);
+  // }
+
   useEffect(() => {
-    setCampers((campers) =>  [...campers, ...camperItems]  );
+    
     function fetchData() {
-      
       dispatch(fetchLocation());
       dispatch(fetchAllCampers({ location, page, limit, ...query }));
+      // setCampers((campers) => [...campers, ...camperItems]);
+      // setShowBtn(total > limit && camperItems.length >= limit && !isError);
+      // setNotFound(camperItems.length === 0 || total === 0);
       
-      setShowBtn(total > limit && camperItems.length >= limit && !isError);
-      setNotFound(camperItems.length === 0 || total === 0);
     }
     fetchData();
-  }, [camperItems.length, dispatch, isError, limit, page, query, total, location]);
+  }, [
+    // camperItems.length,
+    isError,
+    limit,
+    page,
+    query,
+    total,
+    location,
+  ]);
+
+
 
   console.log("campersItems:", camperItems);
   console.log("campersItems:", camperItems.length);
   console.log("total: ", total);
   console.log("query: ", query);
-  // console.log("campers: ", campers);
-
+  
   return (
     <>
       <div className={css.catalogPageContainer}>
@@ -66,9 +80,9 @@ function CatalogPage() {
         </div>
         <div className={css.catalogPageCampers}>
           {isError || notFound ? (
-            <NotFound isError={isError} notFound={ notFound} />
+            <NotFound isError={isError} notFound={notFound} />
           ) : (
-              <Collection camperItems={campers} />
+            <Collection camperItems={camperItems}/>
           )}
           {showBtn && (
             <Button type="button" variant="loadMore" onClick={handleLoadMore}>
