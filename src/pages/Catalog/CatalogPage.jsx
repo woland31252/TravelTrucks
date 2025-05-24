@@ -55,12 +55,13 @@ function CatalogPage() {
     }
     fetchData();
   }, [
+    dispatch,
     // camperItems.length,
-    isError,
+    // isError,
     limit,
     page,
     query,
-    total,
+    // total,
     location,
   ]);
 
